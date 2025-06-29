@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\PersonalData;
+use App\Models\Client;
 use Illuminate\Support\Facades\DB;
 use Livewire\Volt\Component;
 use Livewire\WithFileUploads;
@@ -27,13 +27,13 @@ class extends Component {
     {
         $this->name = Auth::user()->name;
         $this->email = Auth::user()->email;
-        $this->identity = Auth::user()->personalData->identity ?? '';
-        $this->phone = Auth::user()->personalData->phone ?? '';
-        $this->address = Auth::user()->personalData->address ?? '';
-        $this->place_of_birth = Auth::user()->personalData->place_of_birth ?? '';
-        $this->date_of_birth = Auth::user()->personalData->date_of_birth ?? '';
-        $this->identity_image_preview = Auth::user()->personalData->identity_image ?? '';
-        $this->client_image_preview = Auth::user()->personalData->client_image ?? '';
+        $this->identity = Auth::user()->client->identity ?? '';
+        $this->phone = Auth::user()->client->phone ?? '';
+        $this->address = Auth::user()->client->address ?? '';
+        $this->place_of_birth = Auth::user()->client->place_of_birth ?? '';
+        $this->date_of_birth = Auth::user()->client->date_of_birth ?? '';
+        $this->identity_image_preview = Auth::user()->client->identity_image ?? '';
+        $this->client_image_preview = Auth::user()->client->client_image ?? '';
     }
 
     public function updatePersonalData(): void
@@ -41,7 +41,7 @@ class extends Component {
         $this->validate([
             'name' => ['required', 'string', 'max:100'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255'],
-            'identity' => ['required', 'string', 'max:16', 'min:16', 'unique:' . PersonalData::class . ',identity,' . Auth::user()->id],
+            'identity' => ['required', 'string', 'max:16', 'min:16', 'unique:' . Client::class . ',identity,' . Auth::user()->client?->id],
             'phone' => ['required', 'string', 'max:20'],
             'address' => ['required', 'string'],
             'place_of_birth' => ['required', 'string', 'max:50'],
@@ -79,7 +79,7 @@ class extends Component {
                     'name' => $this->name,
                     'email' => $this->email,
                 ]);
-                PersonalData::updateOrCreate([
+                Client::updateOrCreate([
                     'user_id' => Auth::user()->id,
                 ], $data);
             });
@@ -96,7 +96,7 @@ class extends Component {
     {
         $column = $type == 'identity' ? 'identity_image' : 'client_image';
         try {
-            $image = PersonalData::find($id);
+            $image = Client::find($id);
             if ($image) {
                 Storage::delete($image->$column);
                 $image->update([$column => null]);
@@ -110,7 +110,7 @@ class extends Component {
     public function showImage($id, $type): void
     {
         $column = $type == 'identity' ? 'identity_image' : 'client_image';
-        $this->image = PersonalData::where('id', $id)->first()->$column;
+        $this->image = Client::where('id', $id)->first()->$column;
         Flux::modal('modal-show-image')->show();
     }
 
@@ -170,14 +170,24 @@ class extends Component {
                 <flux:separator vertical variant="subtle" class="hidden xl:block mx-6"/>
                 <div class="w-full xl:w-[50%]">
                     <x-filepond wire:model="identity_image" label="KTP"/>
-                    <div class="relative overflow-hidden rounded-lg hover:scale-105 transition duration-300 ease-in-out cursor-pointer hover:shadow-lg dark:hover:shadow-none border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900" >
-                        <img  wire:click="showImage({{ auth()->user()->personalData->id }}, 'identity')" class="object-cover w-full h-15 mb-6 rounded-lg" src="{{ asset('storage/'.$this->identity_image_preview) }}" alt="">
-                    </div>
+                    @if($this->identity_image_preview)
+                        <div
+                            class="relative overflow-hidden rounded-lg hover:scale-105 transition duration-300 ease-in-out cursor-pointer hover:shadow-lg dark:hover:shadow-none border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900">
+                            <img wire:click="showImage({{ auth()->user()->client->id }}, 'identity')"
+                                 class="object-cover w-full h-15 mb-6 rounded-lg"
+                                 src="{{ asset('storage/'.$this->identity_image_preview) }}" alt="">
+                        </div>
+                    @endif
                     <x-filepond wire:model="client_image" label="Foto Anda"/>
-                    <div class="relative overflow-hidden rounded-lg hover:scale-105 transition duration-300 ease-in-out cursor-pointer hover:shadow-lg dark:hover:shadow-none border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900">
-                    <img  wire:click="showImage({{ auth()->user()->personalData->id }}, 'client')" class="object-cover w-full h-15 mb-6 rounded-lg" src="{{ asset('storage/'.$this->client_image_preview) }}" alt="">
-                    </div>
-                    <flux:button variant="primary" class="w-full" type="submit">
+                    @if($this->client_image_preview)
+                        <div
+                            class="relative overflow-hidden rounded-lg hover:scale-105 transition duration-300 ease-in-out cursor-pointer hover:shadow-lg dark:hover:shadow-none border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900">
+                            <img wire:click="showImage({{ auth()->user()->client?->id }}, 'client')"
+                                 class="object-cover w-full h-15 mb-6 rounded-lg"
+                                 src="{{ asset('storage/'.$this->client_image_preview) }}" alt="">
+                        </div>
+                    @endif
+                    <flux:button variant="primary" class="w-full mt-3" type="submit">
                         {{ __('Perbarui Data') }}
                     </flux:button>
                 </div>

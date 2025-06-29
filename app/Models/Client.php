@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class PersonalData extends Model
+class Client extends Model
 {
     protected $guarded = ['id'];
 

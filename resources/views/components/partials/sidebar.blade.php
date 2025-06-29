@@ -1,9 +1,15 @@
-@props(['active', 'action' => null, 'tabUrl' => null, 'menu' => null, 'back' => null, 'position' => 'left'])
+@props(['active', 'action' => null, 'tabUrl' => null, 'menu' => null, 'back' => null, 'position' => 'left', 'menuInfo' => null])
 <div class="flex max-md:flex-col items-start {{ $position == 'right' ? 'flex-row-reverse' : '' }}">
     <div class="w-full md:w-[250px] mx-2">
         @switch($menu)
+            @case('master-data')
+                <x-partials.menu-sidebar.master-data :menu-info="$menuInfo" />
+                @break
             @case('case')
-                <x-partials.menu-sidebar.case />
+                <x-partials.menu-sidebar.case :menu-info="$menuInfo" />
+                @break
+            @case('staff-case')
+                <x-partials.menu-sidebar.staff-case :menu-info="$menuInfo" />
                 @break
             @case('setting')
                 <x-partials.menu-sidebar.setting />

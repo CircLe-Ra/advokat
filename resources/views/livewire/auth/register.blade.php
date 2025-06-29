@@ -14,24 +14,19 @@ new #[Layout('components.layouts.auth')] class extends Component {
     public string $password = '';
     public string $password_confirmation = '';
 
-    /**
-     * Handle an incoming registration request.
-     */
     public function register(): void
     {
         $validated = $this->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
-            'password' => ['required', 'string', 'confirmed', Rules\Password::defaults()],
+            'password' => ['required', 'string', 'confirmed', 'min:3'],
         ]);
 
         $validated['password'] = Hash::make($validated['password']);
-
-        event(new Registered(($user = User::create($validated))));
-
+        event(new Registered(($user = User::create($validated)->assignRole('klien'))));
         Auth::login($user);
 
-        $this->redirectIntended(route('dashboard', absolute: false), navigate: true);
+        $this->redirectIntended(route('goto', absolute: false), navigate: true);
     }
 }; ?>
 

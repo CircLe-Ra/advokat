@@ -285,5 +285,7 @@ return [
         'work'                     => 'work',
         'work_id'                  => 'Pekerjaan',
         'year'                     => 'tahun',
+        'chronology'               => 'Kronologi',
+        'summary'                  => 'Ringkasan',
     ],
 ];

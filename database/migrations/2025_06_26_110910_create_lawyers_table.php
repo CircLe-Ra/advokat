@@ -11,16 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('personal_data', function (Blueprint $table) {
+        Schema::create('lawyers', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->string('identity', 16);
-            $table->text('identity_image');
-            $table->text('client_image');
-            $table->string('phone', 20);
-            $table->string('place_of_birth', 50);
-            $table->date('date_of_birth');
-            $table->text('address');
+            $table->string('phone', 20)->nullable();
+            $table->text('photo')->nullable();
             $table->timestamps();
         });
     }
@@ -30,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('personal_data');
+        Schema::dropIfExists('lawyers');
     }
 };

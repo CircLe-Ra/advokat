@@ -7,7 +7,7 @@
         <flux:header container class="border-b border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900">
             <flux:sidebar.toggle class="lg:hidden" icon="bars-2" inset="left" />
 
-            <a href="{{ route('dashboard') }}" class="ms-2 me-5 flex items-center space-x-2 rtl:space-x-reverse lg:ms-0" wire:navigate>
+            <a href="{{ route('goto') }}" class="ms-2 me-5 flex items-center space-x-2 rtl:space-x-reverse lg:ms-0" wire:navigate>
                 <x-app-logo />
             </a>
 
@@ -78,13 +78,13 @@
         <flux:sidebar stashable sticky class="lg:hidden border-r border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900">
             <flux:sidebar.toggle class="lg:hidden" icon="x-mark" />
 
-            <a href="{{ route('dashboard') }}" class="ms-1 flex items-center space-x-2 rtl:space-x-reverse" wire:navigate>
+            <a href="{{ route('goto') }}" class="ms-1 flex items-center space-x-2 rtl:space-x-reverse" wire:navigate>
                 <x-app-logo />
             </a>
 
             <flux:navlist variant="outline">
                 <flux:navlist.group :heading="__('Platform')">
-                    <flux:navlist.item icon="layout-grid" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>
+                    <flux:navlist.item icon="layout-grid" :href="route('goto')" :current="request()->routeIs('dashboard')" wire:navigate>
                     {{ __('Dashboard') }}
                     </flux:navlist.item>
                 </flux:navlist.group>
@@ -107,6 +107,32 @@
 
         <x-toaster />
         @fluxScripts
+        {!! ToastMagic::scripts() !!}
         @stack('scripts')
+        <script>
+            document.addEventListener('livewire:navigated', () => {
+                if(document.querySelector('meta[name="user-id"]')) {
+                    const user_id = document.querySelector('meta[name="user-id"]').content;
+                    const beamsTokenProvider = new PusherPushNotifications.TokenProvider({
+                        url: "/pusher/beams-auth",
+                        queryParams: {
+                            user_id: `user-${user_id}`
+                        }
+                    });
+                    beamsClient.start()
+                        .then(() => beamsClient.setUserId(`user-${user_id}`, beamsTokenProvider))
+                        .then(() => console.log('Successfully registered and subscribed!'))
+                        .catch(console.error);
+
+                    navigator.serviceWorker.register('/service-worker.js')
+                        .then(registration => {
+                            console.log('Service Worker registered with scope:', registration.scope);
+                        })
+                        .catch(error => {
+                            console.error('Service Worker registration failed:', error);
+                        });
+                }
+            }, { once: true });
+        </script>
     </body>
 </html>

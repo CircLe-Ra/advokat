@@ -4,8 +4,7 @@
         @include('partials.head')
     </head>
     <body class="min-h-screen bg-neutral-100 antialiased dark:bg-linear-to-b dark:from-neutral-950 dark:to-neutral-900">
-    <x-placeholder-pattern class="absolute inset-0 size-full stroke-gray-900/20 dark:stroke-neutral-100/20 z-0" />
-        <div class="bg-muted flex min-h-svh flex-col items-center justify-center gap-6 p-6 md:p-10 ">
+        <div class="bg-muted flex min-h-screen flex-col items-center justify-center gap-6 p-6 md:p-10 ">
             <div class="flex w-full max-w-md flex-col gap-6">
                 <a href="{{ route('home') }}" class="flex flex-col items-center gap-2 font-medium" wire:navigate>
                     <span class="flex h-9 w-9 items-center justify-center rounded-md">

@@ -1,0 +1,590 @@
+Jun 28 09:41:52 dityara-ms7b61 systemd[1]: Started Redis persistent key-value store.
+[0;38;5;245m░░ [0m[0;32mSubject: A start job for unit redis.service has finished successfully[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: https://lists.freedesktop.org/mailman/listinfo/systemd-devel[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mA start job for unit redis.service has finished successfully.[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe job identifier is 5028.[0m
+Jun 28 09:41:52 dityara-ms7b61 (s-server)[51446]: [0;1;31m[0;1;39m[0;1;31mredis.service: Failed to determine user credentials: No such process[0m
+Jun 28 09:41:52 dityara-ms7b61 (s-server)[51446]: [0;1;31m[0;1;39m[0;1;31mredis.service: Failed at step USER spawning /usr/bin/redis-server: No such process[0m
+[0;38;5;245m░░ [0m[0;32mSubject: Process /usr/bin/redis-server could not be executed[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: https://lists.freedesktop.org/mailman/listinfo/systemd-devel[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe process /usr/bin/redis-server could not be executed and failed.[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe error number returned by this process is 3.[0m
+Jun 28 09:41:52 dityara-ms7b61 systemd[1]: [0;1;39m[0;1;31m[0;1;39mredis.service: Main process exited, code=exited, status=217/USER[0m
+[0;38;5;245m░░ [0m[0;32mSubject: Unit process exited[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: https://lists.freedesktop.org/mailman/listinfo/systemd-devel[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mAn ExecStart= process belonging to unit redis.service has exited.[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe process' exit code is 'exited' and its exit status is 217.[0m
+Jun 28 09:41:52 dityara-ms7b61 systemd[1]: [0;1;38:5:185m[0;1;39m[0;1;38:5:185mredis.service: Failed with result 'exit-code'.[0m
+[0;38;5;245m░░ [0m[0;32mSubject: Unit failed[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: https://lists.freedesktop.org/mailman/listinfo/systemd-devel[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe unit redis.service has entered the 'failed' state with result 'exit-code'.[0m
+Jun 28 09:41:52 dityara-ms7b61 systemd[1]: redis.service: Scheduled restart job, restart counter is at 1.
+[0;38;5;245m░░ [0m[0;32mSubject: Automatic restarting of a unit has been scheduled[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: https://lists.freedesktop.org/mailman/listinfo/systemd-devel[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mAutomatic restarting of the unit redis.service has been scheduled, as the result for[0m
+[0;38;5;245m░░[0m [0;32mthe configured Restart= setting for the unit.[0m
+Jun 28 09:41:52 dityara-ms7b61 systemd[1]: Started Redis persistent key-value store.
+[0;38;5;245m░░ [0m[0;32mSubject: A start job for unit redis.service has finished successfully[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: https://lists.freedesktop.org/mailman/listinfo/systemd-devel[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mA start job for unit redis.service has finished successfully.[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe job identifier is 5184.[0m
+Jun 28 09:41:52 dityara-ms7b61 (s-server)[51450]: [0;1;31m[0;1;39m[0;1;31mredis.service: Failed to determine user credentials: No such process[0m
+Jun 28 09:41:52 dityara-ms7b61 (s-server)[51450]: [0;1;31m[0;1;39m[0;1;31mredis.service: Failed at step USER spawning /usr/bin/redis-server: No such process[0m
+[0;38;5;245m░░ [0m[0;32mSubject: Process /usr/bin/redis-server could not be executed[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: https://lists.freedesktop.org/mailman/listinfo/systemd-devel[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe process /usr/bin/redis-server could not be executed and failed.[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe error number returned by this process is 3.[0m
+Jun 28 09:41:52 dityara-ms7b61 systemd[1]: [0;1;39m[0;1;31m[0;1;39mredis.service: Main process exited, code=exited, status=217/USER[0m
+[0;38;5;245m░░ [0m[0;32mSubject: Unit process exited[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: https://lists.freedesktop.org/mailman/listinfo/systemd-devel[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mAn ExecStart= process belonging to unit redis.service has exited.[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe process' exit code is 'exited' and its exit status is 217.[0m
+Jun 28 09:41:52 dityara-ms7b61 systemd[1]: [0;1;38:5:185m[0;1;39m[0;1;38:5:185mredis.service: Failed with result 'exit-code'.[0m
+[0;38;5;245m░░ [0m[0;32mSubject: Unit failed[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: https://lists.freedesktop.org/mailman/listinfo/systemd-devel[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe unit redis.service has entered the 'failed' state with result 'exit-code'.[0m
+Jun 28 09:41:53 dityara-ms7b61 systemd[1]: redis.service: Scheduled restart job, restart counter is at 2.
+[0;38;5;245m░░ [0m[0;32mSubject: Automatic restarting of a unit has been scheduled[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: https://lists.freedesktop.org/mailman/listinfo/systemd-devel[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mAutomatic restarting of the unit redis.service has been scheduled, as the result for[0m
+[0;38;5;245m░░[0m [0;32mthe configured Restart= setting for the unit.[0m
+Jun 28 09:41:53 dityara-ms7b61 systemd[1]: Started Redis persistent key-value store.
+[0;38;5;245m░░ [0m[0;32mSubject: A start job for unit redis.service has finished successfully[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: https://lists.freedesktop.org/mailman/listinfo/systemd-devel[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mA start job for unit redis.service has finished successfully.[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe job identifier is 5340.[0m
+Jun 28 09:41:53 dityara-ms7b61 (s-server)[51451]: [0;1;31m[0;1;39m[0;1;31mredis.service: Failed to determine user credentials: No such process[0m
+Jun 28 09:41:53 dityara-ms7b61 (s-server)[51451]: [0;1;31m[0;1;39m[0;1;31mredis.service: Failed at step USER spawning /usr/bin/redis-server: No such process[0m
+[0;38;5;245m░░ [0m[0;32mSubject: Process /usr/bin/redis-server could not be executed[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: https://lists.freedesktop.org/mailman/listinfo/systemd-devel[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe process /usr/bin/redis-server could not be executed and failed.[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe error number returned by this process is 3.[0m
+Jun 28 09:41:53 dityara-ms7b61 systemd[1]: [0;1;39m[0;1;31m[0;1;39mredis.service: Main process exited, code=exited, status=217/USER[0m
+[0;38;5;245m░░ [0m[0;32mSubject: Unit process exited[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: https://lists.freedesktop.org/mailman/listinfo/systemd-devel[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mAn ExecStart= process belonging to unit redis.service has exited.[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe process' exit code is 'exited' and its exit status is 217.[0m
+Jun 28 09:41:53 dityara-ms7b61 systemd[1]: [0;1;38:5:185m[0;1;39m[0;1;38:5:185mredis.service: Failed with result 'exit-code'.[0m
+[0;38;5;245m░░ [0m[0;32mSubject: Unit failed[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: https://lists.freedesktop.org/mailman/listinfo/systemd-devel[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe unit redis.service has entered the 'failed' state with result 'exit-code'.[0m
+Jun 28 09:41:53 dityara-ms7b61 systemd[1]: redis.service: Scheduled restart job, restart counter is at 3.
+[0;38;5;245m░░ [0m[0;32mSubject: Automatic restarting of a unit has been scheduled[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: https://lists.freedesktop.org/mailman/listinfo/systemd-devel[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mAutomatic restarting of the unit redis.service has been scheduled, as the result for[0m
+[0;38;5;245m░░[0m [0;32mthe configured Restart= setting for the unit.[0m
+Jun 28 09:41:53 dityara-ms7b61 systemd[1]: Started Redis persistent key-value store.
+[0;38;5;245m░░ [0m[0;32mSubject: A start job for unit redis.service has finished successfully[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: https://lists.freedesktop.org/mailman/listinfo/systemd-devel[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mA start job for unit redis.service has finished successfully.[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe job identifier is 5496.[0m
+Jun 28 09:41:53 dityara-ms7b61 (s-server)[51453]: [0;1;31m[0;1;39m[0;1;31mredis.service: Failed to determine user credentials: No such process[0m
+Jun 28 09:41:53 dityara-ms7b61 (s-server)[51453]: [0;1;31m[0;1;39m[0;1;31mredis.service: Failed at step USER spawning /usr/bin/redis-server: No such process[0m
+[0;38;5;245m░░ [0m[0;32mSubject: Process /usr/bin/redis-server could not be executed[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: https://lists.freedesktop.org/mailman/listinfo/systemd-devel[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe process /usr/bin/redis-server could not be executed and failed.[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe error number returned by this process is 3.[0m
+Jun 28 09:41:53 dityara-ms7b61 systemd[1]: [0;1;39m[0;1;31m[0;1;39mredis.service: Main process exited, code=exited, status=217/USER[0m
+[0;38;5;245m░░ [0m[0;32mSubject: Unit process exited[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: https://lists.freedesktop.org/mailman/listinfo/systemd-devel[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mAn ExecStart= process belonging to unit redis.service has exited.[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe process' exit code is 'exited' and its exit status is 217.[0m
+Jun 28 09:41:53 dityara-ms7b61 systemd[1]: [0;1;38:5:185m[0;1;39m[0;1;38:5:185mredis.service: Failed with result 'exit-code'.[0m
+[0;38;5;245m░░ [0m[0;32mSubject: Unit failed[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: https://lists.freedesktop.org/mailman/listinfo/systemd-devel[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe unit redis.service has entered the 'failed' state with result 'exit-code'.[0m
+Jun 28 09:41:53 dityara-ms7b61 systemd[1]: redis.service: Scheduled restart job, restart counter is at 4.
+[0;38;5;245m░░ [0m[0;32mSubject: Automatic restarting of a unit has been scheduled[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: https://lists.freedesktop.org/mailman/listinfo/systemd-devel[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mAutomatic restarting of the unit redis.service has been scheduled, as the result for[0m
+[0;38;5;245m░░[0m [0;32mthe configured Restart= setting for the unit.[0m
+Jun 28 09:41:53 dityara-ms7b61 systemd[1]: Started Redis persistent key-value store.
+[0;38;5;245m░░ [0m[0;32mSubject: A start job for unit redis.service has finished successfully[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: https://lists.freedesktop.org/mailman/listinfo/systemd-devel[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mA start job for unit redis.service has finished successfully.[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe job identifier is 5652.[0m
+Jun 28 09:41:53 dityara-ms7b61 (s-server)[51454]: [0;1;31m[0;1;39m[0;1;31mredis.service: Failed to determine user credentials: No such process[0m
+Jun 28 09:41:53 dityara-ms7b61 (s-server)[51454]: [0;1;31m[0;1;39m[0;1;31mredis.service: Failed at step USER spawning /usr/bin/redis-server: No such process[0m
+[0;38;5;245m░░ [0m[0;32mSubject: Process /usr/bin/redis-server could not be executed[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: https://lists.freedesktop.org/mailman/listinfo/systemd-devel[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe process /usr/bin/redis-server could not be executed and failed.[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe error number returned by this process is 3.[0m
+Jun 28 09:41:53 dityara-ms7b61 systemd[1]: [0;1;39m[0;1;31m[0;1;39mredis.service: Main process exited, code=exited, status=217/USER[0m
+[0;38;5;245m░░ [0m[0;32mSubject: Unit process exited[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: https://lists.freedesktop.org/mailman/listinfo/systemd-devel[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mAn ExecStart= process belonging to unit redis.service has exited.[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe process' exit code is 'exited' and its exit status is 217.[0m
+Jun 28 09:41:53 dityara-ms7b61 systemd[1]: [0;1;38:5:185m[0;1;39m[0;1;38:5:185mredis.service: Failed with result 'exit-code'.[0m
+[0;38;5;245m░░ [0m[0;32mSubject: Unit failed[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: https://lists.freedesktop.org/mailman/listinfo/systemd-devel[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe unit redis.service has entered the 'failed' state with result 'exit-code'.[0m
+Jun 28 09:41:53 dityara-ms7b61 systemd[1]: redis.service: Scheduled restart job, restart counter is at 5.
+[0;38;5;245m░░ [0m[0;32mSubject: Automatic restarting of a unit has been scheduled[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: https://lists.freedesktop.org/mailman/listinfo/systemd-devel[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mAutomatic restarting of the unit redis.service has been scheduled, as the result for[0m
+[0;38;5;245m░░[0m [0;32mthe configured Restart= setting for the unit.[0m
+Jun 28 09:41:53 dityara-ms7b61 systemd[1]: [0;1;38:5:185m[0;1;39m[0;1;38:5:185mredis.service: Start request repeated too quickly.[0m
+Jun 28 09:41:53 dityara-ms7b61 systemd[1]: [0;1;38:5:185m[0;1;39m[0;1;38:5:185mredis.service: Failed with result 'exit-code'.[0m
+[0;38;5;245m░░ [0m[0;32mSubject: Unit failed[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: https://lists.freedesktop.org/mailman/listinfo/systemd-devel[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe unit redis.service has entered the 'failed' state with result 'exit-code'.[0m
+Jun 28 09:41:53 dityara-ms7b61 systemd[1]: [0;1;31m[0;1;39m[0;1;31mFailed to start Redis persistent key-value store.[0m
+[0;38;5;245m░░ [0m[0;32mSubject: A start job for unit redis.service has failed[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: https://lists.freedesktop.org/mailman/listinfo/systemd-devel[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mA start job for unit redis.service has finished with a failure.[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe job identifier is 5808 and the job result is failed.[0m
+Jun 28 09:42:22 dityara-ms7b61 systemd[1]: Started Redis persistent key-value store.
+[0;38;5;245m░░ [0m[0;32mSubject: A start job for unit redis.service has finished successfully[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: https://lists.freedesktop.org/mailman/listinfo/systemd-devel[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mA start job for unit redis.service has finished successfully.[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe job identifier is 6125.[0m
+Jun 28 09:42:22 dityara-ms7b61 (s-server)[51942]: [0;1;31m[0;1;39m[0;1;31mredis.service: Failed to determine user credentials: No such process[0m
+Jun 28 09:42:22 dityara-ms7b61 (s-server)[51942]: [0;1;31m[0;1;39m[0;1;31mredis.service: Failed at step USER spawning /usr/bin/redis-server: No such process[0m
+[0;38;5;245m░░ [0m[0;32mSubject: Process /usr/bin/redis-server could not be executed[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: https://lists.freedesktop.org/mailman/listinfo/systemd-devel[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe process /usr/bin/redis-server could not be executed and failed.[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe error number returned by this process is 3.[0m
+Jun 28 09:42:22 dityara-ms7b61 systemd[1]: [0;1;39m[0;1;31m[0;1;39mredis.service: Main process exited, code=exited, status=217/USER[0m
+[0;38;5;245m░░ [0m[0;32mSubject: Unit process exited[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: https://lists.freedesktop.org/mailman/listinfo/systemd-devel[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mAn ExecStart= process belonging to unit redis.service has exited.[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe process' exit code is 'exited' and its exit status is 217.[0m
+Jun 28 09:42:22 dityara-ms7b61 systemd[1]: [0;1;38:5:185m[0;1;39m[0;1;38:5:185mredis.service: Failed with result 'exit-code'.[0m
+[0;38;5;245m░░ [0m[0;32mSubject: Unit failed[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: https://lists.freedesktop.org/mailman/listinfo/systemd-devel[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe unit redis.service has entered the 'failed' state with result 'exit-code'.[0m
+Jun 28 09:42:22 dityara-ms7b61 systemd[1]: redis.service: Scheduled restart job, restart counter is at 1.
+[0;38;5;245m░░ [0m[0;32mSubject: Automatic restarting of a unit has been scheduled[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: https://lists.freedesktop.org/mailman/listinfo/systemd-devel[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mAutomatic restarting of the unit redis.service has been scheduled, as the result for[0m
+[0;38;5;245m░░[0m [0;32mthe configured Restart= setting for the unit.[0m
+Jun 28 09:42:22 dityara-ms7b61 systemd[1]: Started Redis persistent key-value store.
+[0;38;5;245m░░ [0m[0;32mSubject: A start job for unit redis.service has finished successfully[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: https://lists.freedesktop.org/mailman/listinfo/systemd-devel[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mA start job for unit redis.service has finished successfully.[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe job identifier is 6281.[0m
+Jun 28 09:42:22 dityara-ms7b61 (s-server)[51951]: [0;1;31m[0;1;39m[0;1;31mredis.service: Failed to determine user credentials: No such process[0m
+Jun 28 09:42:22 dityara-ms7b61 (s-server)[51951]: [0;1;31m[0;1;39m[0;1;31mredis.service: Failed at step USER spawning /usr/bin/redis-server: No such process[0m
+[0;38;5;245m░░ [0m[0;32mSubject: Process /usr/bin/redis-server could not be executed[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: https://lists.freedesktop.org/mailman/listinfo/systemd-devel[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe process /usr/bin/redis-server could not be executed and failed.[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe error number returned by this process is 3.[0m
+Jun 28 09:42:22 dityara-ms7b61 systemd[1]: [0;1;39m[0;1;31m[0;1;39mredis.service: Main process exited, code=exited, status=217/USER[0m
+[0;38;5;245m░░ [0m[0;32mSubject: Unit process exited[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: https://lists.freedesktop.org/mailman/listinfo/systemd-devel[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mAn ExecStart= process belonging to unit redis.service has exited.[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe process' exit code is 'exited' and its exit status is 217.[0m
+Jun 28 09:42:22 dityara-ms7b61 systemd[1]: [0;1;38:5:185m[0;1;39m[0;1;38:5:185mredis.service: Failed with result 'exit-code'.[0m
+[0;38;5;245m░░ [0m[0;32mSubject: Unit failed[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: https://lists.freedesktop.org/mailman/listinfo/systemd-devel[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe unit redis.service has entered the 'failed' state with result 'exit-code'.[0m
+Jun 28 09:42:22 dityara-ms7b61 systemd[1]: redis.service: Scheduled restart job, restart counter is at 2.
+[0;38;5;245m░░ [0m[0;32mSubject: Automatic restarting of a unit has been scheduled[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: https://lists.freedesktop.org/mailman/listinfo/systemd-devel[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mAutomatic restarting of the unit redis.service has been scheduled, as the result for[0m
+[0;38;5;245m░░[0m [0;32mthe configured Restart= setting for the unit.[0m
+Jun 28 09:42:22 dityara-ms7b61 systemd[1]: Started Redis persistent key-value store.
+[0;38;5;245m░░ [0m[0;32mSubject: A start job for unit redis.service has finished successfully[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: https://lists.freedesktop.org/mailman/listinfo/systemd-devel[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mA start job for unit redis.service has finished successfully.[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe job identifier is 6437.[0m
+Jun 28 09:42:22 dityara-ms7b61 (s-server)[51952]: [0;1;31m[0;1;39m[0;1;31mredis.service: Failed to determine user credentials: No such process[0m
+Jun 28 09:42:22 dityara-ms7b61 (s-server)[51952]: [0;1;31m[0;1;39m[0;1;31mredis.service: Failed at step USER spawning /usr/bin/redis-server: No such process[0m
+[0;38;5;245m░░ [0m[0;32mSubject: Process /usr/bin/redis-server could not be executed[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: https://lists.freedesktop.org/mailman/listinfo/systemd-devel[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe process /usr/bin/redis-server could not be executed and failed.[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe error number returned by this process is 3.[0m
+Jun 28 09:42:22 dityara-ms7b61 systemd[1]: [0;1;39m[0;1;31m[0;1;39mredis.service: Main process exited, code=exited, status=217/USER[0m
+[0;38;5;245m░░ [0m[0;32mSubject: Unit process exited[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: https://lists.freedesktop.org/mailman/listinfo/systemd-devel[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mAn ExecStart= process belonging to unit redis.service has exited.[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe process' exit code is 'exited' and its exit status is 217.[0m
+Jun 28 09:42:22 dityara-ms7b61 systemd[1]: [0;1;38:5:185m[0;1;39m[0;1;38:5:185mredis.service: Failed with result 'exit-code'.[0m
+[0;38;5;245m░░ [0m[0;32mSubject: Unit failed[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: https://lists.freedesktop.org/mailman/listinfo/systemd-devel[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe unit redis.service has entered the 'failed' state with result 'exit-code'.[0m
+Jun 28 09:42:23 dityara-ms7b61 systemd[1]: redis.service: Scheduled restart job, restart counter is at 3.
+[0;38;5;245m░░ [0m[0;32mSubject: Automatic restarting of a unit has been scheduled[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: https://lists.freedesktop.org/mailman/listinfo/systemd-devel[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mAutomatic restarting of the unit redis.service has been scheduled, as the result for[0m
+[0;38;5;245m░░[0m [0;32mthe configured Restart= setting for the unit.[0m
+Jun 28 09:42:23 dityara-ms7b61 systemd[1]: Started Redis persistent key-value store.
+[0;38;5;245m░░ [0m[0;32mSubject: A start job for unit redis.service has finished successfully[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: https://lists.freedesktop.org/mailman/listinfo/systemd-devel[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mA start job for unit redis.service has finished successfully.[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe job identifier is 6593.[0m
+Jun 28 09:42:23 dityara-ms7b61 (s-server)[51953]: [0;1;31m[0;1;39m[0;1;31mredis.service: Failed to determine user credentials: No such process[0m
+Jun 28 09:42:23 dityara-ms7b61 (s-server)[51953]: [0;1;31m[0;1;39m[0;1;31mredis.service: Failed at step USER spawning /usr/bin/redis-server: No such process[0m
+[0;38;5;245m░░ [0m[0;32mSubject: Process /usr/bin/redis-server could not be executed[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: https://lists.freedesktop.org/mailman/listinfo/systemd-devel[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe process /usr/bin/redis-server could not be executed and failed.[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe error number returned by this process is 3.[0m
+Jun 28 09:42:23 dityara-ms7b61 systemd[1]: [0;1;39m[0;1;31m[0;1;39mredis.service: Main process exited, code=exited, status=217/USER[0m
+[0;38;5;245m░░ [0m[0;32mSubject: Unit process exited[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: https://lists.freedesktop.org/mailman/listinfo/systemd-devel[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mAn ExecStart= process belonging to unit redis.service has exited.[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe process' exit code is 'exited' and its exit status is 217.[0m
+Jun 28 09:42:23 dityara-ms7b61 systemd[1]: [0;1;38:5:185m[0;1;39m[0;1;38:5:185mredis.service: Failed with result 'exit-code'.[0m
+[0;38;5;245m░░ [0m[0;32mSubject: Unit failed[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: https://lists.freedesktop.org/mailman/listinfo/systemd-devel[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe unit redis.service has entered the 'failed' state with result 'exit-code'.[0m
+Jun 28 09:42:23 dityara-ms7b61 systemd[1]: redis.service: Scheduled restart job, restart counter is at 4.
+[0;38;5;245m░░ [0m[0;32mSubject: Automatic restarting of a unit has been scheduled[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: https://lists.freedesktop.org/mailman/listinfo/systemd-devel[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mAutomatic restarting of the unit redis.service has been scheduled, as the result for[0m
+[0;38;5;245m░░[0m [0;32mthe configured Restart= setting for the unit.[0m
+Jun 28 09:42:23 dityara-ms7b61 systemd[1]: Started Redis persistent key-value store.
+[0;38;5;245m░░ [0m[0;32mSubject: A start job for unit redis.service has finished successfully[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: https://lists.freedesktop.org/mailman/listinfo/systemd-devel[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mA start job for unit redis.service has finished successfully.[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe job identifier is 6749.[0m
+Jun 28 09:42:23 dityara-ms7b61 (s-server)[51954]: [0;1;31m[0;1;39m[0;1;31mredis.service: Failed to determine user credentials: No such process[0m
+Jun 28 09:42:23 dityara-ms7b61 (s-server)[51954]: [0;1;31m[0;1;39m[0;1;31mredis.service: Failed at step USER spawning /usr/bin/redis-server: No such process[0m
+[0;38;5;245m░░ [0m[0;32mSubject: Process /usr/bin/redis-server could not be executed[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: https://lists.freedesktop.org/mailman/listinfo/systemd-devel[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe process /usr/bin/redis-server could not be executed and failed.[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe error number returned by this process is 3.[0m
+Jun 28 09:42:23 dityara-ms7b61 systemd[1]: [0;1;39m[0;1;31m[0;1;39mredis.service: Main process exited, code=exited, status=217/USER[0m
+[0;38;5;245m░░ [0m[0;32mSubject: Unit process exited[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: https://lists.freedesktop.org/mailman/listinfo/systemd-devel[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mAn ExecStart= process belonging to unit redis.service has exited.[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe process' exit code is 'exited' and its exit status is 217.[0m
+Jun 28 09:42:23 dityara-ms7b61 systemd[1]: [0;1;38:5:185m[0;1;39m[0;1;38:5:185mredis.service: Failed with result 'exit-code'.[0m
+[0;38;5;245m░░ [0m[0;32mSubject: Unit failed[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: https://lists.freedesktop.org/mailman/listinfo/systemd-devel[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe unit redis.service has entered the 'failed' state with result 'exit-code'.[0m
+Jun 28 09:42:23 dityara-ms7b61 systemd[1]: redis.service: Scheduled restart job, restart counter is at 5.
+[0;38;5;245m░░ [0m[0;32mSubject: Automatic restarting of a unit has been scheduled[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: https://lists.freedesktop.org/mailman/listinfo/systemd-devel[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mAutomatic restarting of the unit redis.service has been scheduled, as the result for[0m
+[0;38;5;245m░░[0m [0;32mthe configured Restart= setting for the unit.[0m
+Jun 28 09:42:23 dityara-ms7b61 systemd[1]: [0;1;38:5:185m[0;1;39m[0;1;38:5:185mredis.service: Start request repeated too quickly.[0m
+Jun 28 09:42:23 dityara-ms7b61 systemd[1]: [0;1;38:5:185m[0;1;39m[0;1;38:5:185mredis.service: Failed with result 'exit-code'.[0m
+[0;38;5;245m░░ [0m[0;32mSubject: Unit failed[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: https://lists.freedesktop.org/mailman/listinfo/systemd-devel[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe unit redis.service has entered the 'failed' state with result 'exit-code'.[0m
+Jun 28 09:42:23 dityara-ms7b61 systemd[1]: [0;1;31m[0;1;39m[0;1;31mFailed to start Redis persistent key-value store.[0m
+[0;38;5;245m░░ [0m[0;32mSubject: A start job for unit redis.service has failed[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: https://lists.freedesktop.org/mailman/listinfo/systemd-devel[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mA start job for unit redis.service has finished with a failure.[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe job identifier is 6905 and the job result is failed.[0m
+Jun 28 09:50:26 dityara-ms7b61 systemd[1]: Started Redis persistent key-value store.
+[0;38;5;245m░░ [0m[0;32mSubject: A start job for unit redis.service has finished successfully[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: https://lists.freedesktop.org/mailman/listinfo/systemd-devel[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mA start job for unit redis.service has finished successfully.[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe job identifier is 7085.[0m
+Jun 28 09:50:26 dityara-ms7b61 redis-server[54796]: 54796:M 28 Jun 2025 09:50:26.356 # Fatal error, can't open config file '/etc/redis/redis.conf': No such file or directory
+Jun 28 09:50:26 dityara-ms7b61 systemd[1]: [0;1;39m[0;1;31m[0;1;39mredis.service: Main process exited, code=exited, status=1/FAILURE[0m
+[0;38;5;245m░░ [0m[0;32mSubject: Unit process exited[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: https://lists.freedesktop.org/mailman/listinfo/systemd-devel[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mAn ExecStart= process belonging to unit redis.service has exited.[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe process' exit code is 'exited' and its exit status is 1.[0m
+Jun 28 09:50:26 dityara-ms7b61 systemd[1]: [0;1;38:5:185m[0;1;39m[0;1;38:5:185mredis.service: Failed with result 'exit-code'.[0m
+[0;38;5;245m░░ [0m[0;32mSubject: Unit failed[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: https://lists.freedesktop.org/mailman/listinfo/systemd-devel[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe unit redis.service has entered the 'failed' state with result 'exit-code'.[0m
+Jun 28 09:50:26 dityara-ms7b61 systemd[1]: redis.service: Scheduled restart job, restart counter is at 1.
+[0;38;5;245m░░ [0m[0;32mSubject: Automatic restarting of a unit has been scheduled[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: https://lists.freedesktop.org/mailman/listinfo/systemd-devel[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mAutomatic restarting of the unit redis.service has been scheduled, as the result for[0m
+[0;38;5;245m░░[0m [0;32mthe configured Restart= setting for the unit.[0m
+Jun 28 09:50:26 dityara-ms7b61 systemd[1]: Started Redis persistent key-value store.
+[0;38;5;245m░░ [0m[0;32mSubject: A start job for unit redis.service has finished successfully[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: https://lists.freedesktop.org/mailman/listinfo/systemd-devel[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mA start job for unit redis.service has finished successfully.[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe job identifier is 7241.[0m
+Jun 28 09:50:26 dityara-ms7b61 redis-server[54805]: 54805:M 28 Jun 2025 09:50:26.487 # Fatal error, can't open config file '/etc/redis/redis.conf': No such file or directory
+Jun 28 09:50:26 dityara-ms7b61 systemd[1]: [0;1;39m[0;1;31m[0;1;39mredis.service: Main process exited, code=exited, status=1/FAILURE[0m
+[0;38;5;245m░░ [0m[0;32mSubject: Unit process exited[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: https://lists.freedesktop.org/mailman/listinfo/systemd-devel[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mAn ExecStart= process belonging to unit redis.service has exited.[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe process' exit code is 'exited' and its exit status is 1.[0m
+Jun 28 09:50:26 dityara-ms7b61 systemd[1]: [0;1;38:5:185m[0;1;39m[0;1;38:5:185mredis.service: Failed with result 'exit-code'.[0m
+[0;38;5;245m░░ [0m[0;32mSubject: Unit failed[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: https://lists.freedesktop.org/mailman/listinfo/systemd-devel[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe unit redis.service has entered the 'failed' state with result 'exit-code'.[0m
+Jun 28 09:50:26 dityara-ms7b61 systemd[1]: redis.service: Scheduled restart job, restart counter is at 2.
+[0;38;5;245m░░ [0m[0;32mSubject: Automatic restarting of a unit has been scheduled[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: https://lists.freedesktop.org/mailman/listinfo/systemd-devel[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mAutomatic restarting of the unit redis.service has been scheduled, as the result for[0m
+[0;38;5;245m░░[0m [0;32mthe configured Restart= setting for the unit.[0m
+Jun 28 09:50:26 dityara-ms7b61 systemd[1]: Started Redis persistent key-value store.
+[0;38;5;245m░░ [0m[0;32mSubject: A start job for unit redis.service has finished successfully[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: https://lists.freedesktop.org/mailman/listinfo/systemd-devel[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mA start job for unit redis.service has finished successfully.[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe job identifier is 7397.[0m
+Jun 28 09:50:26 dityara-ms7b61 redis-server[54807]: 54807:M 28 Jun 2025 09:50:26.750 # Fatal error, can't open config file '/etc/redis/redis.conf': No such file or directory
+Jun 28 09:50:26 dityara-ms7b61 systemd[1]: [0;1;39m[0;1;31m[0;1;39mredis.service: Main process exited, code=exited, status=1/FAILURE[0m
+[0;38;5;245m░░ [0m[0;32mSubject: Unit process exited[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: https://lists.freedesktop.org/mailman/listinfo/systemd-devel[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mAn ExecStart= process belonging to unit redis.service has exited.[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe process' exit code is 'exited' and its exit status is 1.[0m
+Jun 28 09:50:26 dityara-ms7b61 systemd[1]: [0;1;38:5:185m[0;1;39m[0;1;38:5:185mredis.service: Failed with result 'exit-code'.[0m
+[0;38;5;245m░░ [0m[0;32mSubject: Unit failed[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: https://lists.freedesktop.org/mailman/listinfo/systemd-devel[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe unit redis.service has entered the 'failed' state with result 'exit-code'.[0m
+Jun 28 09:50:26 dityara-ms7b61 systemd[1]: redis.service: Scheduled restart job, restart counter is at 3.
+[0;38;5;245m░░ [0m[0;32mSubject: Automatic restarting of a unit has been scheduled[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: https://lists.freedesktop.org/mailman/listinfo/systemd-devel[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mAutomatic restarting of the unit redis.service has been scheduled, as the result for[0m
+[0;38;5;245m░░[0m [0;32mthe configured Restart= setting for the unit.[0m
+Jun 28 09:50:26 dityara-ms7b61 systemd[1]: Started Redis persistent key-value store.
+[0;38;5;245m░░ [0m[0;32mSubject: A start job for unit redis.service has finished successfully[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: https://lists.freedesktop.org/mailman/listinfo/systemd-devel[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mA start job for unit redis.service has finished successfully.[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe job identifier is 7553.[0m
+Jun 28 09:50:26 dityara-ms7b61 redis-server[54810]: 54810:M 28 Jun 2025 09:50:26.995 # Fatal error, can't open config file '/etc/redis/redis.conf': No such file or directory
+Jun 28 09:50:26 dityara-ms7b61 systemd[1]: [0;1;39m[0;1;31m[0;1;39mredis.service: Main process exited, code=exited, status=1/FAILURE[0m
+[0;38;5;245m░░ [0m[0;32mSubject: Unit process exited[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: https://lists.freedesktop.org/mailman/listinfo/systemd-devel[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mAn ExecStart= process belonging to unit redis.service has exited.[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe process' exit code is 'exited' and its exit status is 1.[0m
+Jun 28 09:50:26 dityara-ms7b61 systemd[1]: [0;1;38:5:185m[0;1;39m[0;1;38:5:185mredis.service: Failed with result 'exit-code'.[0m
+[0;38;5;245m░░ [0m[0;32mSubject: Unit failed[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: https://lists.freedesktop.org/mailman/listinfo/systemd-devel[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe unit redis.service has entered the 'failed' state with result 'exit-code'.[0m
+Jun 28 09:50:27 dityara-ms7b61 systemd[1]: redis.service: Scheduled restart job, restart counter is at 4.
+[0;38;5;245m░░ [0m[0;32mSubject: Automatic restarting of a unit has been scheduled[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: https://lists.freedesktop.org/mailman/listinfo/systemd-devel[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mAutomatic restarting of the unit redis.service has been scheduled, as the result for[0m
+[0;38;5;245m░░[0m [0;32mthe configured Restart= setting for the unit.[0m
+Jun 28 09:50:27 dityara-ms7b61 systemd[1]: Started Redis persistent key-value store.
+[0;38;5;245m░░ [0m[0;32mSubject: A start job for unit redis.service has finished successfully[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: https://lists.freedesktop.org/mailman/listinfo/systemd-devel[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mA start job for unit redis.service has finished successfully.[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe job identifier is 7709.[0m
+Jun 28 09:50:27 dityara-ms7b61 redis-server[54814]: 54814:M 28 Jun 2025 09:50:27.242 # Fatal error, can't open config file '/etc/redis/redis.conf': No such file or directory
+Jun 28 09:50:27 dityara-ms7b61 systemd[1]: [0;1;39m[0;1;31m[0;1;39mredis.service: Main process exited, code=exited, status=1/FAILURE[0m
+[0;38;5;245m░░ [0m[0;32mSubject: Unit process exited[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: https://lists.freedesktop.org/mailman/listinfo/systemd-devel[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mAn ExecStart= process belonging to unit redis.service has exited.[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe process' exit code is 'exited' and its exit status is 1.[0m
+Jun 28 09:50:27 dityara-ms7b61 systemd[1]: [0;1;38:5:185m[0;1;39m[0;1;38:5:185mredis.service: Failed with result 'exit-code'.[0m
+[0;38;5;245m░░ [0m[0;32mSubject: Unit failed[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: https://lists.freedesktop.org/mailman/listinfo/systemd-devel[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe unit redis.service has entered the 'failed' state with result 'exit-code'.[0m
+Jun 28 09:50:27 dityara-ms7b61 systemd[1]: redis.service: Scheduled restart job, restart counter is at 5.
+[0;38;5;245m░░ [0m[0;32mSubject: Automatic restarting of a unit has been scheduled[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: https://lists.freedesktop.org/mailman/listinfo/systemd-devel[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mAutomatic restarting of the unit redis.service has been scheduled, as the result for[0m
+[0;38;5;245m░░[0m [0;32mthe configured Restart= setting for the unit.[0m
+Jun 28 09:50:27 dityara-ms7b61 systemd[1]: [0;1;38:5:185m[0;1;39m[0;1;38:5:185mredis.service: Start request repeated too quickly.[0m
+Jun 28 09:50:27 dityara-ms7b61 systemd[1]: [0;1;38:5:185m[0;1;39m[0;1;38:5:185mredis.service: Failed with result 'exit-code'.[0m
+[0;38;5;245m░░ [0m[0;32mSubject: Unit failed[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: https://lists.freedesktop.org/mailman/listinfo/systemd-devel[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe unit redis.service has entered the 'failed' state with result 'exit-code'.[0m
+Jun 28 09:50:27 dityara-ms7b61 systemd[1]: [0;1;31m[0;1;39m[0;1;31mFailed to start Redis persistent key-value store.[0m
+[0;38;5;245m░░ [0m[0;32mSubject: A start job for unit redis.service has failed[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: https://lists.freedesktop.org/mailman/listinfo/systemd-devel[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mA start job for unit redis.service has finished with a failure.[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe job identifier is 7865 and the job result is failed.[0m
+Jun 28 09:50:35 dityara-ms7b61 systemd[1]: [0;1;38:5:185m[0;1;39m[0;1;38:5:185mredis.service: Start request repeated too quickly.[0m
+Jun 28 09:50:35 dityara-ms7b61 systemd[1]: [0;1;38:5:185m[0;1;39m[0;1;38:5:185mredis.service: Failed with result 'exit-code'.[0m
+[0;38;5;245m░░ [0m[0;32mSubject: Unit failed[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: https://lists.freedesktop.org/mailman/listinfo/systemd-devel[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe unit redis.service has entered the 'failed' state with result 'exit-code'.[0m
+Jun 28 09:50:35 dityara-ms7b61 systemd[1]: [0;1;31m[0;1;39m[0;1;31mFailed to start Redis persistent key-value store.[0m
+[0;38;5;245m░░ [0m[0;32mSubject: A start job for unit redis.service has failed[0m
+[0;38;5;245m░░[0m [0;32mDefined-By: systemd[0m
+[0;38;5;245m░░[0m [0;32mSupport: https://lists.freedesktop.org/mailman/listinfo/systemd-devel[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mA start job for unit redis.service has finished with a failure.[0m
+[0;38;5;245m░░[0m [0;32m[0m
+[0;38;5;245m░░[0m [0;32mThe job identifier is 8179 and the job result is failed.[0m

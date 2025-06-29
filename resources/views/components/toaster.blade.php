@@ -111,8 +111,8 @@
             x-init="initToast($refs.toastElement, toast.id)"
             class="pointer-events-auto w-full overflow-hidden rounded-lg shadow-lg"
             :class="{
-                'bg-zinc-900 text-zinc-100': toast.type === 'success' || toast.type === 'error',
-                'bg-blue-50 text-blue-800': toast.type === 'info',
+                'bg-zinc-900 text-zinc-100': toast.type === 'success' || toast.type === 'error' || toast.type === 'info',
+{{--                'bg-blue-50 text-blue-800': toast.type === 'info',--}}
                 'bg-yellow-50 text-yellow-800': toast.type === 'warning'
             }"
         >

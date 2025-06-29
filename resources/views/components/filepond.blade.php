@@ -1,7 +1,10 @@
-@props(['label', 'alert' => true])
+@props(['label', 'subLabel' => null, 'alert' => true])
 <flux:field>
     @isset($label)
         <flux:label>{{ $label ?? 'label' }}</flux:label>
+    @endisset
+    @isset($subLabel)
+        <flux:description>{{ $subLabel }}</flux:description>
     @endisset
     <div wire:ignore >
         <div x-data x-cloak x-init="() => {
