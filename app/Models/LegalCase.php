@@ -9,6 +9,7 @@ class LegalCase extends Model
 {
     protected $guarded = ['id'];
 
+    protected $with = ['documents'];
     public function documents(): HasMany
     {
         return $this->hasMany(LegalCaseDocument::class);

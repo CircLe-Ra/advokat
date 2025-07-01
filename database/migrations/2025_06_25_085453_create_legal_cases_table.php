@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('title',100);
             $table->text('summary');
             $table->text('chronology');
-            $table->enum('status', ['draft','pending', 'verified','rejected','accepted', 'closed'])->default('draft');
+            $table->enum('status', ['draft','pending', 'revision','verified','rejected','accepted', 'closed'])->default('draft');
             $table->timestamps();
         });
     }

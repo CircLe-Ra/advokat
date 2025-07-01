@@ -2,6 +2,7 @@
 
 use App\Models\LegalCase;
 use App\Models\LegalCaseDocument;
+use App\Models\LegalCaseValidation;
 use Livewire\Volt\Component;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
@@ -19,6 +20,8 @@ class extends Component {
 
     public ?int $id = null;
     public string $file_open = '';
+    public string $status = '';
+    public string $reason = '';
 
     #[\Livewire\Attributes\Computed]
     public function cases()
@@ -28,19 +31,41 @@ class extends Component {
 
     public function __reset(): void
     {
-        $this->reset(['id']);
+        $this->reset(['id', 'status', 'reason']);
         $this->dispatch('pond-reset');
-        $this->resetValidation(['id']);
+        $this->resetValidation(['id', 'status', 'reason']);
     }
 
-    public function submit($id): void
+    public function verify($id): void
     {
+        $this->id = $id;
+        Flux::modal('modal-verify')->show();
+    }
+
+    public function store(): void
+    {
+        $this->validate([
+            'status' => 'required',
+            'reason' => ['nullable', 'required_if:status,revision'],
+        ]);
         try {
-            $case = LegalCase::find($id);
-            $case->update([
-                'status' => 'verified',
+            LegalCaseValidation::create([
+                'legal_case_id' => $this->id,
+                'user_id' => auth()->user()->id,
+                'date_time' => now(),
+                'comment' => $this->reason,
+                'validation' => $this->status,
             ]);
+
+            $case = LegalCase::find($this->id);
+            $case->update([
+                'status' => $this->status,
+            ]);
+            $this->__reset();
             $this->dispatch('toast', message: 'Pengajuan kasus berhasil diajukan');
+            if ($this->status == 'verified') {
+                $this->redirect(route('staff.case.verified'));
+            }
         } catch (\Exception $e) {
             $this->dispatch('toast', message: $e->getMessage(), type: 'error', duration: 5000);
         }
@@ -54,7 +79,7 @@ class extends Component {
 }; ?>
 
 <x-partials.sidebar position="right" menu="staff-case" active="Pengajuan Kasus / Status Kasus / Menunggu">
-    <x-table thead="#, Nomor, Nama, Jenis, Tanggal Pengajuan, Status," :action="false"
+    <x-table thead="#, Nomor, Nama, Jenis, Tanggal Pengajuan, Status" :action="true"
              label="Pengajuan Kasus" sub-label="Informasi tentang kasus yang diajukan.">
         <x-slot name="filter">
             <x-filter wire:model.live="show"/>
@@ -85,32 +110,10 @@ class extends Component {
                         <x-badge :status="$case->status"/>
                     </td>
                     <td class="px-6 py-4">
-                        <flux:dropdown>
-                            <flux:button size="sm" icon:trailing="chevron-down" variant="filled">Aksi</flux:button>
-                            <flux:menu>
-                                <flux:menu.item class="hover:text-green-600 dark:hover:text-emerald-300"
-                                                icon:variant="micro" icon="check-badge" icon:trailing="arrow-right"
-                                                wire:click="submit({{ $case->id }})"
-                                                :disabled="$case->status != 'draft'">Ajukan
-                                </flux:menu.item>
-                                <flux:menu.separator/>
-                                <flux:menu.item icon:variant="micro" icon="chat-bubble-left-right"
-                                                icon:trailing="arrow-up-right" href="#">Hubungi Petugas
-                                </flux:menu.item>
-                                <flux:menu.separator/>
-                                <flux:menu.item icon:variant="micro" icon="eye" href="{{ route('staff.case.detail-case', $case->id) }}">Detail Kasus
-                                </flux:menu.item>
-                                <flux:menu.separator/>
-                                <flux:menu.item icon:variant="micro" icon="pencil" wire:click="edit({{ $case->id }})"
-                                                :disabled="$case->status != 'draft'">Ubah Kasus
-                                </flux:menu.item>
-                                <flux:menu.separator/>
-                                <flux:menu.item icon:variant="micro" variant="danger" icon="trash"
-                                                wire:click="delete({{ $case->id }})"
-                                                :disabled="$case->status != 'draft'">Hapus Kasus
-                                </flux:menu.item>
-                            </flux:menu>
-                        </flux:dropdown>
+                        <flux:button size="sm" variant="primary" icon:trailing="check-badge"
+                                     wire:click="verify({{$case->id}})">
+                            Verifikasi
+                        </flux:button>
                     </td>
                 </tr>
             @endforeach
@@ -132,6 +135,28 @@ class extends Component {
                     <img class="object-cover w-full" src="{{ asset('storage/'.$this->file_open) }}" alt="">
                 </div>
             @endif
+        </div>
+    </flux:modal>
+    <flux:modal name="modal-verify" class="md:w-7xl">
+        <div class="space-y-6 mb-6">
+            <div>
+                <flux:heading size="lg" level="1">Verifikasi Kasus</flux:heading>
+                <flux:text class="text-zinc-600 dark:text-zinc-400">Periksa kembali informasi pengajuan kasus dan
+                    dokumen pendukung sebelum memverifikasi kasus.
+                </flux:text>
+            </div>
+            <form wire:submit="store">
+                <flux:select wire:model="status" label="Status Kasus">
+                    <flux:select.option value="">Pilih?</flux:select.option>
+                    <flux:select.option value="verified">Verified</flux:select.option>
+                    <flux:select.option value="revision">Revisi</flux:select.option>
+                </flux:select>
+                <flux:textarea wire:model="reason" label="Catatan"/>
+                <div class="flex gap-2">
+                    <flux:button type="button" variant="secondary" wire:click="closeModal">Batal</flux:button>
+                    <flux:button type="submit" variant="primary" wire:click="verifyCase">Verifikasi</flux:button>
+                </div>
+            </form>
         </div>
     </flux:modal>
 </x-partials.sidebar>
