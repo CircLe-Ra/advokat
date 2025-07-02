@@ -3,6 +3,7 @@
 use App\Facades\PusherBeams;
 use App\Models\LegalCase;
 use App\Models\LegalCaseDocument;
+use App\Models\LegalCaseValidation;
 use App\Models\User;
 use Livewire\Volt\Component;
 use Livewire\WithFileUploads;
@@ -150,6 +151,14 @@ class extends Component {
             $case->update([
                 'status' => 'pending',
             ]);
+
+            LegalCaseValidation::create([
+                'legal_case_id' => $case->id,
+                'user_id' => auth()->user()->id,
+                'date_time' => now(),
+                'comment' => null,
+                'validation' => 'pending',
+            ]);
             $allStaff = User::whereHas('roles', function ($query) {
                 $query->where('name', 'staf');
             })->get();
@@ -242,6 +251,15 @@ class extends Component {
                                             dapat melakukan perubahan atau menghapus data kasus.</p>
                                     </flux:tooltip.content>
                                 </flux:tooltip>
+                            @elseif($case->status == 'revision')
+                                <flux:tooltip toggleable>
+                                    <flux:button icon="information-circle" size="sm" variant="ghost"/>
+                                    <flux:tooltip.content class="max-w-[20rem]">
+                                        <p>Data yang anda ajukan belum lengkap harap segera lakukan perubahan.</p><br />
+                                        <p class="text-red-500"><b>Pesan:</b> {{ $case->validations->last()->comment }}</p><br />
+                                        <p>Anda dapat melihat detail kasus anda melalui menu aksi disamping.</p>
+                                    </flux:tooltip.content>
+                                </flux:tooltip>
                             @endif
                         </flux:heading>
                     </td>
@@ -256,13 +274,15 @@ class extends Component {
                                 </flux:menu.item>
                                 <flux:menu.separator/>
                                 <flux:menu.item icon:variant="micro" icon="chat-bubble-left-right"
-                                                icon:trailing="arrow-up-right" href="{{ route('chat') }}" wire:navigate>Hubungi Petugas
+                                                icon:trailing="arrow-up-right" href="{{ route('chat') }}" wire:navigate>
+                                    Hubungi Petugas
                                 </flux:menu.item>
                                 <flux:menu.separator/>
-{{--                                <flux:menu.item icon:variant="micro" icon="eye" wire:click="edit({{ $case->id }}, 'detail')">--}}
-{{--                                    Detail Kasus--}}
-{{--                                </flux:menu.item>--}}
-                                <flux:menu.item icon:variant="micro" icon:trailing="arrow-up-right" icon="eye" href="{{ route('client.case.detail-case', $case->id) }}" wire:navigate>
+                                {{--                                <flux:menu.item icon:variant="micro" icon="eye" wire:click="edit({{ $case->id }}, 'detail')">--}}
+                                {{--                                    Detail Kasus--}}
+                                {{--                                </flux:menu.item>--}}
+                                <flux:menu.item icon:variant="micro" icon:trailing="arrow-up-right" icon="eye"
+                                                href="{{ route('client.case.detail-case', $case->id) }}" wire:navigate>
                                     Detail Kasus
                                 </flux:menu.item>
                                 <flux:menu.separator/>
@@ -401,9 +421,9 @@ class extends Component {
                 <flux:heading size="lg" level="1">Dokumen Pendukung</flux:heading>
             </div>
             @if($this->file_open)
-            <div>
-                <img class="object-cover w-full" src="{{ asset('storage/'.$this->file_open) }}" alt="">
-            </div>
+                <div>
+                    <img class="object-cover w-full" src="{{ asset('storage/'.$this->file_open) }}" alt="">
+                </div>
             @endif
         </div>
     </flux:modal>
@@ -413,10 +433,10 @@ class extends Component {
     <script>
         document.addEventListener('livewire:navigated', () => {
             $js('submit', (id) => {
-                $wire.dispatch('toast', { message: 'Proses...', type: 'info', duration: 5000 });
+                $wire.dispatch('toast', {message: 'Proses...', type: 'info', duration: 5000});
                 $wire.submit(id);
             });
-        }, { once: true });
+        }, {once: true});
     </script>
     @endscript
 @endpushOnce

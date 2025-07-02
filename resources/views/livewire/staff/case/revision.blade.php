@@ -24,15 +24,9 @@ new class extends Component {
     #[\Livewire\Attributes\Computed]
     public function cases()
     {
-        return LegalCase::where('status', 'pending')->latest()->paginate($this->show, pageName: 'pending-page');
+        return LegalCase::where('status', 'revision')->orWhere('status', 'revised')->latest()->paginate($this->show, pageName: 'revision-page');
     }
 
-    public function __reset(): void
-    {
-        $this->reset(['id', 'status', 'reason']);
-        $this->dispatch('pond-reset');
-        $this->resetValidation(['id', 'status', 'reason']);
-    }
 
     public function verify($id): void
     {
@@ -91,8 +85,7 @@ new class extends Component {
                     </th>
                     <th scope="row" class="px-6 py-4 font-medium text-zinc-900 whitespace-nowrap dark:text-white">
                         <flux:tooltip content="{{$case->number}}">
-                            <flux:button variant="subtle"
-                                         class="dark:bg-zinc-800 dark:hover:bg-zinc-800"> {{ Str::limit($case->number, 12, '...') }}</flux:button>
+                            <flux:button variant="subtle" class="dark:bg-zinc-800 dark:hover:bg-zinc-800"> {{ Str::limit($case->number, 12, '...') }}</flux:button>
                         </flux:tooltip>
                     </th>
                     <td class="px-6 py-4">
@@ -104,11 +97,11 @@ new class extends Component {
                     <td class="px-6 py-4 text-nowrap">
                         {{ $case->created_at->isoFormat('D MMMM Y HH:mm') }} WIT
                     </td>
-                    <td class="px-6 py-4">
+                    <td class="px-6 py-4 ">
                         <x-badge :status="$case->status"/>
                     </td>
                     <td class="px-6 py-4">
-                        <flux:button size="sm" variant="primary" icon:trailing="arrow-up-right" href="{{ route('staff.case.detail-case', ['id' => $case->id, 'status' => 'pending']) }}">
+                        <flux:button size="sm" variant="primary" icon:trailing="arrow-up-right" href="{{ route('staff.case.detail-case', ['id' => $case->id, 'status' => 'revision']) }}">
                             Lihat Detail
                         </flux:button>
                     </td>

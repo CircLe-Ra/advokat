@@ -22,7 +22,7 @@ Route::middleware(['auth'])->group(function () {
         Volt::route('client/dashboard', 'client.dashboard')->name('client.dashboard');
         Volt::route('client/case', 'client.case')->name('client.case');
         Volt::route('client/case/personal-data', 'client.personal-data')->name('client.case.personal-data');
-        Volt::route('client/case/{id}/detail-case', 'client.detail-case')->name('client.case.detail-case');
+        Volt::route('client/case/{case}/detail-case', 'client.detail-case')->name('client.case.detail-case');
     });
 
     Route::middleware(['role:staf'])->group(function () {
@@ -31,12 +31,8 @@ Route::middleware(['auth'])->group(function () {
         Volt::route('staff/master-data/users', 'staff.master-data.user')->name('staff.master-data.user');
         Volt::route('staff/master-data/roles', 'staff.master-data.role')->name('staff.master-data.role');
 
-        Volt::route('staff/case/pending', 'staff.case.pending')->name('staff.case.pending');
-        Volt::route('staff/case/verified', 'staff.case.verified')->name('staff.case.verified');
-        Volt::route('staff/case/rejected', 'staff.case.rejected')->name('staff.case.rejected');
-        Volt::route('staff/case/accepted', 'staff.case.accepted')->name('staff.case.accepted');
-        Volt::route('staff/case/closed', 'staff.case.closed')->name('staff.case.closed');
-        Volt::route('staff/case/{id}/detail-case', 'staff.case.detail-case')->name('staff.case.detail-case');
+        Volt::route('staff/case/validation/{status}', 'staff.case.validation')->name('staff.case.validation');
+        Volt::route('staff/case/{id}/{status}', 'staff.case.detail-case')->name('staff.case.detail-case');
     });
 
     Volt::route('chat', 'chat')->name('chat');

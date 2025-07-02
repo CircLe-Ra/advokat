@@ -287,5 +287,17 @@
     "Whoops!": "Aduh!",
     "Yes": "Ya",
     "You are receiving this email because we received a password reset request for your account.": "Anda menerima surel ini karena kami menerima permintaan pengaturan ulang kata sandi untuk akun anda.",
-    "Your email address is unverified.": "Alamat surel Anda belum diverifikasi."
+    "Your email address is unverified.": "Alamat surel Anda belum diverifikasi.",
+    "pending": "Menunggu",
+    "draft": "Draft",
+    "closed": "Tutup",
+    "accepted": "Diterima",
+    "rejected": "Ditolak",
+    "confirmed": "Dikonfirmasi",
+    "canceled": "Dibatalkan",
+    "finished": "Selesai",
+    "failed": "Gagal",
+    "in progress": "Dalam Proses",
+    "verified": "Diverifikasi",
+    "revision": "Revisi"
 }

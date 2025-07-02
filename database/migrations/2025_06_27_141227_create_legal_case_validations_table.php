@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('legal_case_id')->constrained('legal_cases')->onDelete('cascade');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->date('date_time');
+            $table->dateTime('date_time');
             $table->text('comment')->nullable();
-            $table->enum('validation', ['pending', 'verified', 'revision', 'rejected', 'accepted', 'closed']);
+            $table->enum('validation', ['pending', 'verified', 'revision', 'revised', 'rejected', 'accepted', 'closed']);
             $table->timestamps();
         });
     }

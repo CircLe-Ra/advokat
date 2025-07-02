@@ -72,4 +72,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(Lawyer::class);
     }
+
+    public function userValidation() : HasOne
+    {
+        return $this->hasOne(LegalCaseValidation::class);
+    }
 }

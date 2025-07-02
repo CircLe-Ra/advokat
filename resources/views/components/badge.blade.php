@@ -27,6 +27,8 @@
             'danger' => ['red', 'Gagal'],
             'warning' => ['yellow', 'Peringatan'],
             'info' => ['blue', 'Informasi'],
+            'revision' => ['orange', 'Revisi'],
+            'revised' => ['orange', 'Direvisi'],
             default => [null, null],
         };
 

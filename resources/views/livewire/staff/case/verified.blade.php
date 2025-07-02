@@ -6,9 +6,7 @@ use Livewire\Volt\Component;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
 
-new
-#[\Livewire\Attributes\Title('Kasus')]
-class extends Component {
+new class extends Component {
     use WithFileUploads;
     use WithPagination;
 
@@ -26,26 +24,6 @@ class extends Component {
         return LegalCase::where('status', 'verified')->latest()->paginate($this->show, pageName: 'verified-page');
     }
 
-    public function submit($id): void
-    {
-        try {
-            $case = LegalCase::find($id);
-            $case->update([
-                'status' => 'pending',
-            ]);
-            $this->dispatch('toast', message: 'Pengajuan kasus berhasil diajukan');
-        } catch (\Exception $e) {
-            $this->dispatch('toast', message: $e->getMessage(), type: 'error', duration: 5000);
-        }
-    }
-
-    public function __reset(): void
-    {
-        $this->reset(['id']);
-        $this->dispatch('pond-reset');
-        $this->resetValidation(['id']);
-    }
-
     public function showFile($id): void
     {
         $this->file_open = LegalCaseDocument::where('id', $id)->first()->file;
@@ -53,8 +31,8 @@ class extends Component {
     }
 }; ?>
 
-<x-partials.sidebar position="right" menu="staff-case" active="Pengajuan Kasus / Status Kasus / Diverifikasi">
-    <x-table thead="#, Nomor, Nama, Jenis, Tanggal Pengajuan, Status, Informasi" :action="false"
+<x-partials.sidebar position="right" menu="staff-case" active="Pengajuan Kasus / Status Kasus / Ditutup">
+    <x-table thead="#, Nomor, Nama, Jenis, Tanggal Pengajuan, Status" :action="false"
              label="Pengajuan Kasus" sub-label="Informasi tentang kasus yang diajukan.">
         <x-slot name="filter">
             <x-filter wire:model.live="show"/>
@@ -81,19 +59,13 @@ class extends Component {
                     <td class="px-6 py-4 text-nowrap">
                         {{ $case->created_at->isoFormat('D MMMM Y HH:mm') }} WIT
                     </td>
-                    <td class="px-6 py-4">
+                    <td class="px-6 py-4 inline-flex gap-1">
                         <x-badge :status="$case->status"/>
-                    </td>
-                    <td class="px-6 py-4">
                         <flux:tooltip toggleable>
-                            <flux:button icon="information-circle" size="sm" variant="outline">Info</flux:button>
+                            <flux:button icon="information-circle" size="sm" variant="ghost"/>
                             <flux:tooltip.content class="max-w-[20rem]">
-                                <p>Diproses sebelumya anda telah memverifikasi data kasus ini sebagai</p>
-                                <p>Anda masih dapat melakukan perubahan pada data kasus Anda.</p>
-                                <p>Pastikan bahwa data yang Anda masukkan sudah benar, kemudian ajukan pengajuan
-                                    melalui menu aksi di samping.</p>
-                                <p class="text-red-500">Namun, jika Anda telah mengajukan kasus, Anda tidak
-                                    dapat melakukan perubahan atau menghapus data kasus.</p>
+                                <p>Kasus telah diajukan ke pimpinan.</p>
+                                <p class="text-emerald-500">Silahkan tunggu keputusan dari pimpinan</p>
                             </flux:tooltip.content>
                         </flux:tooltip>
                     </td>

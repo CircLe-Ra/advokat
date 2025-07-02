@@ -6,9 +6,7 @@ use Livewire\Volt\Component;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
 
-new
-#[\Livewire\Attributes\Title('Kasus Ditutup')]
-class extends Component {
+new class extends Component {
     use WithFileUploads;
     use WithPagination;
 
