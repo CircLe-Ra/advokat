@@ -260,6 +260,14 @@ class extends Component {
                                         <p>Anda dapat melihat detail kasus anda melalui menu aksi disamping.</p>
                                     </flux:tooltip.content>
                                 </flux:tooltip>
+                            @elseif($case->status == 'verified')
+                                <flux:tooltip toggleable>
+                                    <flux:button icon="information-circle" size="sm" variant="ghost"/>
+                                    <flux:tooltip.content class="max-w-[20rem]">
+                                        <p>Kasus telah diajukan ke pimpinan.</p>
+                                        <p class="text-emerald-500">Silahkan tunggu keputusan dari pimpinan</p>
+                                    </flux:tooltip.content>
+                                </flux:tooltip>
                             @endif
                         </flux:heading>
                     </td>

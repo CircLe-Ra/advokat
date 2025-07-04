@@ -9,5 +9,8 @@
             <flux:navbar.item icon="circle-stack" :href="route('staff.master-data.lawyer')" :current="request()->routeIs('staff.master-data*')" wire:navigate>Master Data</flux:navbar.item>
             <flux:navbar.item icon="briefcase" :href="route('staff.case.validation', ['status' => 'pending'])" :current="request()->routeIs('staff.case*')" wire:navigate>Pengajuan Kasus</flux:navbar.item>
         @endrole
+        @role('pimpinan')
+            <flux:navbar.item icon="gauge" :href="route('leader.dashboard')" :current="request()->routeIs('leader.dashboard')" wire:navigate>Dashboard</flux:navbar.item>
+        @endrole
 </flux:navbar>
 

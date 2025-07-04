@@ -9,12 +9,14 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth'])->group(callback: function () {
     Route::get('/goto', function () {
         if(auth()->user()->hasRole('staf')){
             return redirect()->route('staff.dashboard');
         }elseif(auth()->user()->hasRole('klien')){
             return redirect()->route('client.dashboard');
+        }elseif(auth()->user()->hasRole('pimpinan')){
+            return redirect()->route('leader.dashboard');
         }
     })->name('goto');
 
@@ -33,6 +35,10 @@ Route::middleware(['auth'])->group(function () {
 
         Volt::route('staff/case/validation/{status}', 'staff.case.validation')->name('staff.case.validation');
         Volt::route('staff/case/{id}/{status}', 'staff.case.detail-case')->name('staff.case.detail-case');
+    });
+
+    Route::middleware(['role:leader'])->group(function () {
+        Volt::route('leader/dashboard', 'leader.dashboard')->name('leader.dashboard');
     });
 
     Volt::route('chat', 'chat')->name('chat');

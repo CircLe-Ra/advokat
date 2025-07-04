@@ -103,11 +103,11 @@ class extends Component {
             <div class="flex flex-col h-full ">
                 <flux:heading size="xl" class="bg-zinc-50 border p-4 rounded-t-lg border-b-0 border-zinc-300 dark:bg-zinc-700 dark:border-zinc-600 dark:text-white text-center text-xl">Ringkasan Kasus</flux:heading>
                 <div class="bg-zinc-50 text-justify indent-8 items-center p-6 justify-between rounded-b-lg border border-zinc-300 dark:bg-zinc-700 dark:border-zinc-600 dark:text-white">
-                {{ $this->case->summary }}
+                {!! $this->case->summary !!}
                 </div>
                 <flux:heading size="xl" class="bg-zinc-50 mt-2 border p-4 rounded-t-lg border-b-0 border-zinc-300 dark:bg-zinc-700 dark:border-zinc-600 dark:text-white text-center text-xl">Kronologi Kasus</flux:heading>
                 <div class="bg-zinc-50 text-justify indent-8 items-center p-6 justify-between rounded-b-lg border border-zinc-300 dark:bg-zinc-700 dark:border-zinc-600 dark:text-white">
-                    {{ $this->case->chronology }}
+                    {!! $this->case->chronology !!}
                 </div>
             </div>
         </div>
@@ -121,7 +121,7 @@ class extends Component {
                     <div class="absolute w-3 h-3 bg-accent rounded-full mt-1.5 -start-1.5 border border-white dark:border-zinc-900"></div>
                     <time class="mb-1 text-sm font-normal leading-none text-zinc-400 dark:text-zinc-500">{{ $this->case->created_at->isoFormat('dddd, D MMMM Y HH:mm') }} WIT</time>
 
-                    <h3 class="text-lg font-semibold text-zinc-900 dark:text-white">{{ auth()->user()->name }} - <x-badge status="draft" /></h3>
+                    <h3 class="text-lg font-semibold text-zinc-900 dark:text-white">{{ Str::ucfirst(auth()->user()->name) }} - <x-badge status="draft" /></h3>
                     <p class="mb-4 text-base font-normal text-zinc-500 dark:text-zinc-400">Kasus ditambahkan oleh klien.</p>
                 </li>
                 @if($this->case->validations->count())
@@ -130,7 +130,7 @@ class extends Component {
                             <div class="absolute w-3 h-3 bg-accent rounded-full mt-1.5 -start-1.5 border border-white dark:border-zinc-900"></div>
                             <time class="mb-1 text-sm font-normal leading-none text-zinc-400 dark:text-zinc-500">{{ Carbon::parse($validation->date_time)->isoFormat('dddd, D MMMM Y HH:mm') }} WIT</time>
 
-                            <h3 class="text-lg font-semibold text-zinc-900 dark:text-white">{{ $validation->user->name }} - <x-badge :status="$validation->validation" /></h3>
+                            <h3 class="text-lg font-semibold text-zinc-900 dark:text-white">{{ Str::ucfirst($validation->user->name) }} - <x-badge :status="$validation->validation" /></h3>
                             <p class="mb-4 text-base font-normal text-zinc-500 dark:text-zinc-400">
                                 {{ $validation->comment ? 'Pesan: ' . $validation->comment : ($validation->validation == 'pending' ? 'Kasus diajukan oleh klien.' : ($validation->validation == 'revised' ? 'Kasus telah direvisi oleh klien.' : '-')) }}
                             </p>

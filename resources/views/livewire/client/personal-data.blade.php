@@ -172,18 +172,18 @@ class extends Component {
                     <x-filepond wire:model="identity_image" label="KTP"/>
                     @if($this->identity_image_preview)
                         <div
-                            class="relative overflow-hidden rounded-lg hover:scale-105 transition duration-300 ease-in-out cursor-pointer hover:shadow-lg dark:hover:shadow-none border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900">
+                            class="mb-6 relative overflow-hidden rounded-lg hover:scale-105 transition duration-300 ease-in-out cursor-pointer hover:shadow-lg dark:hover:shadow-none border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900">
                             <img wire:click="showImage({{ auth()->user()->client->id }}, 'identity')"
-                                 class="object-cover w-full h-15 mb-6 rounded-lg"
+                                 class="object-cover w-full h-15 rounded-lg"
                                  src="{{ asset('storage/'.$this->identity_image_preview) }}" alt="">
                         </div>
                     @endif
                     <x-filepond wire:model="client_image" label="Foto Anda"/>
                     @if($this->client_image_preview)
                         <div
-                            class="relative overflow-hidden rounded-lg hover:scale-105 transition duration-300 ease-in-out cursor-pointer hover:shadow-lg dark:hover:shadow-none border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900">
+                            class="relative mb-6 overflow-hidden rounded-lg hover:scale-105 transition duration-300 ease-in-out cursor-pointer hover:shadow-lg dark:hover:shadow-none border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900">
                             <img wire:click="showImage({{ auth()->user()->client?->id }}, 'client')"
-                                 class="object-cover w-full h-15 mb-6 rounded-lg"
+                                 class="object-cover w-full h-15 rounded-lg"
                                  src="{{ asset('storage/'.$this->client_image_preview) }}" alt="">
                         </div>
                     @endif
