@@ -36,6 +36,18 @@ $classes = Flux::classes()
             'text-zinc-800 data-active:text-red-600 data-active:bg-red-50 dark:text-white dark:data-active:bg-red-400/20 dark:data-active:text-red-400',
             '**:data-flux-menu-item-icon:text-zinc-400 dark:**:data-flux-menu-item-icon:text-white/60 [&[data-active]_[data-flux-menu-item-icon]]:text-current',
         ],
+        'success' => [
+            'text-zinc-800 data-active:text-green-600 data-active:bg-green-50 dark:text-white dark:data-active:bg-green-400/20 dark:data-active:text-green-400',
+            '**:data-flux-menu-item-icon:text-zinc-400 dark:**:data-flux-menu-item-icon:text-white/60 [&[data-active]_[data-flux-menu-item-icon]]:text-current',
+        ],
+        'warning' => [
+            'text-zinc-800 data-active:text-yellow-600 data-active:bg-yellow-50 dark:text-white dark:data-active:bg-yellow-400/20 dark:data-active:text-yellow-400',
+            '**:data-flux-menu-item-icon:text-zinc-400 dark:**:data-flux-menu-item-icon:text-white/60 [&[data-active]_[data-flux-menu-item-icon]]:text-current',
+        ],
+        'info' => [
+            'text-zinc-800 data-active:text-sky-600 data-active:bg-sky-50 dark:text-white dark:data-active:bg-sky-400/20 dark:data-active:text-sky-400',
+            '**:data-flux-menu-item-icon:text-zinc-400 dark:**:data-flux-menu-item-icon:text-white/60 [&[data-active]_[data-flux-menu-item-icon]]:text-current',
+        ],
         'default' => [
             'text-zinc-800 data-active:bg-zinc-50 dark:text-white dark:data-active:bg-zinc-600',
             '**:data-flux-menu-item-icon:text-zinc-400 dark:**:data-flux-menu-item-icon:text-white/60 [&[data-active]_[data-flux-menu-item-icon]]:text-current',

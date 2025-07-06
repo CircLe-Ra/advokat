@@ -2,7 +2,6 @@
 
 use App\Models\LegalCase;
 use App\Models\LegalCaseDocument;
-use Livewire\Attributes\Computed;
 use Livewire\Volt\Component;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
@@ -19,36 +18,15 @@ new class extends Component {
     public ?int $id = null;
     public string $file_open = '';
 
-    #[Computed]
+    #[\Livewire\Attributes\Computed]
     public function cases()
     {
-        return LegalCase::where('status', 'accepted')
+        return LegalCase::where('status', 'verified')
             ->where(function ($query) {
                 $query->where('number', 'like', '%' . $this->search . '%')
                     ->orWhere('title', 'like', '%' . $this->search . '%')
                     ->orWhere('summary', 'like', '%' . $this->search . '%');
-            })->latest()->paginate($this->show, pageName: 'accepted-page');
-    }
-
-    public function __reset(): void
-    {
-        $this->reset(['id']);
-        $this->dispatch('pond-reset');
-        $this->resetValidation(['id']);
-    }
-
-    public function submit($id): void
-    {
-        try {
-            $case = LegalCase::find($id);
-            $case->update([
-                'status' => 'closed',
-            ]);
-            unset($this->cases);
-            $this->dispatch('toast', message: 'Kasus ditutup');
-        } catch (\Exception $e) {
-            $this->dispatch('toast', message: $e->getMessage(), type: 'error', duration: 5000);
-        }
+            })->latest()->paginate($this->show, pageName: 'leader-verified-page');
     }
 
     public function showFile($id): void
@@ -58,7 +36,7 @@ new class extends Component {
     }
 }; ?>
 
-<x-partials.sidebar position="right" menu="staff-case" active="Pengajuan Kasus / Status Kasus / Diterima">
+<x-partials.sidebar position="right" menu="leader-case" active="Pengajuan Kasus / Status Kasus / Diverifikasi">
     <x-table thead="#, Nomor, Nama, Jenis, Tanggal Pengajuan, Status," :action="false"
              label="Pengajuan Kasus" sub-label="Informasi tentang kasus yang diajukan.">
         <x-slot name="filter">
@@ -86,11 +64,13 @@ new class extends Component {
                     <td class="px-6 py-4 text-nowrap">
                         {{ $case->created_at->isoFormat('D MMMM Y HH:mm') }} WIT
                     </td>
-                    <td class="px-6 py-4">
+                    <td class="px-6 py-4 ">
                         <x-badge :status="$case->status"/>
                     </td>
                     <td class="px-6 py-4">
-
+                        <flux:button wire:navigate size="sm" variant="primary" icon="eye" icon:trailing="arrow-up-right" href="{{ route('leader.case.detail-case', ['id' => $case->id, 'status' => 'verified']) }}">
+                             Detail
+                        </flux:button>
                     </td>
                 </tr>
             @endforeach

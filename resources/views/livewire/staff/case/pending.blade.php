@@ -24,7 +24,12 @@ new class extends Component {
     #[\Livewire\Attributes\Computed]
     public function cases()
     {
-        return LegalCase::where('status', 'pending')->latest()->paginate($this->show, pageName: 'pending-page');
+        return LegalCase::where('status', 'pending')
+            ->where(function ($query) {
+                $query->where('number', 'like', '%' . $this->search . '%')
+                    ->orWhere('title', 'like', '%' . $this->search . '%')
+                    ->orWhere('summary', 'like', '%' . $this->search . '%');
+            })->latest()->paginate($this->show, pageName: 'pending-page');
     }
 
     public function __reset(): void
@@ -59,6 +64,7 @@ new class extends Component {
             $case->update([
                 'status' => $this->status,
             ]);
+            unset($this->cases);
             $this->__reset();
             $this->dispatch('toast', message: 'Pengajuan kasus berhasil diajukan');
             if ($this->status == 'verified') {

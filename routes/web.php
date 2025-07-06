@@ -17,6 +17,8 @@ Route::middleware(['auth'])->group(callback: function () {
             return redirect()->route('client.dashboard');
         }elseif(auth()->user()->hasRole('pimpinan')){
             return redirect()->route('leader.dashboard');
+        }elseif(auth()->user()->hasRole('pengacara')){
+            return redirect()->route('lawyer.dashboard');
         }
     })->name('goto');
 
@@ -35,11 +37,22 @@ Route::middleware(['auth'])->group(callback: function () {
 
         Volt::route('staff/case/validation/{status}', 'staff.case.validation')->name('staff.case.validation');
         Volt::route('staff/case/{id}/{status}', 'staff.case.detail-case')->name('staff.case.detail-case');
+        Volt::route('staff/active-case', 'staff.active.case')->name('staff.active.case');
+        Volt::route('staff/active-case/{id}/{status}', 'staff.active.pages')->name('staff.active.page');
+        Volt::route('staff/active-case/{id}/{status}/detail', 'staff.active.detail-case')->name('staff.active.detail-case');
     });
 
-    Route::middleware(['role:leader'])->group(function () {
+    Route::middleware(['role:pimpinan'])->group(function () {
         Volt::route('leader/dashboard', 'leader.dashboard')->name('leader.dashboard');
+        Volt::route('leader/case/validation/{status}', 'leader.case.validation')->name('leader.case.validation');
+        Volt::route('leader/case/{id}/{status}', 'leader.case.detail-case')->name('leader.case.detail-case');
     });
+
+    Route::middleware(['role:pengacara'])->group(function () {
+        Volt::route('lawyer/dashboard', 'lawyer.dashboard')->name('lawyer.dashboard');
+        Volt::route('lawyer/case', 'lawyer.case')->name('lawyer.case');
+    });
+
 
     Volt::route('chat', 'chat')->name('chat');
 

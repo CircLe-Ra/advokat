@@ -1,7 +1,10 @@
 <?php
 
+use App\Models\Lawyer;
 use App\Models\LegalCase;
 use App\Models\LegalCaseValidation;
+use Illuminate\Database\Eloquent\Collection;
+use Livewire\Attributes\Computed;
 use Livewire\Volt\Component;
 
 new
@@ -11,35 +14,37 @@ class extends Component {
     public string $queryStatus = '';
     public string $statusCase = '';
     public string $reason = '';
+    public string $lawyer = '';
 
     public function mount($id, $status)
     {
-        $case = LegalCase::find($id);
-        if(!$case->status == 'revised') {
-            if ($case->status != $status) {
-                return abort(404);
-            }
-        }
         $this->id = $id;
         $this->queryStatus = $status;
     }
 
+    #[Computed]
+    public function lawyers(): Collection
+    {
+        return Lawyer::all();
+    }
+
     public function __reset(): void
     {
-        $this->reset(['id', 'statusCase', 'reason']);
-        $this->dispatch('pond-reset');
-        $this->resetValidation(['id', 'statusCase', 'reason']);
+        $this->reset(['id', 'statusCase','reason', 'lawyer']);
+        $this->resetValidation(['id', 'statusCase', 'reason', 'lawyer']);
     }
 
     public function verify(): void
     {
         $this->validate([
             'statusCase' => ['required'],
-            'reason' => ['nullable', 'required_if:statusCase,revision'],
+            'lawyer' => ['nullable', 'required_if:statusCase,accepted'],
+            'reason' => ['nullable', 'required_if:statusCase,rejected'],
         ]);
         try {
             $case = LegalCase::find($this->id);
             $case->update([
+                'lawyer_id' => $this->lawyer,
                 'status' => $this->statusCase,
             ]);
             LegalCaseValidation::create([
@@ -51,8 +56,9 @@ class extends Component {
             ]);
             $statusRedirect = $this->statusCase;
             $this->__reset();
+            Flux::modal('modal-verify')->close();
             $this->dispatch('toast', message: 'Berhasil diverifikasi');
-            $this->redirectIntended(route('staff.case.validation', $statusRedirect), navigate: true);
+            $this->redirectIntended(route('leader.case.validation', $statusRedirect), navigate: true);
         } catch (\Exception $e) {
             $this->dispatch('toast', message: $e->getMessage(), type: 'error', duration: 5000);
         }
@@ -60,10 +66,10 @@ class extends Component {
 
 }; ?>
 
-<x-partials.sidebar :back="route('staff.case.validation', ['status' => $this->queryStatus])" position="right"
-                    menu="staff-case"
+<x-partials.sidebar :back="route('leader.case.validation', ['status' => $this->queryStatus])" position="right"
+                    menu="leader-case"
                     :active="'Pengajuan Kasus / Status Kasus / ' . __($this->queryStatus) . ' / Detail Kasus'">
-    @if ($this->queryStatus == 'pending' || $this->queryStatus == 'revision')
+    @if ($this->queryStatus == 'verified')
         <x-slot:action>
             <flux:modal.trigger name="modal-verify">
                 <flux:button variant="primary" size="sm" icon="check-badge" icon:variant="micro" class="cursor-pointer">
@@ -72,9 +78,10 @@ class extends Component {
             </flux:modal.trigger>
         </x-slot:action>
     @endif
+
     <livewire:detail-staff-case :id="$this->id" :status="$this->queryStatus"/>
 
-    <flux:modal name="modal-verify" class="md:w-96" variant="flyout">
+    <flux:modal name="modal-verify" class="md:w-96" @close="__reset">
         <div class="space-y-6 mb-6">
             <div>
                 <flux:heading size="lg" level="1">Verifikasi Kasus</flux:heading>
@@ -85,12 +92,27 @@ class extends Component {
             <form wire:submit="verify" class="space-y-6">
                 <flux:select wire:model="statusCase" label="Status Kasus">
                     <flux:select.option value="">Pilih?</flux:select.option>
-                    <flux:select.option value="verified">Verifikasi</flux:select.option>
-                    <flux:select.option value="revision">Revisi</flux:select.option>
+                    <flux:select.option value="rejected">Tolak Kasus</flux:select.option>
+                    <flux:select.option value="accepted">Terima Kasus</flux:select.option>
                 </flux:select>
-                <flux:textarea wire:model="reason" label="Catatan"/>
+                <div wire:show="statusCase == 'rejected'">
+                    <flux:textarea wire:model="reason" label="Alasan Penolakan"/>
+                </div>
+                <div class="space-y-6" wire:show="statusCase == 'accepted'">
+                    <flux:select wire:model="lawyer" label="Pengacara">
+                        <flux:select.option value="">Pilih?</flux:select.option>
+                        @if($this->lawyers?->count())
+                            @foreach($this->lawyers as $lawyer)
+                                <flux:select.option value="{{ $lawyer->id }}">{{ $lawyer->user->name }}</flux:select.option>
+                            @endforeach
+                        @endif
+                    </flux:select>
+                    <flux:textarea wire:model="reason" label="Catatan"/>
+                </div>
                 <div class="flex gap-2 justify-end">
+                    <flux:modal.close>
                     <flux:button variant="filled">Batal</flux:button>
+                    </flux:modal.close>
                     <flux:button type="submit" variant="primary">Verifikasi</flux:button>
                 </div>
             </form>

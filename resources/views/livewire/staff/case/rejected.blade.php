@@ -21,7 +21,12 @@ new class extends Component {
     #[\Livewire\Attributes\Computed]
     public function cases()
     {
-        return LegalCase::where('status', 'rejected')->latest()->paginate($this->show, pageName: 'cases-page');
+        return LegalCase::where('status', 'rejected')
+            ->where(function ($query) {
+                $query->where('number', 'like', '%' . $this->search . '%')
+                    ->orWhere('title', 'like', '%' . $this->search . '%')
+                    ->orWhere('summary', 'like', '%' . $this->search . '%');
+            })->latest()->paginate($this->show, pageName: 'cases-page');
     }
 
     public function showFile($id): void
@@ -47,7 +52,7 @@ new class extends Component {
                     <th scope="row" class="px-6 py-4 font-medium text-zinc-900 whitespace-nowrap dark:text-white">
                         <flux:tooltip content="{{$case->number}}">
                             <flux:button variant="subtle"
-                                         class="dark:bg-zinc-800 dark:hover:bg-zinc-800"> {{ Str::limit($case->number, 12, '...') }}</flux:button>
+                                         class="dark:bg-zinc-800 dark:hover:bg-zinc-800"> {{ Str::limit($case->number, 10, '...') }}</flux:button>
                         </flux:tooltip>
                     </th>
                     <td class="px-6 py-4">
@@ -60,16 +65,21 @@ new class extends Component {
                         {{ $case->created_at->isoFormat('D MMMM Y HH:mm') }} WIT
                     </td>
                     <td class="px-6 py-4">
-                        <x-badge :status="$case->status"/>
+                        <div class="inline-flex gap-1">
+                            <x-badge :status="$case->status"/>
+                            <flux:tooltip toggleable>
+                                <flux:button icon="information-circle" size="sm" variant="ghost"/>
+                                <flux:tooltip.content class="max-w-[20rem]">
+                                    <p>Pimpinan menolak kasus yang diajukan {{ $case->client->user->name }}.</p>
+                                    <p class="text-sky-500">Pesan: {{ $case->validations->last()->comment }} </p>
+                                </flux:tooltip.content>
+                            </flux:tooltip>
+                        </div>
                     </td>
                     <td class="px-6 py-4">
-                        <flux:dropdown>
-                            <flux:button size="sm" icon:trailing="chevron-down" variant="filled">Aksi</flux:button>
-                            <flux:menu>
-                                <flux:menu.item icon:variant="micro" icon="eye" href="{{ route('staff.case.detail-case', $case->id) }}">Detail Kasus
-                                </flux:menu.item>
-                            </flux:menu>
-                        </flux:dropdown>
+                        <flux:button wire:navigate size="sm" variant="primary" icon="eye" icon:trailing="arrow-up-right" href="{{ route('staff.case.detail-case', ['id' => $case->id, 'status' => 'verified']) }}">
+                            Detail
+                        </flux:button>
                     </td>
                 </tr>
             @endforeach

@@ -39,7 +39,7 @@ new #[Layout('components.layouts.auth')] class extends Component {
 
         RateLimiter::clear($this->throttleKey());
         Session::regenerate();
-
+        $this->dispatch('toast', message: 'Selamat Datang ' . Auth::user()->name, type: 'success');
         $this->redirectIntended(default: route('goto', absolute: false), navigate: true);
     }
 

@@ -19,31 +19,31 @@ class extends Component {
     }
 }; ?>
 
-<x-card main-class="mb-4" label="Detail Kasus" sub-label="Informasi tentang kasus yang anda ajukan.">
+<x-card main-class="mb-4" label="Detail Kasus" sub-label="Informasi tentang kasus yang diajukan.">
     <div class="grid grid-cols-3 gap-2">
         <div class="space-y-2">
-            <ul class="text-zinc-900 bg-zinc-50 border border-zinc-300 rounded-lg dark:bg-zinc-700 dark:border-zinc-600 dark:text-white">
+            <ul class="text-zinc-900 bg-white border border-zinc-300 rounded-lg dark:bg-zinc-700 dark:border-zinc-600 dark:text-white">
                 <li class="w-full px-4 py-3 text-sm font-bold border-b border-zinc-300 rounded-t-lg dark:border-zinc-600 flex items-center justify-between">
                     Nomor Kasus
                     <flux:icon.file-digit class="size-4" />
                 </li>
                 <li class="w-full px-4 py-2 flex items-center justify-center">{{ $this->case->number }}</li>
             </ul>
-            <ul class="text-zinc-900 bg-zinc-50 border border-zinc-300 rounded-lg dark:bg-zinc-700 dark:border-zinc-600 dark:text-white">
+            <ul class="text-zinc-900 bg-white border border-zinc-300 rounded-lg dark:bg-zinc-700 dark:border-zinc-600 dark:text-white">
                 <li class="w-full px-4 py-3 text-sm font-bold border-b  border-zinc-300 rounded-t-lg dark:border-zinc-600 flex items-center justify-between">
                     Jenis Kasus
                     <flux:icon.file-type-2 class="size-4" />
                 </li>
                 <li class="w-full px-4 py-2 flex items-center justify-center">{{ $this->case->type == 'civil' ? 'Perdata' : 'Pidana' }}</li>
             </ul>
-            <ul class="text-zinc-900 bg-zinc-50 border border-zinc-300 rounded-lg dark:bg-zinc-700 dark:border-zinc-600 dark:text-white">
+            <ul class="text-zinc-900 bg-white border border-zinc-300 rounded-lg dark:bg-zinc-700 dark:border-zinc-600 dark:text-white">
                 <li class="w-full px-4 py-3 text-sm font-bold border-b  border-zinc-300 rounded-t-lg dark:border-zinc-600 flex items-center justify-between">
                     Kasus
                     <flux:icon.captions class="size-4" />
                 </li>
                 <li class="w-full px-4 py-2 flex items-center justify-center">{{ $this->case->title }}</li>
             </ul>
-            <ul class="text-zinc-900 bg-zinc-50 border border-zinc-300 rounded-lg dark:bg-zinc-700 dark:border-zinc-600 dark:text-white">
+            <ul class="text-zinc-900 bg-white border border-zinc-300 rounded-lg dark:bg-zinc-700 dark:border-zinc-600 dark:text-white">
                 <li class="w-full px-4 py-3 text-sm font-bold border-b  border-zinc-300 rounded-t-lg dark:border-zinc-600 flex items-center justify-between">
                     Status Kasus
                     <flux:icon.chart-line class="size-4" />
@@ -63,14 +63,14 @@ class extends Component {
                     @endphp
                 </li>
             </ul>
-            <ul class="text-zinc-900 bg-zinc-50 border border-zinc-300 rounded-lg dark:bg-zinc-700 dark:border-zinc-600 dark:text-white">
+            <ul class="text-zinc-900 bg-white border border-zinc-300 rounded-lg dark:bg-zinc-700 dark:border-zinc-600 dark:text-white">
                 <li class="w-full px-4 py-3 text-sm font-bold border-b  border-zinc-300 rounded-t-lg dark:border-zinc-600 flex items-center justify-between">
                     Tanggal Kasus Dibuat
                     <flux:icon.calendar-days class="size-4" />
                 </li>
                 <li class="w-full px-4 py-2 flex items-center justify-center">{{ $this->case->created_at->isoFormat('dddd, D MMMM Y') }}</li>
             </ul>
-            <ul class="text-zinc-900 bg-zinc-50 border border-zinc-300 rounded-lg dark:bg-zinc-700 dark:border-zinc-600 dark:text-white">
+            <ul class="text-zinc-900 bg-white border border-zinc-300 rounded-lg dark:bg-zinc-700 dark:border-zinc-600 dark:text-white">
                 <li class="w-full px-4 py-3 text-sm font-bold border-b  border-zinc-300 rounded-t-lg dark:border-zinc-600 flex items-center justify-between">
                     Dokumen
                     <flux:icon.document class="size-4" />
@@ -101,11 +101,11 @@ class extends Component {
         </div>
         <div class="col-span-2">
             <div class="flex flex-col h-full ">
-                <flux:heading size="xl" class="bg-zinc-50 border p-4 rounded-t-lg border-b-0 border-zinc-300 dark:bg-zinc-700 dark:border-zinc-600 dark:text-white text-center text-xl">Ringkasan Kasus</flux:heading>
-                <div class="bg-zinc-50 text-justify indent-8 items-center p-6 justify-between rounded-b-lg border border-zinc-300 dark:bg-zinc-700 dark:border-zinc-600 dark:text-white">
+                <flux:heading size="xl" class="bg-white border p-4 rounded-t-lg border-b-0 border-zinc-300 dark:bg-zinc-700 dark:border-zinc-600 dark:text-white text-center text-xl">Ringkasan Kasus</flux:heading>
+                <div class="bg-white text-justify indent-8 items-center p-6 justify-between rounded-b-lg border border-zinc-300 dark:bg-zinc-700 dark:border-zinc-600 dark:text-white">
                 {!! $this->case->summary !!}
                 </div>
-                <flux:heading size="xl" class="bg-zinc-50 mt-2 border p-4 rounded-t-lg border-b-0 border-zinc-300 dark:bg-zinc-700 dark:border-zinc-600 dark:text-white text-center text-xl">Kronologi Kasus</flux:heading>
+                <flux:heading size="xl" class="bg-white mt-2 border p-4 rounded-t-lg border-b-0 border-zinc-300 dark:bg-zinc-700 dark:border-zinc-600 dark:text-white text-center text-xl">Kronologi Kasus</flux:heading>
                 <div class="bg-zinc-50 text-justify indent-8 items-center p-6 justify-between rounded-b-lg border border-zinc-300 dark:bg-zinc-700 dark:border-zinc-600 dark:text-white">
                     {!! $this->case->chronology !!}
                 </div>
@@ -114,8 +114,8 @@ class extends Component {
     </div>
     <div class="bg-zinc-50 mt-2 border p-4 rounded-lg border-zinc-300 dark:bg-zinc-700 dark:border-zinc-600 dark:text-white">
         <flux:heading size="xl" class="text-xl text-center">Status Kasus</flux:heading>
-        <flux:text class="text-zinc-900 dark:text-white text-center">Selalu update status kasus kamu dengan melihat <i>Timeline</i> di bawah ini</flux:text>
-        <div class="border rounded-lg border-zinc-300 dark:border-zinc-600 p-4 mt-6 bg-zinc-50 dark:bg-zinc-800">
+        <flux:text class="text-zinc-900 dark:text-white text-center"><i>Timeline</i> status kasus dan informasi kasus</flux:text>
+        <div class="border rounded-lg border-zinc-300 dark:border-zinc-600 p-4 mt-6 bg-white dark:bg-zinc-800">
             <ol class="relative border-s border-zinc-200 dark:border-zinc-600">
                 <li class="mb-5 ms-4">
                     <div class="absolute w-3 h-3 bg-accent rounded-full mt-1.5 -start-1.5 border border-white dark:border-zinc-900"></div>

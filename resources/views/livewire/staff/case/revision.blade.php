@@ -24,7 +24,12 @@ new class extends Component {
     #[\Livewire\Attributes\Computed]
     public function cases()
     {
-        return LegalCase::where('status', 'revision')->orWhere('status', 'revised')->latest()->paginate($this->show, pageName: 'revision-page');
+        return LegalCase::where('status', 'revision')
+            ->where(function ($query) {
+                $query->where('number', 'like', '%' . $this->search . '%')
+                    ->orWhere('title', 'like', '%' . $this->search . '%')
+                    ->orWhere('summary', 'like', '%' . $this->search . '%');
+            })->orWhere('status', 'revised')->latest()->paginate($this->show, pageName: 'revision-page');
     }
 
 
@@ -53,6 +58,7 @@ new class extends Component {
             $case->update([
                 'status' => $this->status,
             ]);
+            unset($this->cases);
             $this->__reset();
             $this->dispatch('toast', message: 'Pengajuan kasus berhasil diajukan');
             if ($this->status == 'verified') {

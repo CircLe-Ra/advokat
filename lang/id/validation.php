@@ -287,5 +287,6 @@ return [
         'year'                     => 'tahun',
         'chronology'               => 'Kronologi',
         'summary'                  => 'Ringkasan',
-    ],
+        'statusCase'               => 'Status Kasus'
+    ]
 ];

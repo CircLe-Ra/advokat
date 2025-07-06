@@ -2,7 +2,6 @@
 
 use App\Models\LegalCase;
 use App\Models\LegalCaseDocument;
-use Livewire\Attributes\Computed;
 use Livewire\Volt\Component;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
@@ -19,36 +18,15 @@ new class extends Component {
     public ?int $id = null;
     public string $file_open = '';
 
-    #[Computed]
+    #[\Livewire\Attributes\Computed]
     public function cases()
     {
-        return LegalCase::where('status', 'accepted')
+        return LegalCase::where('status', 'rejected')
             ->where(function ($query) {
                 $query->where('number', 'like', '%' . $this->search . '%')
                     ->orWhere('title', 'like', '%' . $this->search . '%')
                     ->orWhere('summary', 'like', '%' . $this->search . '%');
-            })->latest()->paginate($this->show, pageName: 'accepted-page');
-    }
-
-    public function __reset(): void
-    {
-        $this->reset(['id']);
-        $this->dispatch('pond-reset');
-        $this->resetValidation(['id']);
-    }
-
-    public function submit($id): void
-    {
-        try {
-            $case = LegalCase::find($id);
-            $case->update([
-                'status' => 'closed',
-            ]);
-            unset($this->cases);
-            $this->dispatch('toast', message: 'Kasus ditutup');
-        } catch (\Exception $e) {
-            $this->dispatch('toast', message: $e->getMessage(), type: 'error', duration: 5000);
-        }
+            })->latest()->paginate($this->show, pageName: 'leader-rejected-page');
     }
 
     public function showFile($id): void
@@ -58,7 +36,7 @@ new class extends Component {
     }
 }; ?>
 
-<x-partials.sidebar position="right" menu="staff-case" active="Pengajuan Kasus / Status Kasus / Diterima">
+<x-partials.sidebar position="right" menu="leader-case" active="Pengajuan Kasus / Status Kasus / Ditolak">
     <x-table thead="#, Nomor, Nama, Jenis, Tanggal Pengajuan, Status," :action="false"
              label="Pengajuan Kasus" sub-label="Informasi tentang kasus yang diajukan.">
         <x-slot name="filter">
@@ -74,7 +52,7 @@ new class extends Component {
                     <th scope="row" class="px-6 py-4 font-medium text-zinc-900 whitespace-nowrap dark:text-white">
                         <flux:tooltip content="{{$case->number}}">
                             <flux:button variant="subtle"
-                                         class="dark:bg-zinc-800 dark:hover:bg-zinc-800"> {{ Str::limit($case->number, 12, '...') }}</flux:button>
+                                         class="dark:bg-zinc-800 dark:hover:bg-zinc-800"> {{ Str::limit($case->number, 10, '...') }}</flux:button>
                         </flux:tooltip>
                     </th>
                     <td class="px-6 py-4">
@@ -87,10 +65,21 @@ new class extends Component {
                         {{ $case->created_at->isoFormat('D MMMM Y HH:mm') }} WIT
                     </td>
                     <td class="px-6 py-4">
+                        <div class="inline-flex gap-1">
                         <x-badge :status="$case->status"/>
+                        <flux:tooltip toggleable>
+                            <flux:button icon="information-circle" size="sm" variant="ghost"/>
+                            <flux:tooltip.content class="max-w-[20rem]">
+                                <p>Anda telah menolak pengajuan kasus.</p>
+                                <p class="text-sky-500">Pesan: {{ $case->validations->last()->comment }} </p>
+                            </flux:tooltip.content>
+                        </flux:tooltip>
+                        </div>
                     </td>
                     <td class="px-6 py-4">
-
+                        <flux:button wire:navigate size="sm" variant="primary" icon="eye" icon:trailing="arrow-up-right" href="{{ route('leader.case.detail-case', ['id' => $case->id, 'status' => 'rejected']) }}">
+                            Detail
+                        </flux:button>
                     </td>
                 </tr>
             @endforeach

@@ -5,6 +5,7 @@ use App\Models\LegalCase;
 use App\Models\LegalCaseDocument;
 use App\Models\LegalCaseValidation;
 use App\Models\User;
+use Livewire\Attributes\Computed;
 use Livewire\Volt\Component;
 use Livewire\WithFileUploads;
 
@@ -35,7 +36,7 @@ class extends Component {
         }
     }
 
-    #[\Livewire\Attributes\Computed]
+    #[Computed]
     public function cases()
     {
         return LegalCase::where('client_id', Auth::user()->client->id ?? 0)->get();
@@ -85,6 +86,7 @@ class extends Component {
                     ]);
                 }
             });
+            unset($this->cases);
             $this->__reset();
             $this->dispatch('toast', message: 'Pengajuan kasus berhasil dibuat');
             $this->caseModal = false;
@@ -121,7 +123,7 @@ class extends Component {
                     ]);
                 }
             }
-
+            unset($this->cases);
             $this->__reset();
             $this->dispatch('toast', message: 'Kasus berhasil di perbarui');
             $this->caseEditModal = false;
@@ -151,7 +153,7 @@ class extends Component {
             $case->update([
                 'status' => 'pending',
             ]);
-
+            unset($this->cases);
             LegalCaseValidation::create([
                 'legal_case_id' => $case->id,
                 'user_id' => auth()->user()->id,
@@ -206,6 +208,7 @@ class extends Component {
                     </flux:callout.link>
                 </flux:callout.text>
             </flux:callout>
+            c
         </x-slot>
     @endif
     <x-slot name="action">
@@ -255,8 +258,9 @@ class extends Component {
                                 <flux:tooltip toggleable>
                                     <flux:button icon="information-circle" size="sm" variant="ghost"/>
                                     <flux:tooltip.content class="max-w-[20rem]">
-                                        <p>Data yang anda ajukan belum lengkap harap segera lakukan perubahan.</p><br />
-                                        <p class="text-red-500"><b>Pesan:</b> {{ $case->validations->last()->comment }}</p><br />
+                                        <p>Data yang anda ajukan belum lengkap harap segera lakukan perubahan.</p><br/>
+                                        <p class="text-red-500"><b>Pesan:</b> {{ $case->validations->last()->comment }}
+                                        </p><br/>
                                         <p>Anda dapat melihat detail kasus anda melalui menu aksi disamping.</p>
                                     </flux:tooltip.content>
                                 </flux:tooltip>
@@ -275,8 +279,8 @@ class extends Component {
                         <flux:dropdown>
                             <flux:button size="sm" icon:trailing="chevron-down" variant="filled">Aksi</flux:button>
                             <flux:menu>
-                                <flux:menu.item class="hover:text-green-600 dark:hover:text-emerald-300"
-                                                icon:variant="micro" icon="check-badge" icon:trailing="arrow-right"
+                                <flux:menu.item icon:variant="micro" variant="info" icon="check-badge"
+                                                icon:trailing="arrow-right"
                                                 wire:click="$js.submit({{ $case->id }})"
                                                 :disabled="$case->status != 'draft'">Ajukan
                                 </flux:menu.item>
@@ -294,7 +298,8 @@ class extends Component {
                                     Detail Kasus
                                 </flux:menu.item>
                                 <flux:menu.separator/>
-                                <flux:menu.item icon:variant="micro" icon="pencil" wire:click="edit({{ $case->id }})"
+                                <flux:menu.item icon:variant="micro" icon="pencil" variant="warning"
+                                                wire:click="edit({{ $case->id }})"
                                                 :disabled="$case->status != 'draft'">Ubah Kasus
                                 </flux:menu.item>
                                 <flux:menu.separator/>

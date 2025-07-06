@@ -21,7 +21,12 @@ new class extends Component {
     #[\Livewire\Attributes\Computed]
     public function cases()
     {
-        return LegalCase::where('status', 'verified')->latest()->paginate($this->show, pageName: 'verified-page');
+        return LegalCase::where('status', 'verified')
+            ->where(function ($query) {
+                $query->where('number', 'like', '%' . $this->search . '%')
+                    ->orWhere('title', 'like', '%' . $this->search . '%')
+                    ->orWhere('summary', 'like', '%' . $this->search . '%');
+            })->latest()->paginate($this->show, pageName: 'verified-page');
     }
 
     public function showFile($id): void
@@ -59,15 +64,17 @@ new class extends Component {
                     <td class="px-6 py-4 text-nowrap">
                         {{ $case->created_at->isoFormat('D MMMM Y HH:mm') }} WIT
                     </td>
-                    <td class="px-6 py-4 inline-flex gap-1">
-                        <x-badge :status="$case->status"/>
-                        <flux:tooltip toggleable>
-                            <flux:button icon="information-circle" size="sm" variant="ghost"/>
-                            <flux:tooltip.content class="max-w-[20rem]">
-                                <p>Kasus telah diajukan ke pimpinan.</p>
-                                <p class="text-emerald-500">Silahkan tunggu keputusan dari pimpinan</p>
-                            </flux:tooltip.content>
-                        </flux:tooltip>
+                    <td class="px-6 py-4">
+                        <div class="inline-flex gap-1">
+                            <x-badge :status="$case->status"/>
+                            <flux:tooltip toggleable>
+                                <flux:button icon="information-circle" size="sm" variant="ghost"/>
+                                <flux:tooltip.content class="max-w-[20rem]">
+                                    <p>Kasus telah diajukan ke pimpinan.</p>
+                                    <p class="text-emerald-500">Silahkan tunggu keputusan dari pimpinan</p>
+                                </flux:tooltip.content>
+                            </flux:tooltip>
+                        </div>
                     </td>
                 </tr>
             @endforeach

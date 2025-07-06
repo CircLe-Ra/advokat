@@ -10,7 +10,7 @@ class LegalCase extends Model
 {
     protected $guarded = ['id'];
 
-    protected $with = ['documents', 'validations', 'client'];
+    protected $with = ['documents', 'validations', 'client', 'lawyer', 'meetingSchedules'];
 
     public function documents(): HasMany
     {
@@ -25,5 +25,15 @@ class LegalCase extends Model
     public function client(): BelongsTo
     {
         return $this->belongsTo(Client::class);
+    }
+
+    public function lawyer(): BelongsTo
+    {
+        return $this->belongsTo(Lawyer::class);
+    }
+
+    public function meetingSchedules(): HasMany
+    {
+        return $this->hasMany(MeetingSchedule::class);
     }
 }

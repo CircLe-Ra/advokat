@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('legal_cases', function (Blueprint $table) {
             $table->id();
             $table->foreignId('client_id')->constrained('clients')->onDelete('cascade');
+            $table->foreignId('lawyer_id')->nullable()->constrained('lawyers')->onDelete('cascade');
             $table->string('number', 100);
             $table->enum('type', ['civil', 'criminal']);
             $table->string('title',100);

@@ -11,25 +11,25 @@ new class extends Component {
     <div class="flex flex-row h-full w-full">
         <div>
             <div class="flex flex-col w-64 border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-800 flex-shrink-0">
-            <div class="flex flex-col items-center border border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900 w-full py-6 px-4 rounded-lg">
-                <div class="h-20 w-20 rounded-full border border-zinc-200 dark:border-zinc-700 overflow-hidden">
-                    <flux:avatar size="xl" class="size-full " :name="auth()->user()->name" :initials="auth()->user()->initials()" />
+                <div class="flex flex-col items-center border border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900 w-full py-6 px-4 rounded-lg">
+                    <div class="h-20 w-20 rounded-full border border-zinc-200 dark:border-zinc-700 overflow-hidden">
+                        <flux:avatar size="xl" class="size-full " :name="auth()->user()->name" :initials="auth()->user()->initials()" />
+                    </div>
+                    <div class="text-sm font-semibold mt-2">{{ auth()->user()->name }}</div>
+                    <div class="text-xs text-gray-500">{{ auth()->user()->email }}</div>
                 </div>
-                <div class="text-sm font-semibold mt-2">{{ auth()->user()->name }}</div>
-                <div class="text-xs text-gray-500">{{ auth()->user()->email }}</div>
+                <div class="flex flex-col h-full mt-2 p-6 rounded-lg border border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900">
+                    <div class="flex flex-row items-center justify-between text-xs">
+                        <span class="font-bold">Kontak Staf</span>
+                    </div>
+                    <div class="flex flex-col space-y-1 mt-4 -mx-2 overflow-y-auto">
+                        <button class="flex flex-row items-center hover:bg-gray-100 rounded-xl p-2">
+                            <flux:avatar class="rounded-full overflow-hidden" :initials="auth()->user()->initials()" />
+                            <div class="ml-2 text-sm font-semibold">Henry Boyd</div>
+                        </button>
+                    </div>
+                </div>
             </div>
-            <div class="flex flex-col h-full mt-2 p-6 rounded-lg border border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900">
-                <div class="flex flex-row items-center justify-between text-xs">
-                    <span class="font-bold">Kontak Staf</span>
-                </div>
-                <div class="flex flex-col space-y-1 mt-4 -mx-2 overflow-y-auto">
-                    <button class="flex flex-row items-center hover:bg-gray-100 rounded-xl p-2">
-                        <flux:avatar class="rounded-full overflow-hidden" :initials="auth()->user()->initials()" />
-                        <div class="ml-2 text-sm font-semibold">Henry Boyd</div>
-                    </button>
-                </div>
-            </div>
-        </div>
         </div>
         <div class="flex flex-col flex-auto h-[calc(100vh-150px)] px-2">
             <div class="flex flex-row items-center justify-between w-full border border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900 h-16 rounded-lg p-6">

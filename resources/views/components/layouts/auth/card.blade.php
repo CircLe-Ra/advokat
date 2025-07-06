@@ -21,6 +21,7 @@
 
             </div>
         </div>
+        <x-toaster />
         @fluxScripts
     </body>
 </html>

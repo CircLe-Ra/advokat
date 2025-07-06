@@ -1,23 +1,21 @@
 <?php
 
 use App\Models\LegalCase;
-use App\Models\LegalCaseDocument;
-use Livewire\Attributes\Computed;
 use Livewire\Volt\Component;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
+use Livewire\Attributes\{ Computed, Url, Title };
 
-new class extends Component {
+new
+#[Title('Kasus Aktif')]
+class extends Component {
     use WithFileUploads;
     use WithPagination;
 
-    #[\Livewire\Attributes\Url(history: true, keep: true)]
+    #[Url(history: true, keep: true)]
     public $show = 5;
-    #[\Livewire\Attributes\Url(history: true, keep: true)]
+    #[Url(history: true, keep: true)]
     public string $search = '';
-
-    public ?int $id = null;
-    public string $file_open = '';
 
     #[Computed]
     public function cases()
@@ -25,42 +23,17 @@ new class extends Component {
         return LegalCase::where('status', 'accepted')
             ->where(function ($query) {
                 $query->where('number', 'like', '%' . $this->search . '%')
-                    ->orWhere('title', 'like', '%' . $this->search . '%')
-                    ->orWhere('summary', 'like', '%' . $this->search . '%');
-            })->latest()->paginate($this->show, pageName: 'accepted-page');
+                        ->orWhere('title', 'like', '%' . $this->search . '%')
+                        ->orWhere('summary', 'like', '%' . $this->search . '%');
+            })->latest()->paginate($this->show, pageName: 'active-case-page');
     }
 
-    public function __reset(): void
-    {
-        $this->reset(['id']);
-        $this->dispatch('pond-reset');
-        $this->resetValidation(['id']);
-    }
-
-    public function submit($id): void
-    {
-        try {
-            $case = LegalCase::find($id);
-            $case->update([
-                'status' => 'closed',
-            ]);
-            unset($this->cases);
-            $this->dispatch('toast', message: 'Kasus ditutup');
-        } catch (\Exception $e) {
-            $this->dispatch('toast', message: $e->getMessage(), type: 'error', duration: 5000);
-        }
-    }
-
-    public function showFile($id): void
-    {
-        $this->file_open = LegalCaseDocument::where('id', $id)->first()->file;
-        Flux::modal('modal-show-image')->show();
-    }
 }; ?>
 
-<x-partials.sidebar position="right" menu="staff-case" active="Pengajuan Kasus / Status Kasus / Diterima">
+<div>
+    <x-partials.breadcrumbs active="Penanganan Kasus"/>
     <x-table thead="#, Nomor, Nama, Jenis, Tanggal Pengajuan, Status," :action="false"
-             label="Pengajuan Kasus" sub-label="Informasi tentang kasus yang diajukan.">
+             label="Penanganan Kasus" sub-label="Daftar kasus yang diterima dan sedang dalam penanganan.">
         <x-slot name="filter">
             <x-filter wire:model.live="show"/>
             <flux:input wire:model.live="search" size="sm" placeholder="Cari" class="w-full max-w-[220px]"/>
@@ -89,8 +62,10 @@ new class extends Component {
                     <td class="px-6 py-4">
                         <x-badge :status="$case->status"/>
                     </td>
-                    <td class="px-6 py-4">
-
+                    <td>
+                        <flux:button variant="outline" icon:trailing="arrow-right" size="sm" class="cursor-pointer dark:bg-zinc-800 dark:hover:bg-zinc-800" href="{{ route('staff.active.page', ['id' => $case->id, 'status' => 'schedule']) }}">
+                            Detail
+                        </flux:button>
                     </td>
                 </tr>
             @endforeach
@@ -102,16 +77,4 @@ new class extends Component {
             </tr>
         @endif
     </x-table>
-    <flux:modal name="modal-show-image" class="md:w-7xl">
-        <div class="space-y-6 mb-6">
-            <div>
-                <flux:heading size="lg" level="1">Dokumen Pendukung</flux:heading>
-            </div>
-            @if($this->file_open)
-                <div>
-                    <img class="object-cover w-full" src="{{ asset('storage/'.$this->file_open) }}" alt="">
-                </div>
-            @endif
-        </div>
-    </flux:modal>
-</x-partials.sidebar>
+</div>

@@ -2,7 +2,6 @@
 
 use App\Models\LegalCase;
 use App\Models\LegalCaseDocument;
-use Livewire\Attributes\Computed;
 use Livewire\Volt\Component;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
@@ -19,7 +18,7 @@ new class extends Component {
     public ?int $id = null;
     public string $file_open = '';
 
-    #[Computed]
+    #[\Livewire\Attributes\Computed]
     public function cases()
     {
         return LegalCase::where('status', 'accepted')
@@ -27,7 +26,7 @@ new class extends Component {
                 $query->where('number', 'like', '%' . $this->search . '%')
                     ->orWhere('title', 'like', '%' . $this->search . '%')
                     ->orWhere('summary', 'like', '%' . $this->search . '%');
-            })->latest()->paginate($this->show, pageName: 'accepted-page');
+            })->latest()->paginate($this->show, pageName: 'leader-accepted-page');
     }
 
     public function __reset(): void
@@ -58,8 +57,8 @@ new class extends Component {
     }
 }; ?>
 
-<x-partials.sidebar position="right" menu="staff-case" active="Pengajuan Kasus / Status Kasus / Diterima">
-    <x-table thead="#, Nomor, Nama, Jenis, Tanggal Pengajuan, Status," :action="false"
+<x-partials.sidebar position="right" menu="leader-case" active="Pengajuan Kasus / Status Kasus / Diterima">
+    <x-table thead="#, Nomor, Nama, Jenis, Tanggal Pengajuan, Status" :action="false"
              label="Pengajuan Kasus" sub-label="Informasi tentang kasus yang diajukan.">
         <x-slot name="filter">
             <x-filter wire:model.live="show"/>
@@ -89,9 +88,7 @@ new class extends Component {
                     <td class="px-6 py-4">
                         <x-badge :status="$case->status"/>
                     </td>
-                    <td class="px-6 py-4">
 
-                    </td>
                 </tr>
             @endforeach
         @else

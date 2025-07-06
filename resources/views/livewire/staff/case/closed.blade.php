@@ -21,7 +21,12 @@ new class extends Component {
     #[\Livewire\Attributes\Computed]
     public function cases()
     {
-        return LegalCase::where('status', 'closed')->latest()->paginate($this->show, pageName: 'closed-page');
+        return LegalCase::where('status', 'closed')
+            ->where(function ($query) {
+                $query->where('number', 'like', '%' . $this->search . '%')
+                    ->orWhere('title', 'like', '%' . $this->search . '%')
+                    ->orWhere('summary', 'like', '%' . $this->search . '%');
+            })->latest()->paginate($this->show, pageName: 'closed-page');
     }
 
     public function showFile($id): void

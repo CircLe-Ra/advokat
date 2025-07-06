@@ -123,12 +123,21 @@ class extends Component {
         </x-slot:menu-info>
         <x-slot:action>
             <flux:modal.trigger name="modal-revision">
-                <flux:button variant="primary" size="sm" icon="arrow-up-on-square-stack" icon:variant="micro"
-                             class="cursor-pointer">
+                <flux:button variant="primary" size="sm" icon="arrow-up-on-square-stack" icon:variant="micro" class="cursor-pointer">
                     Merevisi
                 </flux:button>
             </flux:modal.trigger>
         </x-slot:action>
+    @endif
+    @if ($this->case->status == 'rejected')
+        <x-slot:menuInfo>
+            <flux:callout icon="information-circle" color="red" class="mt-2">
+                <flux:callout.heading>Kasus Ditolak</flux:callout.heading>
+                <flux:callout.text>
+                    {{ $this->case->validations->last()->comment }}
+                </flux:callout.text>
+            </flux:callout>
+        </x-slot:menuInfo>
     @endif
     <livewire:detail-case :id="$this->id"/>
     <flux:modal name="modal-revision" class="md:w-xl" variant="flyout">
