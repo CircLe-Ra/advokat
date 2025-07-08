@@ -32,7 +32,7 @@ class extends Component {
 
 <div>
     <x-partials.breadcrumbs active="Penanganan Kasus"/>
-    <x-table thead="#, Nomor, Nama, Jenis, Tanggal Pengajuan, Status," :action="false"
+    <x-table thead="#, Nomor, Kasus, Jenis, Pengacara, Status," :action="false"
              label="Penanganan Kasus" sub-label="Daftar kasus yang diterima dan sedang dalam penanganan.">
         <x-slot name="filter">
             <x-filter wire:model.live="show"/>
@@ -57,7 +57,7 @@ class extends Component {
                         {{ $case->type == 'civil' ? 'Perdata' : 'Pidana' }}
                     </td>
                     <td class="px-6 py-4 text-nowrap">
-                        {{ $case->created_at->isoFormat('D MMMM Y HH:mm') }} WIT
+                        {{ $case->lawyer->user->name }}
                     </td>
                     <td class="px-6 py-4">
                         <x-badge :status="$case->status"/>

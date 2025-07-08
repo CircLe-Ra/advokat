@@ -36,4 +36,9 @@ class LegalCase extends Model
     {
         return $this->hasMany(MeetingSchedule::class);
     }
+
+    public function courtSchedules(): HasMany
+    {
+        return $this->hasMany(CourtSchedule::class);
+    }
 }

@@ -216,7 +216,7 @@ class extends Component {
                      :disabled="$this->client">Buat Kasus
         </flux:button>
     </x-slot>
-    <x-table thead="#, Nomor, Nama, Jenis, Tanggal Pengajuan, Status," :action="false"
+    <x-table thead="#, Nomor, Kasus, Jenis, Tanggal Pengajuan, Status," :action="false"
              label="Pengajuan Kasus" sub-label="Informasi tentang kasus yang anda ajukan.">
         @if($this->cases->count())
             @foreach($this->cases as $case)

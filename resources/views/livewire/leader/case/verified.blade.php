@@ -37,7 +37,7 @@ new class extends Component {
 }; ?>
 
 <x-partials.sidebar position="right" menu="leader-case" active="Pengajuan Kasus / Status Kasus / Diverifikasi">
-    <x-table thead="#, Nomor, Nama, Jenis, Tanggal Pengajuan, Status," :action="false"
+    <x-table thead="#, Nomor, Kasus, Jenis, Tanggal Pengajuan, Status," :action="false"
              label="Pengajuan Kasus" sub-label="Informasi tentang kasus yang diajukan.">
         <x-slot name="filter">
             <x-filter wire:model.live="show"/>

@@ -75,7 +75,7 @@ new class extends Component {
 }; ?>
 
 <x-partials.sidebar :id-detail="$this->meeting->legalCase?->id" menu="staff-active-case"
-                    active="Penanganan Kasus / {{ $this->meeting->legalCase?->title }} / Hasil Pertemuan">
+                    active="Penanganan Kasus / Jadwal Pertemuan / {{ $this->meeting->legalCase?->title }} / Hasil Pertemuan">
     <x-slot:profile>
         <div class="flex flex-col border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-800 flex-shrink-0">
             <div
