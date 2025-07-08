@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('court_schedule_id')->constrained('court_schedules')->onDelete('cascade');
             $table->text('file');
+            $table->string('name');
             $table->string('type',10);
             $table->timestamps();
         });

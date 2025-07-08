@@ -27,6 +27,7 @@ Route::middleware(['auth'])->group(callback: function () {
         Volt::route('client/case', 'client.case')->name('client.case');
         Volt::route('client/case/personal-data', 'client.personal-data')->name('client.case.personal-data');
         Volt::route('client/case/{case}/detail-case', 'client.detail-case')->name('client.case.detail-case');
+        Volt::route('client/case/{case}/{status}/handling', 'client.handling.pages')->name('client.case.handling');
     });
 
     Route::middleware(['role:staf'])->group(function () {

@@ -111,7 +111,7 @@ class extends Component {
 
 }; ?>
 
-<x-partials.sidebar position="right" menu="case" active="Kasus / Pengajuan Kasus / Detail Kasus">
+<x-partials.sidebar :back="route('client.case')" position="right" menu="case" active="Kasus / Pengajuan Kasus / Detail Kasus">
     @if($this->case->status == 'revision')
         <x-slot:menu-info>
             <flux:callout icon="information-circle" color="orange" class="mt-2">

@@ -5,13 +5,18 @@
         $moreThanOne = count($checkActive) > 1;
     }
 @endphp
-<div class="flex justify-between items-center px-6 {{ $action ? 'py-3' : 'py-[18px]' }} rounded-lg border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900">
+<div class="flex items-center px-6 {{ $action ? 'py-3' : ($back ? 'py-3' : 'py-[18px]') }} rounded-lg border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900">
+    @isset($back)
+        <flux:button icon="arrow-left" size="sm" variant="ghost" class="cursor-pointer mr-1" wire:navigate href="{{ $back ? $back : '#' }}" />
+    @endisset
     <flux:breadcrumbs >
-        <flux:breadcrumbs.item href="{{ route('goto') }}" separator="slash" wire:navigate>Dashboard</flux:breadcrumbs.item>
+        <flux:breadcrumbs.item href="{{ route('goto') }}" separator="slash" wire:navigate>
+            Dashboard
+        </flux:breadcrumbs.item>
         @if(isset($active))
             @if($moreThanOne)
                 @foreach($checkActive as $key => $item)
-                    <flux:breadcrumbs.item  separator="slash" href="{{ $back ? $back : '#' }}" wire:navigate>{{ $item }}</flux:breadcrumbs.item>
+                    <flux:breadcrumbs.item  separator="slash">{{ $item }}</flux:breadcrumbs.item>
                 @endforeach
             @else
                 <flux:breadcrumbs.item separator="slash">{{ $active }}</flux:breadcrumbs.item>

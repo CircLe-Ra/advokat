@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\CourtSchedule;
 use App\Models\LegalCase;
 use App\Models\MeetingSchedule;
 use Livewire\Volt\Component;
@@ -19,11 +18,8 @@ new class extends Component {
     public string $search = '';
 
     public ?int $id = null;
-    public string $agenda = '';
-    public $date;
-    public $time;
-    public string $place = '';
-    public string $reason_for_postponement = '';
+    public string $about = '';
+    public $date_time;
 
     public $case;
 
@@ -36,35 +32,29 @@ new class extends Component {
     #[Computed]
     public function schedules()
     {
-        return CourtSchedule::where('legal_case_id', $this->case->id)->paginate($this->show, pageName: 'staff-active-court-schedule-page');
+        return MeetingSchedule::where('legal_case_id', $this->case->id)->paginate($this->show, pageName: 'staff-active-schedule-page');
     }
 
     public function __reset(): void
     {
-        $this->reset(['id', 'agenda', 'date', 'time', 'place', 'reason_for_postponement']);
-        $this->resetValidation(['agenda', 'date', 'time', 'place', 'reason_for_postponement']);
+        $this->reset(['id','about', 'date_time']);
+        $this->resetValidation(['about', 'date_time']);
     }
 
     public function store(): void
     {
         $this->validate([
-            'date' => ['required'],
-            'time' => ['required'],
-            'agenda' => ['required'],
-            'place' => ['required'],
-            'reason_for_postponement' => ['nullable'],
+            'about' => 'required',
+            'date_time' => 'required',
         ]);
 
         try {
-            CourtSchedule::updateOrCreate(
+            MeetingSchedule::updateOrCreate(
                 ['id' => $this->id],
                 [
                     'legal_case_id' => $this->case->id,
-                    'date' => $this->date,
-                    'time' => $this->time,
-                    'agenda' => $this->agenda,
-                    'place' => $this->place,
-                    'reason_for_postponement' => $this->reason_for_postponement
+                    'about' => $this->about,
+                    'date_time' => $this->date_time,
                 ]);
             $this->__reset();
             unset($this->schedules);
@@ -75,18 +65,15 @@ new class extends Component {
         }
     }
 
-    public function edit(CourtSchedule $schedule): void
+    public function edit(MeetingSchedule $schedule): void
     {
         $this->id = $schedule->id;
-        $this->agenda = $schedule->agenda;
-        $this->date = $schedule->date;
-        $this->time = $schedule->time;
-        $this->place = $schedule->place;
-        $this->reason_for_postponement = $schedule->reason_for_postponement;
+        $this->about = $schedule->about;
+        $this->date_time = $schedule->date_time;
         Flux::modal('modal-shcedule')->show();
     }
 
-    public function delete(CourtSchedule $schedule): void
+    public function delete(MeetingSchedule $schedule): void
     {
         try {
             $schedule->delete();
@@ -98,8 +85,7 @@ new class extends Component {
 
 }; ?>
 
-<x-partials.sidebar :id-detail="$this->case?->id" menu="staff-active-case"
-                    active="Penanganan Kasus / Jadwal Sidang / {{ $this->case?->title }}">
+<x-partials.sidebar :back="route('client.case')" position="right" :id-detail="$this->case?->id" menu="staff-active-case" active="Kasus / Jadwal Pertemuan / {{ $this->case?->title }}">
     <x-slot:profile>
         <div class="flex flex-col border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-800 flex-shrink-0">
             <div
@@ -114,15 +100,7 @@ new class extends Component {
             </div>
         </div>
     </x-slot:profile>
-    <x-slot:action>
-        <flux:modal.trigger name="modal-shcedule">
-            <flux:button variant="primary" size="sm" icon="plus" icon:variant="micro" class="cursor-pointer">
-                Jadwalkan
-            </flux:button>
-        </flux:modal.trigger>
-    </x-slot:action>
-    <x-table thead="#, Agenda, Tanggal Sidang, Jam, Tempat, Ditunda?," :action="false" label="Jadwal Sidang"
-             sub-label="Jadwal sidang pengadilan">
+    <x-table thead="#, Pertemuan, Tentang, Waktu, Status," :action="false" label="Agenda Pertemuan" sub-label="Jadwal pertemuan dengan pengacara">
         <x-slot name="filter">
             <x-filter wire:model.live="show"/>
             <flux:input wire:model.live="search" size="sm" placeholder="Cari" class="w-full max-w-[220px]"/>
@@ -133,41 +111,37 @@ new class extends Component {
                     <th scope="col" class="px-6 py-3">
                         {{ $loop->iteration }}
                     </th>
+                    <td class="px-6 py-4 text-nowrap">
+                        Pertemuan {{ $loop->iteration }}
+                    </td>
                     <td class="px-6 py-4">
-                        {{ $schedule->agenda }}
+                        {{ $schedule->about }}
                     </td>
                     <td class="px-6 py-4 text-nowrap">
-                        {{ Carbon::parse($schedule->date)->isoFormat('dddd, D MMMM Y') }}
-                    </td>
-                    <td class="px-6 py-4 text-nowrap">
-                        {{ Carbon::parse($schedule->time)->isoFormat('HH:mm') }} WIT
+                        {{ Carbon::parse($schedule->date_time)->isoFormat('dddd, D MMMM Y HH:mm') }} WIT
                     </td>
                     <td class="px-6 py-4">
-                        {{ $schedule->place }}
-                    </td>
-                    <td class="px-6 py-4">
-                        {{ $schedule->reason_for_postponement ?? '-' }}
+                        {{ $schedule->status == 'pending' ? 'Belum Terlaksana' : ($schedule->status == 'finished' ? 'Terlaksana' : 'Dibatalkan') }}
                     </td>
                     <td class="px-6 py-4">
                         <flux:dropdown>
                             <flux:button size="sm" icon:trailing="chevron-down" variant="filled">Aksi</flux:button>
                             <flux:menu>
                                 <flux:menu.item icon:variant="micro" icon:trailing="arrow-up-right" icon="file-plus-2"
-                                                href="{{ route('staff.active.page', ['id' => $schedule->id, 'status' => 'court-result']) }}"
-                                                wire:navigate>
-                                    Hasil Sidang
+                                                href="{{ route('staff.active.page', ['id' => $schedule->id, 'status' => 'meeting-result']) }}" wire:navigate>
+                                    Hasil Pertemuan
                                 </flux:menu.item>
                                 <flux:menu.separator/>
-                                <flux:menu.item icon:variant="micro" icon="pencil" variant="warning"
-                                                wire:click="edit({{ $schedule->id }})"
-                                                :disabled="$schedule->status != 'pending'">
+                                <flux:menu.item icon:variant="micro" icon:trailing="arrow-up-right" icon="photo"
+                                                href="{{ route('staff.active.page', ['id' => $schedule->id, 'status' => 'meeting-documentation']) }}" wire:navigate>
+                                   Dokumentasi
+                                </flux:menu.item>
+                                <flux:menu.separator/>
+                                <flux:menu.item icon:variant="micro" icon="pencil" variant="warning" wire:click="edit({{ $schedule->id }})" :disabled="$schedule->status != 'pending'">
                                     Ubah Jadwal
                                 </flux:menu.item>
                                 <flux:menu.separator/>
-                                <flux:menu.item icon:variant="micro" variant="danger" icon="trash"
-                                                wire:click="delete({{ $schedule->id }})"
-                                                wire:confirm="Anda yakin ingin menghapus jadwal ini?"
-                                                :disabled="$schedule->status != 'pending'">
+                                <flux:menu.item icon:variant="micro" variant="danger" icon="trash" wire:click="delete({{ $schedule->id }})" wire:confirm="Anda yakin ingin menghapus jadwal ini?" :disabled="$schedule->status != 'pending'">
                                     Hapus Jadwal
                                 </flux:menu.item>
                             </flux:menu>
@@ -186,16 +160,15 @@ new class extends Component {
     <flux:modal name="modal-shcedule" class="md:w-96">
         <div class="space-y-6 mb-6">
             <div>
-                <flux:heading size="lg" level="1">Jadwal Sidang</flux:heading>
+                <flux:heading size="lg" level="1">Jadwal Pertemuan</flux:heading>
                 <flux:text class="text-zinc-600 dark:text-zinc-400 mt-2">
-                    Jadwal sidang pengadilan yang akan dilaksanakan.
+                    Jadwalkan agenda pertemuan klien dengan pengacara.
                 </flux:text>
             </div>
             <form wire:submit="store" class="space-y-6">
-                <flux:input label="Agenda" wire:model="agenda"/>
-                <flux:input label="Tanggal Sidang" wire:model="date" type="date"/>
-                <flux:input label="Jam" wire:model="time" type="time"/>
-                <flux:input label="Tempat" wire:model="place"/>
+                <flux:input label="Pembahasan" wire:model="about" />
+                <flux:input label="Waktu Pertemuan" wire:model="date_time" type="datetime-local" />
+
                 <div class="flex gap-2 justify-end">
                     <flux:modal.close>
                         <flux:button variant="filled">Batal</flux:button>

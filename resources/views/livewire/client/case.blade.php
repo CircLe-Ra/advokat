@@ -208,7 +208,6 @@ class extends Component {
                     </flux:callout.link>
                 </flux:callout.text>
             </flux:callout>
-            c
         </x-slot>
     @endif
     <x-slot name="action">
@@ -227,7 +226,7 @@ class extends Component {
                     <th scope="row" class="px-6 py-4 font-medium text-zinc-900 whitespace-nowrap dark:text-white">
                         <flux:tooltip content="{{$case->number}}">
                             <flux:button variant="subtle"
-                                         class="dark:bg-zinc-800 dark:hover:bg-zinc-800"> {{ Str::limit($case->number, 12, '...') }}</flux:button>
+                                         class="dark:bg-zinc-800 dark:hover:bg-zinc-800"> {{ Str::limit($case->number, 10, '...') }}</flux:button>
                         </flux:tooltip>
                     </th>
                     <td class="px-6 py-4">
@@ -277,36 +276,39 @@ class extends Component {
                     </td>
                     <td class="px-6 py-4">
                         <flux:dropdown>
-                            <flux:button size="sm" icon:trailing="chevron-down" variant="filled">Aksi</flux:button>
+                            <flux:button size="sm" icon:trailing="chevron-down" variant="filled">Menu</flux:button>
                             <flux:menu>
-                                <flux:menu.item icon:variant="micro" variant="info" icon="check-badge"
-                                                icon:trailing="arrow-right"
-                                                wire:click="$js.submit({{ $case->id }})"
-                                                :disabled="$case->status != 'draft'">Ajukan
-                                </flux:menu.item>
-                                <flux:menu.separator/>
-                                <flux:menu.item icon:variant="micro" icon="chat-bubble-left-right"
-                                                icon:trailing="arrow-up-right" href="{{ route('chat') }}" wire:navigate>
-                                    Hubungi Petugas
-                                </flux:menu.item>
-                                <flux:menu.separator/>
-                                {{--                                <flux:menu.item icon:variant="micro" icon="eye" wire:click="edit({{ $case->id }}, 'detail')">--}}
-                                {{--                                    Detail Kasus--}}
-                                {{--                                </flux:menu.item>--}}
-                                <flux:menu.item icon:variant="micro" icon:trailing="arrow-up-right" icon="eye"
-                                                href="{{ route('client.case.detail-case', $case->id) }}" wire:navigate>
-                                    Detail Kasus
-                                </flux:menu.item>
-                                <flux:menu.separator/>
-                                <flux:menu.item icon:variant="micro" icon="pencil" variant="warning"
-                                                wire:click="edit({{ $case->id }})"
-                                                :disabled="$case->status != 'draft'">Ubah Kasus
-                                </flux:menu.item>
-                                <flux:menu.separator/>
-                                <flux:menu.item icon:variant="micro" variant="danger" icon="trash"
-                                                wire:click="delete({{ $case->id }})"
-                                                :disabled="$case->status != 'draft'">Hapus Kasus
-                                </flux:menu.item>
+                                <flux:menu.group heading="Kasus">
+                                    <flux:menu.item icon:variant="micro" variant="info" icon="check-badge"
+                                                    icon:trailing="arrow-right"
+                                                    wire:click="$js.submit({{ $case->id }})"
+                                                    :disabled="$case->status != 'draft'">Ajukan
+                                    </flux:menu.item>
+                                    <flux:menu.item icon:variant="micro" variant="info" icon="network"
+                                                    icon:trailing="arrow-right" href="{{ route('client.case.handling', ['case' => $case->id, 'status' => 'schedule']) }}"
+                                                    :disabled="$case->status != 'accepted'">Penanganan Kasus
+                                    </flux:menu.item>
+                                </flux:menu.group>
+                                <flux:menu.group heading="Komunikasi">
+                                    <flux:menu.item icon:variant="micro" icon="chat-bubble-left-right"
+                                                    icon:trailing="arrow-up-right" href="{{ route('chat') }}" wire:navigate>
+                                        Hubungi Petugas
+                                    </flux:menu.item>
+                                </flux:menu.group>
+                                <flux:menu.group heading="Aksi">
+                                    <flux:menu.item icon:variant="micro" icon:trailing="arrow-up-right" icon="eye"
+                                                    href="{{ route('client.case.detail-case', $case->id) }}" wire:navigate>
+                                        Detail Kasus
+                                    </flux:menu.item>
+                                    <flux:menu.item icon:variant="micro" icon="pencil" variant="warning"
+                                                    wire:click="edit({{ $case->id }})"
+                                                    :disabled="$case->status != 'draft'">Ubah Kasus
+                                    </flux:menu.item>
+                                    <flux:menu.item icon:variant="micro" variant="danger" icon="trash"
+                                                    wire:click="delete({{ $case->id }})"
+                                                    :disabled="$case->status != 'draft'">Hapus Kasus
+                                    </flux:menu.item>
+                                </flux:menu.group>
                             </flux:menu>
                         </flux:dropdown>
                     </td>
