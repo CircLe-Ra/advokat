@@ -17,11 +17,7 @@
 
             <flux:spacer />
 
-            <flux:navbar class="me-1.5 space-x-0.5 rtl:space-x-reverse py-0!">
-                <flux:tooltip :content="__('Appearance')" position="bottom">
-                    <flux:button x-data x-on:click="$flux.dark = ! $flux.dark" icon="moon" variant="subtle" aria-label="Toggle dark mode" />
-                </flux:tooltip>
-            </flux:navbar>
+            <x-partials.menu-icon />
 
             <!-- Desktop User Menu -->
             <flux:dropdown position="top" align="end">
