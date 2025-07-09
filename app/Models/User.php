@@ -77,4 +77,20 @@ class User extends Authenticatable
     {
         return $this->hasOne(LegalCaseValidation::class);
     }
+
+    public function sentMessages()
+    {
+        return $this->hasMany(Chat::class, 'user_id');
+    }
+
+    public function receivedMessages()
+    {
+        return $this->hasMany(Chat::class, 'user_id2');
+    }
+
+    public function allChats()
+    {
+        return Chat::where('user_id', $this->id)
+            ->orWhere('user_id2', $this->id);
+    }
 }

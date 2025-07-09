@@ -34,7 +34,7 @@ $classes = Flux::classes()
 @endphp
 
 <button type="button" {{ $attributes->class($classes) }} data-flux-profile>
-    <div class="shrink-0">
+    <div class="shrink-0 overflow-hidden">
         <?php if ($avatar instanceof \Illuminate\View\ComponentSlot): ?>
             {{ $avatar }}
         <?php else: ?>

@@ -6,7 +6,7 @@ use Pusher\PushNotifications\PushNotifications;
 use Illuminate\Http\Request;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('guest');
 })->name('home');
 
 Route::middleware(['auth'])->group(callback: function () {
@@ -28,6 +28,7 @@ Route::middleware(['auth'])->group(callback: function () {
         Volt::route('client/case/personal-data', 'client.personal-data')->name('client.case.personal-data');
         Volt::route('client/case/{case}/detail-case', 'client.detail-case')->name('client.case.detail-case');
         Volt::route('client/case/{case}/{status}/handling', 'client.handling.pages')->name('client.case.handling');
+        Volt::route('client/chat/{staff?}', 'client.chat')->name('client.chat');
     });
 
     Route::middleware(['role:staf'])->group(function () {
@@ -41,6 +42,7 @@ Route::middleware(['auth'])->group(callback: function () {
         Volt::route('staff/active-case', 'staff.active.case')->name('staff.active.case');
         Volt::route('staff/active-case/{id}/{status}', 'staff.active.pages')->name('staff.active.page');
         Volt::route('staff/active-case/{id}/{status}/detail', 'staff.active.detail-case')->name('staff.active.detail-case');
+        Volt::route('staff/chat/{client?}', 'staff.chat')->name('staff.chat');
     });
 
     Route::middleware(['role:pimpinan'])->group(function () {

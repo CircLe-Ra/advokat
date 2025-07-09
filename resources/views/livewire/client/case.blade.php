@@ -173,6 +173,17 @@ class extends Component {
         }
     }
 
+    public function delete(LegalCase $case): void
+    {
+        try {
+            $case->delete();
+            unset($this->cases);
+            $this->dispatch('toast', message: 'Kasus berhasil dihapus');
+        } catch (\Exception $e) {
+            $this->dispatch('toast', message: $e->getMessage(), type: 'error', duration: 5000);
+        }
+    }
+
     public function deleteFile($id): void
     {
         try {
@@ -306,6 +317,7 @@ class extends Component {
                                     </flux:menu.item>
                                     <flux:menu.item icon:variant="micro" variant="danger" icon="trash"
                                                     wire:click="delete({{ $case->id }})"
+                                                    wire:confirm="Anda yakin ingin menghapus kasus ini?"
                                                     :disabled="$case->status != 'draft'">Hapus Kasus
                                     </flux:menu.item>
                                 </flux:menu.group>
