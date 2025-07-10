@@ -62,7 +62,7 @@ class extends Component {
                         <x-badge :status="$case->status"/>
                     </td>
                     <td>
-                        <flux:button variant="outline" icon:trailing="arrow-right" size="sm" class="cursor-pointer dark:bg-zinc-800 dark:hover:bg-zinc-800" href="">
+                        <flux:button variant="outline" icon:trailing="arrow-right" size="sm" class="cursor-pointer dark:bg-zinc-800 dark:hover:bg-zinc-800" href="{{ route('lawyer.case.page', ['case' => $case->id, 'status' => 'schedule']) }}">
                             Detail
                         </flux:button>
                     </td>

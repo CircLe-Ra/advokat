@@ -54,6 +54,7 @@ Route::middleware(['auth'])->group(callback: function () {
     Route::middleware(['role:pengacara'])->group(function () {
         Volt::route('lawyer/dashboard', 'lawyer.dashboard')->name('lawyer.dashboard');
         Volt::route('lawyer/case', 'lawyer.case')->name('lawyer.case');
+        Volt::route('lawyer/case/{case}/{status}', 'lawyer.pages')->name('lawyer.case.page');
     });
 
 

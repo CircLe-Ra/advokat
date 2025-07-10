@@ -1,0 +1,59 @@
+<?php
+
+use App\Models\LegalCase;
+use App\Models\MeetingSchedule;
+use Livewire\Volt\Component;
+use Livewire\WithFileUploads;
+use Livewire\WithPagination;
+use Livewire\Attributes\{Computed, Url, Title};
+use Carbon\Carbon;
+
+new class extends Component {
+
+    public $case;
+
+    public function mount(LegalCase $case): void
+    {
+        $this->case = $case;
+    }
+
+}; ?>
+
+<x-partials.sidebar :id-detail="$this->case?->id" menu="lawyer-active-case" active="Penanganan Kasus / Jadwal Pertemuan / {{ $this->case?->title }}">
+    <x-slot:profile>
+        <div class="flex flex-col border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-800 flex-shrink-0">
+            <div
+                class="flex flex-col items-center border border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900 w-full py-6 px-4 rounded-lg">
+                <flux:heading size="xl" class="text-center text-xl mb-2">KLIEN</flux:heading>
+                <div class="h-20 w-20 rounded-full border border-zinc-200 dark:border-zinc-700 overflow-hidden">
+                    <flux:avatar size="xl" class="size-full " :name="$this->case->client->user->name"
+                                 :initials="$this->case->client->user->initials()"/>
+                </div>
+                <div class="text-sm font-semibold mt-2">{{ $this->case->client->user->name }}</div>
+                <div class="text-xs text-gray-500">{{ $this->case->client->user->email }}</div>
+            </div>
+        </div>
+    </x-slot:profile>
+
+    <flux:modal name="modal-shcedule" class="md:w-96">
+        <div class="space-y-6 mb-6">
+            <div>
+                <flux:heading size="lg" level="1">Jadwal Pertemuan</flux:heading>
+                <flux:text class="text-zinc-600 dark:text-zinc-400 mt-2">
+                    Jadwalkan agenda pertemuan klien dengan pengacara.
+                </flux:text>
+            </div>
+            <form wire:submit="store" class="space-y-6">
+                <flux:input label="Pembahasan" wire:model="about" />
+                <flux:input label="Waktu Pertemuan" wire:model="date_time" type="datetime-local" />
+
+                <div class="flex gap-2 justify-end">
+                    <flux:modal.close>
+                        <flux:button variant="filled">Batal</flux:button>
+                    </flux:modal.close>
+                    <flux:button type="submit" variant="primary">Simpan</flux:button>
+                </div>
+            </form>
+        </div>
+    </flux:modal>
+</x-partials.sidebar>
