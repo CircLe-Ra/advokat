@@ -29,6 +29,7 @@
     --color-accent: var(--color-blue-500);
     --color-accent-content: var(--color-blue-600);
     --color-accent-foreground: var(--color-white);
+
 }
 
 @layer theme {
@@ -144,5 +145,48 @@ html.dark {
         border-left-width: 0.3em;
         margin-left: 0.3em;
         padding-left: 0.6em;
+    }
+
+    .dark .fc {
+        background-color: var(--color-slate-900);
+        color: #f7fafc;
+    }
+    .dark .fc-toolbar {
+        background-color: var(--color-slate-900);
+        color: #edf2f7;
+    }
+    .dark .fc-daygrid-day {
+        background-color: #2d3748;
+    }
+    .dark .fc-daygrid-day-number {
+        color: #edf2f7;
+    }
+    .dark .fc-daygrid-day:hover {
+        background-color: #4a5568;
+    }
+    .dark .fc-daygrid-event {
+        background-color: #4c51bf;
+    }
+
+   .dark .fc-day-disabled {
+        background-color: var(--color-slate-900) !important;
+    }
+
+    .dark .fc-multimonth {
+        border: 1px solid var(--color-slate-700) !important;
+    }
+
+    /* Gaya untuk setiap sel di tabel */
+    .dark .fc-multimonth-daygrid-table td {
+        border: 1px solid var(--color-zinc-700) !important;
+    }
+
+    /* Gaya untuk header tabel jika diperlukan */
+    .dark .fc-multimonth-header-table th {
+        border: 1px solid var(--color-zinc-700) !important;
+    }
+
+    .dark .fc-day-today {
+        background-color: #3d4079 !important;
     }
 }

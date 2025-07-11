@@ -34,26 +34,5 @@ new class extends Component {
             </div>
         </div>
     </x-slot:profile>
-
-    <flux:modal name="modal-shcedule" class="md:w-96">
-        <div class="space-y-6 mb-6">
-            <div>
-                <flux:heading size="lg" level="1">Jadwal Pertemuan</flux:heading>
-                <flux:text class="text-zinc-600 dark:text-zinc-400 mt-2">
-                    Jadwalkan agenda pertemuan klien dengan pengacara.
-                </flux:text>
-            </div>
-            <form wire:submit="store" class="space-y-6">
-                <flux:input label="Pembahasan" wire:model="about" />
-                <flux:input label="Waktu Pertemuan" wire:model="date_time" type="datetime-local" />
-
-                <div class="flex gap-2 justify-end">
-                    <flux:modal.close>
-                        <flux:button variant="filled">Batal</flux:button>
-                    </flux:modal.close>
-                    <flux:button type="submit" variant="primary">Simpan</flux:button>
-                </div>
-            </form>
-        </div>
-    </flux:modal>
+    <x-calendar url="/api/lawyer-schedule/{{ $this->case->id }}" />
 </x-partials.sidebar>

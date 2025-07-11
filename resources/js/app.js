@@ -4,6 +4,9 @@ import FilePondPluginFileValidateType from 'filepond-plugin-file-validate-type';
 import FilePondPluginFileValidateSize from 'filepond-plugin-file-validate-size';
 import FilePondPluginImagePreview from 'filepond-plugin-image-preview';
 import * as PusherPushNotifications from "@pusher/push-notifications-web";
+import { Calendar } from "@fullcalendar/core";
+import multiMonthPlugin from "@fullcalendar/multimonth";
+import idLocale from '@fullcalendar/core/locales/id';
 
 const beamsClient = new PusherPushNotifications.Client({
     instanceId: import.meta.env.VITE_PUSHER_BEAMS_INSTANCE_ID,
@@ -18,6 +21,9 @@ window.FilePond = FilePond;
 window.FilePondPluginFileValidateType = FilePondPluginFileValidateType;
 window.FilePondPluginFileValidateSize = FilePondPluginFileValidateSize;
 window.FilePondPluginImagePreview = FilePondPluginImagePreview;
+window.Calendar = Calendar;
+window.multiMonthPlugin = multiMonthPlugin;
+window.idLocale = idLocale;
 
 window.addEventListener('livewire:navigating', () => {
     Livewire.dispatch('action-toast-closed');

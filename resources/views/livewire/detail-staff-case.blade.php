@@ -121,7 +121,7 @@ class extends Component {
                     <div class="absolute w-3 h-3 bg-accent rounded-full mt-1.5 -start-1.5 border border-white dark:border-zinc-900"></div>
                     <time class="mb-1 text-sm font-normal leading-none text-zinc-400 dark:text-zinc-500">{{ $this->case->created_at->isoFormat('dddd, D MMMM Y HH:mm') }} WIT</time>
 
-                    <h3 class="text-lg font-semibold text-zinc-900 dark:text-white">{{ Str::ucfirst(auth()->user()->name) }} - <x-badge status="draft" /></h3>
+                    <h3 class="text-lg font-semibold text-zinc-900 dark:text-white">{{ Str::ucfirst($this->case->client->user->name) }} - <x-badge status="draft" /></h3>
                     <p class="mb-4 text-base font-normal text-zinc-500 dark:text-zinc-400">Kasus ditambahkan oleh klien.</p>
                 </li>
                 @if($this->case->validations->count())

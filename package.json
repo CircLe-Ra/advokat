@@ -9,6 +9,7 @@
         "@fullcalendar/core": "^6.1.18",
         "@fullcalendar/daygrid": "^6.1.18",
         "@fullcalendar/list": "^6.1.18",
+        "@fullcalendar/multimonth": "^6.1.18",
         "@fullcalendar/timegrid": "^6.1.18",
         "@pusher/push-notifications-web": "^1.1.0",
         "@tailwindcss/vite": "^4.0.7",

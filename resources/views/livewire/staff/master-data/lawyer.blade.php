@@ -3,6 +3,7 @@
 use App\Models\Client;
 use App\Models\Lawyer;
 use App\Models\User;
+use Illuminate\Validation\Rule;
 use Livewire\Volt\Component;
 use Livewire\WithFileUploads;
 
@@ -41,13 +42,13 @@ class extends Component {
             'name' => ['required', 'string', 'max:100'],
             'phone' => ['nullable', 'string', 'max:20'],
             'photo' => [$this->id ? 'nullable' : 'required', 'max:2048'],
-            'email' => [$this->id ? 'nullable' : 'required', 'string', 'email', 'max:255'],
+            'email' => [$this->id ? 'nullable' : 'required', 'string', 'email', 'max:255', Rule::unique(User::class)->ignore($this->id ?? null)],
             'password' => [$this->id ? 'nullable' : 'required', 'string', 'min:3', 'confirmed'],
         ]);
 
         try {
             if ($this->id) {
-                if($this->photo) {
+                if ($this->photo) {
                     if ($this->photo_preview) {
                         Storage::disk('public')->delete($this->photo_preview);
                     }
@@ -60,7 +61,7 @@ class extends Component {
                     $lawyer->update($filtered);
                 });
             } else {
-                if($this->photo) {
+                if ($this->photo) {
                     $validated['photo'] = $this->photo->store('lawyer', 'public');
                 }
 
@@ -81,8 +82,6 @@ class extends Component {
             Flux::modal('modal-lawyer')->close();
             $this->dispatch('toast', message: 'Berhasil disimpan');
         } catch (\Throwable $th) {
-            dd($th);
-            Flux::modal('modal-lawyer')->close();
             $this->dispatch('toast', message: $th->getMessage(), type: 'error');
         }
     }
@@ -127,7 +126,7 @@ class extends Component {
             $this->showModalConfirm = false;
             $this->__reset();
             $this->dispatch('toast', message: 'Data berhasil dihapus');
-        }catch (\Throwable $e){
+        } catch (\Throwable $e) {
             $this->showModalConfirm = false;
             $this->__reset();
             $this->dispatch('toast', message: 'Data gagal dihapus', type: 'error');
@@ -161,7 +160,7 @@ class extends Component {
                         {{ $lawyer->phone ?? '-' }}
                     </td>
                     <td class="px-6 py-4">
-                        <flux:avatar size="lg" src="{{ asset('storage/'.$lawyer->photo) }}" />
+                        <flux:avatar size="lg" src="{{ asset('storage/'.$lawyer->photo) }}"/>
                     </td>
                     <td class="px-6 py-4 text-right">
                         <flux:dropdown>
@@ -175,7 +174,8 @@ class extends Component {
                                     Ubah Data Lawyer
                                 </flux:menu.item>
                                 <flux:menu.separator/>
-                                <flux:menu.item icon:variant="micro" variant="danger" icon="trash" wire:click="delete({{ $lawyer->user->id }})">Hapus
+                                <flux:menu.item icon:variant="micro" variant="danger" icon="trash"
+                                                wire:click="delete({{ $lawyer->user->id }})">Hapus
                                 </flux:menu.item>
                             </flux:menu>
                         </flux:dropdown>
@@ -220,7 +220,7 @@ class extends Component {
                 <flux:modal.close>
                     <flux:button variant="ghost">Batal</flux:button>
                 </flux:modal.close>
-                <flux:button variant="primary"  type="submit">Simpan</flux:button>
+                <flux:button variant="primary" type="submit">Simpan</flux:button>
             </div>
         </form>
     </flux:modal>
@@ -230,9 +230,9 @@ class extends Component {
                 <flux:heading size="lg" level="1">Foto</flux:heading>
             </div>
             @if($this->image)
-            <div>
-                <img class="object-cover w-full" src="{{ asset('storage/'.$this->image) }}" alt="">
-            </div>
+                <div>
+                    <img class="object-cover w-full" src="{{ asset('storage/'.$this->image) }}" alt="">
+                </div>
             @endif
         </div>
     </flux:modal>
