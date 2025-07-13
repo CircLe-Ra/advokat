@@ -16,12 +16,12 @@ class CourtScheduleResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id' => $this->id,
             'title' => $this->agenda,
             'start' => Carbon::createFromFormat('Y-m-d H:i:s', $this->date . ' ' . $this->time)->toIso8601String(),
             'end' => Carbon::createFromFormat('Y-m-d H:i:s', $this->date . ' ' . $this->time)->toIso8601String(),
             'place' => $this->place,
-            'reason_for_postponement' => $this->reason_for_postponement
+            'reason_for_postponement' => $this->reason_for_postponement,
+            'status' => 'Jadwal Sidang'
         ];
     }
 }

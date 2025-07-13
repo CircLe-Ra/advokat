@@ -10,13 +10,12 @@ new class extends Component {
     use WithFileUploads;
     use WithPagination;
 
-    public ?LegalCase $case;
+    public $case;
     public $queryStatus;
 
-    public function mount(LegalCase $case, $status): void
+    public function mount(LegalCase $case): void
     {
         $this->case = $case;
-        $this->queryStatus = $status;
     }
 
 }; ?>
@@ -37,5 +36,5 @@ new class extends Component {
             </div>
         </div>
     </x-slot:profile>
-    <livewire:detail-staff-case :id="$this->case?->id" :status="$this->queryStatus"/>
+    <livewire:detail-staff-case :id="$this->case?->id" />
 </x-partials.sidebar>

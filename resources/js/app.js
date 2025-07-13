@@ -6,6 +6,8 @@ import FilePondPluginImagePreview from 'filepond-plugin-image-preview';
 import * as PusherPushNotifications from "@pusher/push-notifications-web";
 import { Calendar } from "@fullcalendar/core";
 import multiMonthPlugin from "@fullcalendar/multimonth";
+import timeGridPlugin from '@fullcalendar/timegrid';
+import dayGridPlugin from '@fullcalendar/daygrid';
 import idLocale from '@fullcalendar/core/locales/id';
 
 const beamsClient = new PusherPushNotifications.Client({
@@ -23,6 +25,8 @@ window.FilePondPluginFileValidateSize = FilePondPluginFileValidateSize;
 window.FilePondPluginImagePreview = FilePondPluginImagePreview;
 window.Calendar = Calendar;
 window.multiMonthPlugin = multiMonthPlugin;
+window.timeGridPlugin = timeGridPlugin;
+window.dayGridPlugin = dayGridPlugin;
 window.idLocale = idLocale;
 
 window.addEventListener('livewire:navigating', () => {

@@ -9,7 +9,7 @@
             <div class="absolute -inset-y-[1px] w-[2px] -start-7 ms-4 {{ isset(request()->uri()->pathSegments()[3]) && request()->uri()->pathSegments()[3] === 'court-schedule' || isset(request()->uri()->pathSegments()[3]) && request()->uri()->pathSegments()[3] === 'court-result' ? 'bg-zinc-800 dark:bg-white' : 'bg-zinc-200 dark:bg-zinc-700' }}" ></div>
             Jadwal Sidang
         </flux:navlist.item>
-        <flux:navlist.item class="py-5 text-base" :href="route('staff.active.detail-case', ['id' => $idDetail, 'status' => 'detail-case'])" :current="isset(request()->uri()->pathSegments()[3]) && request()->uri()->pathSegments()[3] === 'detail-case'" wire:navigate>
+        <flux:navlist.item class="py-5 text-base" :href="route('lawyer.case.page', ['case' => $idDetail, 'status' => 'detail-case'])" :current="isset(request()->uri()->pathSegments()[3]) && request()->uri()->pathSegments()[3] === 'detail-case'" wire:navigate>
             <div class="absolute -inset-y-[1px] w-[2px] -start-7 ms-4 {{ isset(request()->uri()->pathSegments()[3]) && request()->uri()->pathSegments()[3] === 'detail-case' ? 'bg-zinc-800 dark:bg-white' : 'bg-zinc-200 dark:bg-zinc-700' }}" ></div>
             Detail Kasus
         </flux:navlist.item>

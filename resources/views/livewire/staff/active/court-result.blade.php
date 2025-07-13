@@ -79,6 +79,17 @@ new class extends Component {
         }
     }
 
+    public function delete(CourtResult $result): void
+    {
+        try {
+            Storage::delete($result->file);
+            $result->delete();
+            $this->dispatch('toast', message: 'Berhasil dihapus');
+        } catch (\Exception $e) {
+            $this->dispatch('toast', message: $e->getMessage(), type: 'error', duration: 5000);
+        }
+    }
+
 }; ?>
 
 <x-partials.sidebar :id-detail="$this->court->legalCase?->id" menu="staff-active-case"
@@ -133,12 +144,15 @@ new class extends Component {
             <div
                 class="p-6 border border-zinc-200 dark:border-zinc-700 mt-1 rounded-lg bg-zinc-50 dark:bg-zinc-900 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                 @foreach($this->courtResults as $file)
-                    <a
-                        class="border relative size-44 overflow-hidden rounded-lg hover:scale-105 transition duration-300 ease-in-out cursor-pointer hover:shadow-lg dark:hover:shadow-none border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 flex flex-col items-center justify-center text-center p-2" href="{{ asset('storage/' . $file->file) }}" target="_blank"
-                        wire:key="image-{{ $file->id }}">
-                        {{ $file->name }}
+                    <div class="relative">
+                        <a
+                            class="border size-44 overflow-hidden rounded-lg hover:scale-105 transition duration-300 ease-in-out cursor-pointer hover:shadow-lg dark:hover:shadow-none border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 flex flex-col items-center justify-center text-center p-2" href="{{ asset('storage/' . $file->file) }}" target="_blank"
+                            wire:key="image-{{ $file->id }}">
+                            {{ $file->name }}
+
+                        </a>
                         <div class="z-10" wire:ignore>
-                            <div class="absolute top-0 right-0 p-1" wire:click="delete({{$file->id}})"
+                            <div class="absolute top-0 right-7 p-1" wire:click="delete({{$file->id}})"
                                  wire:confirm="Lanjutkan menghapus?">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"
                                      viewBox="0 0 256 256">
@@ -150,7 +164,7 @@ new class extends Component {
                                 </svg>
                             </div>
                         </div>
-                    </a>
+                    </div>
                 @endforeach
             </div>
         @else

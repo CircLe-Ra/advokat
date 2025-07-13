@@ -17,7 +17,7 @@
         @role('pengacara')
             <flux:navbar.item icon="gauge" :href="route('lawyer.dashboard')" :current="request()->routeIs('lawyer.dashboard')" wire:navigate>Dashboard</flux:navbar.item>
             <flux:navbar.item icon="briefcase" :href="route('lawyer.case')" :current="request()->routeIs('lawyer.case*')" wire:navigate>Kasus</flux:navbar.item>
-
+            <flux:navbar.item icon="calendar-days" :href="route('lawyer.schedule')" :current="request()->routeIs('lawyer.schedule*')" wire:navigate>Jadwal</flux:navbar.item>
         @endrole
 </flux:navbar>
 

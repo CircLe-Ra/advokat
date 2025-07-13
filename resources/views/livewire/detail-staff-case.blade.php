@@ -12,10 +12,12 @@ class extends Component {
     public LegalCase $case;
     public string $status = '';
 
-    public function mount($id, $status): void
+    public function mount($id, $status = null): void
     {
         $this->case = LegalCase::find($id);
-        $this->status = $status;
+        if(isset($status)) {
+            $this->status = $status;
+        }
     }
 }; ?>
 

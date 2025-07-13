@@ -19,6 +19,7 @@ class MeetingScheduleResource extends JsonResource
             'title' => $this->about,
             'start' => Carbon::createFromFormat('Y-m-d H:i:s', $this->date_time)->toIso8601String(),
             'end' => Carbon::createFromFormat('Y-m-d H:i:s', $this->date_time)->toIso8601String(),
+            'status' => 'Jadwal Pertemuan Klien'
         ];
     }
 }

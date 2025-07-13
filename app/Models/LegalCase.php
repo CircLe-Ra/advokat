@@ -10,7 +10,7 @@ class LegalCase extends Model
 {
     protected $guarded = ['id'];
 
-    protected $with = ['documents', 'validations', 'client', 'lawyer', 'meetingSchedules'];
+    protected $with = ['documents', 'validations', 'client', 'lawyer', 'meetingSchedules', 'courtSchedules'];
 
     public function documents(): HasMany
     {

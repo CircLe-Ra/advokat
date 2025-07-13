@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\CourtSchedule;
 use App\Models\LegalCase;
 use App\Models\MeetingSchedule;
 use Livewire\Volt\Component;
@@ -27,12 +28,13 @@ new class extends Component {
     #[Computed]
     public function schedules()
     {
-        return MeetingSchedule::where('legal_case_id', $this->case->id)->paginate($this->show, pageName: 'staff-active-schedule-page');
+        return CourtSchedule::where('legal_case_id', $this->case->id)->paginate($this->show, pageName: 'lawyer-active-court-schedule-page');
     }
 
 }; ?>
 
-<x-partials.sidebar :id-detail="$this->case?->id" menu="lawyer-active-case" active="Penanganan Kasus / Jadwal Pertemuan / {{ $this->case?->title }}">
+<x-partials.sidebar :id-detail="$this->case?->id" menu="lawyer-active-case"
+                    active="Penanganan Kasus / Jadwal Sidang / {{ $this->case?->title }}">
     <x-slot:profile>
         <div class="flex flex-col border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-800 flex-shrink-0">
             <div
@@ -47,7 +49,8 @@ new class extends Component {
             </div>
         </div>
     </x-slot:profile>
-    <x-table thead="#, Pertemuan, Tentang, Waktu, Status," :action="false" label="Agenda Pertemuan" sub-label="Jadwal pertemuan klien dengan anda">
+    <x-table thead="#, Agenda, Tanggal Sidang, Jam, Tempat, Ditunda?," :action="false" label="Jadwal Sidang"
+             sub-label="Jadwal sidang pengadilan">
         <x-slot name="filter">
             <x-filter wire:model.live="show"/>
             <flux:input wire:model.live="search" size="sm" placeholder="Cari" class="w-full max-w-[220px]"/>
@@ -58,35 +61,27 @@ new class extends Component {
                     <th scope="col" class="px-6 py-3">
                         {{ $loop->iteration }}
                     </th>
-                    <td class="px-6 py-4 text-nowrap">
-                        Pertemuan {{ $loop->iteration }}
-                    </td>
                     <td class="px-6 py-4">
-                        {{ $schedule->about }}
+                        {{ $schedule->agenda }}
                     </td>
                     <td class="px-6 py-4 text-nowrap">
-                        {{ Carbon::parse($schedule->date_time)->isoFormat('dddd, D MMMM Y HH:mm') }} WIT
+                        {{ Carbon::parse($schedule->date)->isoFormat('dddd, D MMMM Y') }}
+                    </td>
+                    <td class="px-6 py-4 text-nowrap">
+                        {{ Carbon::parse($schedule->time)->isoFormat('HH:mm') }} WIT
                     </td>
                     <td class="px-6 py-4">
-                        {{ $schedule->status == 'pending' ? 'Belum Terlaksana' : ($schedule->status == 'finished' ? 'Terlaksana' : 'Dibatalkan') }}
+                        {{ $schedule->place }}
                     </td>
                     <td class="px-6 py-4">
-                        <flux:dropdown position="bottom" align="center">
-                            <flux:button size="sm" icon:trailing="chevron-down" variant="filled">Menu</flux:button>
-                            <flux:menu>
-                                <flux:menu.group heading="Kasus">
-                                    <flux:menu.item icon:variant="micro" icon:trailing="arrow-up-right" icon="file-plus-2"
-                                                    href="{{ route('lawyer.case-detail.page', ['id' => $schedule->id, 'status' => 'meeting-result']) }}" wire:navigate>
-                                        Hasil Pertemuan
-                                    </flux:menu.item>
-                                    <flux:menu.separator/>
-                                    <flux:menu.item icon:variant="micro" icon:trailing="arrow-up-right" icon="photo"
-                                                    href="{{ route('lawyer.case-detail.page', ['id' => $schedule->id, 'status' => 'meeting-documentation']) }}" wire:navigate>
-                                       Dokumentasi
-                                    </flux:menu.item>
-                                </flux:menu.group>
-                            </flux:menu>
-                        </flux:dropdown>
+                        {{ $schedule->reason_for_postponement ?? '-' }}
+                    </td>
+                    <td class="px-6 py-4">
+                        <flux:button icon:variant="micro" size="sm" icon:trailing="arrow-up-right" icon="file-plus-2"
+                                     href="{{ route('lawyer.case-detail.page', ['id' => $schedule->id, 'status' => 'court-result']) }}"
+                                     wire:navigate>
+                            Hasil Sidang
+                        </flux:button>
                     </td>
                 </tr>
             @endforeach
