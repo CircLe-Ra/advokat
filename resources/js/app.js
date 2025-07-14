@@ -9,6 +9,7 @@ import multiMonthPlugin from "@fullcalendar/multimonth";
 import timeGridPlugin from '@fullcalendar/timegrid';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import idLocale from '@fullcalendar/core/locales/id';
+import ApexCharts from 'apexcharts';
 
 const beamsClient = new PusherPushNotifications.Client({
     instanceId: import.meta.env.VITE_PUSHER_BEAMS_INSTANCE_ID,
@@ -28,11 +29,10 @@ window.multiMonthPlugin = multiMonthPlugin;
 window.timeGridPlugin = timeGridPlugin;
 window.dayGridPlugin = dayGridPlugin;
 window.idLocale = idLocale;
+window.ApexCharts = ApexCharts;
 
 window.addEventListener('livewire:navigating', () => {
     Livewire.dispatch('action-toast-closed');
-
-
 });
 
 /**
