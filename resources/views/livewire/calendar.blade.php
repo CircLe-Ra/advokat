@@ -6,6 +6,7 @@ new class extends Component {
 
     public string $url;
     public string $client = '';
+    public string $lawyer = '';
     public string $title = '';
     public string $start = '';
     public string $end = '';
@@ -15,9 +16,12 @@ new class extends Component {
     public string $caseTitle = '';
     public string $description = '';
 
+    public $whois;
+
     public function mount($url):void
     {
         $this->url = $url;
+        $this->whois = auth()->user()->roles()->first()->name;
     }
 
     public function __reset(): void
@@ -38,12 +42,21 @@ new class extends Component {
                 <flux:text class="mt-2">Informasi kasus yang akan dilaksanakan</flux:text>
             </div>
             <div class="grid grid-cols-2 border border-zinc-300 dark:border-zinc-600">
+                @if($this->whois == 'klien')
+                <div class="border-r border-b border-zinc-300 dark:border-zinc-600 p-2">
+                    <flux:heading size="md" level="1">Nama Pengacara</flux:heading>
+                </div>
+                <div class="border-b border-zinc-300 dark:border-zinc-600 p-2">
+                    <flux:text>{{ $this->lawyer }}</flux:text>
+                </div>
+                @elseif($this->whois == 'pengacara')
                 <div class="border-r border-b border-zinc-300 dark:border-zinc-600 p-2">
                     <flux:heading size="md" level="1">Nama Klien</flux:heading>
                 </div>
                 <div class="border-b border-zinc-300 dark:border-zinc-600 p-2">
                     <flux:text>{{ $this->client }}</flux:text>
                 </div>
+                @endif
                 <div class="border-r border-b border-zinc-300 dark:border-zinc-600 p-2">
                     <flux:heading size="md" level="1">Judul</flux:heading>
                 </div>
@@ -100,6 +113,7 @@ new class extends Component {
                         const events = data.legalCases.reduce((accum, legalCase) => {
                             const meetingEvents = legalCase.meeting_schedules.map(meeting => ({
                                 client: legalCase.client,
+                                lawyer: legalCase.lawyer,
                                 title: meeting.title,
                                 start: meeting.start,
                                 end: meeting.end,
@@ -111,6 +125,7 @@ new class extends Component {
 
                             const courtEvents = legalCase.court_schedules.map(court => ({
                                 client: legalCase.client,
+                                lawyer: legalCase.lawyer,
                                 title: court.title,
                                 start: court.start,
                                 end: court.end,
@@ -146,6 +161,7 @@ new class extends Component {
                                 const endDate = event.end ? event.end.toLocaleString() : "Sampai selesai";
 
                                 await $wire.set('client', event.extendedProps.client);
+                                await $wire.set('lawyer', event.extendedProps.lawyer);
                                 await $wire.set('title', event.title);
                                 await $wire.set('start', startDate);
                                 await $wire.set('end', endDate);

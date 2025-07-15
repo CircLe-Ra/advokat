@@ -22,6 +22,7 @@ class LegalCaseResource extends JsonResource
             'case_type' => $this->case_type,
             'title' => $this->title,
             'client' => $this->client->user->name,
+            'lawyer' => $this->lawyer->user->name,
             'meeting_schedules' => MeetingScheduleResource::collection($this->meetingSchedules),
             'court_schedules' => CourtScheduleResource::collection($this->courtSchedules),
         ];

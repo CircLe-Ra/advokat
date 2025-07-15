@@ -20,4 +20,9 @@ class MeetingSchedule extends Model
         return $this->hasMany(MeetingDocumentation::class);
     }
 
+    public function meetingFileAdditions(): HasMany
+    {
+        return $this->hasMany(MeetingFileAddition::class);
+    }
+
 }

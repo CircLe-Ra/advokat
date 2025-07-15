@@ -1,4 +1,4 @@
-<?php
+ <?php
 
 use App\Models\LegalCase;
 use App\Models\LegalCaseDocument;

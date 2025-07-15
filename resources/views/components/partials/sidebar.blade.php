@@ -20,6 +20,9 @@
             @case('staff-active-case')
                 <x-partials.menu-sidebar.staff-active-case :id-detail="$idDetail" :menu-info="$menuInfo" />
                 @break
+            @case('client-active-case')
+                <x-partials.menu-sidebar.client-active-case :id-detail="$idDetail" :menu-info="$menuInfo" />
+                @break
             @case('lawyer-active-case')
                 <x-partials.menu-sidebar.lawyer-active-case :id-detail="$idDetail" :menu-info="$menuInfo" />
                 @break

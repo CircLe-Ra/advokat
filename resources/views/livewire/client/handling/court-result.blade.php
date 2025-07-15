@@ -81,7 +81,7 @@ new class extends Component {
 
 }; ?>
 
-<x-partials.sidebar :id-detail="$this->court->legalCase?->id" menu="staff-active-case"
+<x-partials.sidebar position="right" :back="route('client.case.handling', ['case' => $this->court->legalCase?->id, 'status' => 'court-schedule'])" :id-detail="$this->court->legalCase?->id" menu="client-active-case"
                     active="Penanganan Kasus / Jadwal Sidang / {{ $this->court->legalCase?->title }} / Hasil Sidang">
     <x-slot:profile>
         <div class="flex flex-col border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-800 flex-shrink-0">
@@ -97,21 +97,6 @@ new class extends Component {
             </div>
         </div>
     </x-slot:profile>
-    <x-slot:action>
-        <flux:modal.trigger name="modal-cancel">
-            <flux:button :disabled="$this->court->status == 'cancelled' || $this->court->status == 'finished'"
-                         variant="danger" size="sm" icon="no-symbol" icon:variant="micro"
-                         class="cursor-pointer mr-2 disabled:cursor-not-allowed">
-                Ditunda
-            </flux:button>
-        </flux:modal.trigger>
-        <flux:modal.trigger name="modal-upload">
-            <flux:button :disabled="$this->court->status == 'cancelled'" variant="primary" size="sm"
-                         icon="plus" icon:variant="micro" class="cursor-pointer">
-                Tambah
-            </flux:button>
-        </flux:modal.trigger>
-    </x-slot:action>
     @if($this->court->status == 'cancelled')
         <flux:callout icon="no-symbol" variant="danger" inline class="mt-2 mb-1">
             <flux:callout.heading>Pertemuan dibatalkan

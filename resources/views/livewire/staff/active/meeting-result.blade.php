@@ -61,7 +61,7 @@ new class extends Component {
 
 }; ?>
 
-<x-partials.sidebar :id-detail="$this->meeting->legalCase?->id" menu="staff-active-case"
+<x-partials.sidebar :back="route('staff.active.page', ['id' => $this->meeting->legal_case_id, 'status' => 'schedule'], absolute: false)" :id-detail="$this->meeting->legalCase?->id" menu="staff-active-case"
                     active="Penanganan Kasus / Jadwal Pertemuan / {{ $this->meeting->legalCase?->title }} / Hasil Pertemuan">
     <x-slot:profile>
         <div class="flex flex-col border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-800 flex-shrink-0">
@@ -78,12 +78,12 @@ new class extends Component {
         </div>
     </x-slot:profile>
     <x-slot:action>
-        <flux:button :disabled="$this->meeting->status == 'cancelled' || $this->meeting->status == 'finished'"
+        <flux:button :disabled="$this->meeting->status == 'cancelled' || $this->meeting->status == 'finished' || $this->meeting->meetingFileAdditions->count() > 0"
                      variant="danger" size="sm" icon="no-symbol" icon:variant="micro" class="cursor-pointer mr-2 disabled:cursor-not-allowed"
                      wire:click="cancel" wire:confirm="Anda yakin ingin membatalkan pertemuan ini?">
             Dibatalkan
         </flux:button>
-        <flux:button :disabled="$this->meeting->status == 'cancelled'" variant="primary" size="sm"
+        <flux:button :disabled="$this->meeting->status == 'cancelled' || $this->meeting->meetingFileAdditions->count() > 0" variant="primary" size="sm"
                      icon="hard-drive-download" icon:variant="micro" class="cursor-pointer" wire:click="save">
             Simpan
         </flux:button>
@@ -111,22 +111,54 @@ new class extends Component {
                     </flux:text>
                     <flux:fieldset>
                         <div class="space-y-4">
-                            <flux:switch wire:model="file_collection" label="Penambahan Berkas?"
+                            <flux:switch :disabled="$this->meeting->meetingFileAdditions->count() > 0" wire:model="file_collection" label="Penambahan Berkas?"
                                          description="Nyalakan jika ada penamahan berkas untuk klien."/>
                         </div>
                         <div class="mt-4" wire:show="file_collection" wire:cloak wire:transition.scale.origin.top>
-                            <flux:input type="date" wire:model="file_submission_deadline"
+                            <flux:input :disabled="$this->meeting->meetingFileAdditions->count() > 0" type="date" wire:model="file_submission_deadline"
                                         label="Tentukan Tenggat Waktu Pengumpulan Berkas"/>
                         </div>
                     </flux:fieldset>
                 </div>
+                @if($this->meeting->meetingFileAdditions->count())
+                    <div class="p-6 border border-zinc-200 dark:border-zinc-700 mt-2 rounded-lg bg-white dark:bg-zinc-900">
+                        <flux:heading size="xl" level="1">Penambahan Berkas</flux:heading>
+                        <flux:text class="text-zinc-600 dark:text-zinc-400 mt-2 mb-4">
+                            Berkas yang telah anda ditambahkan.
+                        </flux:text>
+                        <ul class="text-zinc-900 bg-white border border-zinc-300 rounded-lg dark:bg-zinc-700 dark:border-zinc-600 dark:text-white">
+                            <li class="w-full px-4 py-3 text-sm font-bold border-b  border-zinc-300 rounded-t-lg dark:border-zinc-600 flex items-center justify-between">
+                                Dokumen
+                                <flux:icon.document class="size-4" />
+                            </li>
+                            @foreach($this->meeting->meetingFileAdditions as $document)
+                                <li class="flex justify-between w-full px-4 py-2 items-center {{ $loop->last ? '' : 'border-b border-zinc-300 dark:bg-zinc-700 dark:border-zinc-600 dark:text-white' }}">
+                                    <a target="_blank" href="{{ asset('storage/' . $document->file) }}" class=" items-center space-x-2 hover:underline ">
+                                        <span>
+                                            @if($document->type == 'pdf')
+                                                Lihat File PDF
+                                            @elseif($document->type == 'xls' || $document->type == 'xlsx')
+                                                Lihat File Excel
+                                            @elseif($document->type == 'doc' || $document->type == 'docx')
+                                                Lihat File Word
+                                            @else
+                                                Lihat File Gambar
+                                            @endif
+                                        </span>
+                                    </a>
+                                    <flux:icon.arrow-up-right class="size-4" />
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
             </div>
         </div>
         <div>
             <div class="p-6 border border-zinc-200 dark:border-zinc-700 mt-1 rounded-lg bg-zinc-50 dark:bg-zinc-900">
                 <flux:heading size="xl" level="1">Hasil Pertemuan</flux:heading>
                 <flux:subheading class="mb-4">Hasil pertemuan klien dengan pengacara.</flux:subheading>
-                <livewire:trix-editor :value="$this->notes"/>
+                <livewire:trix-editor :value="$this->notes" :disabled="true" />
             </div>
         </div>
     </div>

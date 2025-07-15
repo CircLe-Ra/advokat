@@ -85,7 +85,7 @@ new class extends Component {
 
 }; ?>
 
-<x-partials.sidebar :back="route('client.case')" position="right" :id-detail="$this->case?->id" menu="staff-active-case" active="Kasus / Jadwal Pertemuan / {{ $this->case?->title }}">
+<x-partials.sidebar :back="route('client.case')" position="right" :id-detail="$this->case?->id" menu="client-active-case" active="Kasus / Jadwal Pertemuan / {{ $this->case?->title }}">
     <x-slot:profile>
         <div class="flex flex-col border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-800 flex-shrink-0">
             <div
@@ -124,26 +124,19 @@ new class extends Component {
                         {{ $schedule->status == 'pending' ? 'Belum Terlaksana' : ($schedule->status == 'finished' ? 'Terlaksana' : 'Dibatalkan') }}
                     </td>
                     <td class="px-6 py-4">
-                        <flux:dropdown>
+                        <flux:dropdown position="bottom" align="center">
                             <flux:button size="sm" icon:trailing="chevron-down" variant="filled">Aksi</flux:button>
                             <flux:menu>
-                                <flux:menu.item icon:variant="micro" icon:trailing="arrow-up-right" icon="file-plus-2"
-                                                href="{{ route('staff.active.page', ['id' => $schedule->id, 'status' => 'meeting-result']) }}" wire:navigate>
-                                    Hasil Pertemuan
-                                </flux:menu.item>
-                                <flux:menu.separator/>
-                                <flux:menu.item icon:variant="micro" icon:trailing="arrow-up-right" icon="photo"
-                                                href="{{ route('staff.active.page', ['id' => $schedule->id, 'status' => 'meeting-documentation']) }}" wire:navigate>
-                                   Dokumentasi
-                                </flux:menu.item>
-                                <flux:menu.separator/>
-                                <flux:menu.item icon:variant="micro" icon="pencil" variant="warning" wire:click="edit({{ $schedule->id }})" :disabled="$schedule->status != 'pending'">
-                                    Ubah Jadwal
-                                </flux:menu.item>
-                                <flux:menu.separator/>
-                                <flux:menu.item icon:variant="micro" variant="danger" icon="trash" wire:click="delete({{ $schedule->id }})" wire:confirm="Anda yakin ingin menghapus jadwal ini?" :disabled="$schedule->status != 'pending'">
-                                    Hapus Jadwal
-                                </flux:menu.item>
+                                <flux:menu.group heading="Hasil Pertemuan">
+                                    <flux:menu.item icon:variant="micro" icon:trailing="arrow-up-right" icon="file-plus-2"
+                                                    href="{{ route('client.case.handling', ['case' => $schedule->id, 'status' => 'meeting-result']) }}" wire:navigate>
+                                        Hasil Pertemuan
+                                    </flux:menu.item>
+                                    <flux:menu.item icon:variant="micro" icon:trailing="arrow-up-right" icon="photo"
+                                                    href="{{ route('client.case.handling', ['case' => $schedule->id, 'status' => 'meeting-documentation']) }}" wire:navigate>
+                                       Dokumentasi
+                                    </flux:menu.item>
+                                </flux:menu.group>
                             </flux:menu>
                         </flux:dropdown>
                     </td>

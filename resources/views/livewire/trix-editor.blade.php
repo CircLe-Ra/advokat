@@ -6,10 +6,12 @@ new class extends Component {
     const EVENT_VALUE_UPDATED = 'trix_value_updated';
     public $value;
     public $trixId;
+    public $disabled;
 
-    public function mount($value = ''): void
+    public function mount($value = '', $disabled = false): void
     {
         $this->value = $value;
+        $this->disabled = $disabled;
         $this->trixId = 'trix-' . uniqid();
     }
 
@@ -31,6 +33,7 @@ new class extends Component {
     @script
     <script>
         window.addEventListener('livewire:navigated', () => {
+            document.querySelector('trix-editor').editor.element.setAttribute('contentEditable', $wire.disabled ? 'false' : 'true');
             addEventListener('trix-change', function(event) {
                 const content = event.target.value;
                 @this.set('value', content);

@@ -8,3 +8,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/lawyer-schedule/{id}', function ($id) {
     return new LawyerResource(Lawyer::find($id));
 });
+
+Route::get('/client-schedule/{id}', function ($id) {
+    return new LawyerResource(Lawyer::find($id));
+});

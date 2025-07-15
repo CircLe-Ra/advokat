@@ -13,16 +13,15 @@ new class extends Component {
     public $case;
     public $queryStatus;
 
-    public function mount($id, $status): void
+    public function mount($id): void
     {
         $case = LegalCase::find($id);
         $this->case = $case;
-        $this->queryStatus = $status;
     }
 
 }; ?>
 
-<x-partials.sidebar :id-detail="$this->case?->id" :back="route('staff.active.case')" menu="staff-active-case"
+<x-partials.sidebar position="right" :id-detail="$this->case?->id" :back="route('client.case')" menu="client-active-case"
                     active="Penanganan Kasus / {{ Str::ucfirst($this->case?->title) }} / Detail Kasus">
     <x-slot:profile>
         <div class="flex flex-col border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-800 flex-shrink-0">
@@ -38,5 +37,5 @@ new class extends Component {
             </div>
         </div>
     </x-slot:profile>
-    <livewire:detail-staff-case :id="$this->case?->id" :status="$this->queryStatus"/>
+    <livewire:detail-case :id="$this->case?->id"/>
 </x-partials.sidebar>

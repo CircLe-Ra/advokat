@@ -27,7 +27,7 @@ new class extends Component {
 
 }; ?>
 
-<x-partials.sidebar :id-detail="$this->meeting->legalCase?->id" menu="lawyer-active-case"
+<x-partials.sidebar :id-detail="$this->meeting->legalCase?->id" menu="lawyer-active-case" :back="route('lawyer.case.page', ['case' => $this->meeting->legal_case_id, 'status' => 'schedule'], absolute: false)"
                     active="Penanganan Kasus / Jadwal Pertemuan / {{ $this->meeting->legalCase?->title }} / Hasil Pertemuan">
     <x-slot:profile>
         <div class="flex flex-col border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-800 flex-shrink-0">
@@ -77,25 +77,57 @@ new class extends Component {
                             @endif
                         </flux:fieldset>
                     </div>
+                    @if($this->meeting->meetingFileAdditions->count())
+                        <div class="p-6 border border-zinc-200 dark:border-zinc-700 mt-2 rounded-lg bg-white dark:bg-zinc-900">
+                            <flux:heading size="xl" level="1">Penambahan Berkas</flux:heading>
+                            <flux:text class="text-zinc-600 dark:text-zinc-400 mt-2 mb-4">
+                                Berkas yang telah anda ditambahkan.
+                            </flux:text>
+                            <ul class="text-zinc-900 bg-white border border-zinc-300 rounded-lg dark:bg-zinc-700 dark:border-zinc-600 dark:text-white">
+                                <li class="w-full px-4 py-3 text-sm font-bold border-b  border-zinc-300 rounded-t-lg dark:border-zinc-600 flex items-center justify-between">
+                                    Dokumen
+                                    <flux:icon.document class="size-4" />
+                                </li>
+                                @foreach($this->meeting->meetingFileAdditions as $document)
+                                    <li class="flex justify-between w-full px-4 py-2 items-center {{ $loop->last ? '' : 'border-b border-zinc-300 dark:bg-zinc-700 dark:border-zinc-600 dark:text-white' }}">
+                                        <a target="_blank" href="{{ asset('storage/' . $document->file) }}" class=" items-center space-x-2 hover:underline ">
+                                        <span>
+                                            @if($document->type == 'pdf')
+                                                Lihat File PDF
+                                            @elseif($document->type == 'xls' || $document->type == 'xlsx')
+                                                Lihat File Excel
+                                            @elseif($document->type == 'doc' || $document->type == 'docx')
+                                                Lihat File Word
+                                            @else
+                                                Lihat File Gambar
+                                            @endif
+                                        </span>
+                                        </a>
+                                        <flux:icon.arrow-up-right class="size-4" />
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                 </div>
             </div>
             <div class="w-full">
-            <div class="p-6 border border-zinc-200 dark:border-zinc-700 mt-1 rounded-lg bg-white dark:bg-zinc-900">
-                <flux:heading size="xl" level="1">Catatan</flux:heading>
-                <flux:subheading class="mb-4">Ringkasan/Rangkuman pertemuan klien dengan pengacara.</flux:subheading>
-                @if($this->notes)
-                    <div class="border rounded-lg border-zinc-300 dark:border-zinc-600 p-2">
-                        {!! $this->notes !!}
-                    </div>
-                @else
-                    <div class="border rounded-lg border-zinc-300 dark:border-zinc-600 px-2 py-20 text-center">
-                        <flux:text class="text-zinc-600 dark:text-zinc-400">
-                            Belum ada catatan.
-                        </flux:text>
-                    </div>
-                @endif
+                <div class="p-6 border border-zinc-200 dark:border-zinc-700 mt-1 rounded-lg bg-white dark:bg-zinc-900">
+                    <flux:heading size="xl" level="1">Catatan</flux:heading>
+                    <flux:subheading class="mb-4">Ringkasan/Rangkuman pertemuan klien dengan pengacara.</flux:subheading>
+                    @if($this->notes)
+                        <div class="border rounded-lg border-zinc-300 dark:border-zinc-600 p-2">
+                            {!! $this->notes !!}
+                        </div>
+                    @else
+                        <div class="border rounded-lg border-zinc-300 dark:border-zinc-600 px-2 py-20 text-center">
+                            <flux:text class="text-zinc-600 dark:text-zinc-400">
+                                Belum ada catatan.
+                            </flux:text>
+                        </div>
+                    @endif
+                </div>
             </div>
-        </div>
         </div>
 {{--        <x-card main-class="" bg="white">--}}
 

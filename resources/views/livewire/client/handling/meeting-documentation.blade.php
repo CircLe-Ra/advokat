@@ -74,7 +74,7 @@ new class extends Component {
 
 }; ?>
 
-<x-partials.sidebar :id-detail="$this->meeting->legalCase?->id" menu="staff-active-case"
+<x-partials.sidebar position="right" :back="route('client.case.handling', ['case' => $this->meeting->legal_case_id, 'status' => 'schedule'], absolute: false)" :id-detail="$this->meeting->legalCase?->id" menu="client-active-case"
                     active="Penanganan Kasus / Jadwal Pertemuan / {{ $this->meeting->legalCase?->title }} / Hasil Pertemuan">
     <x-slot:profile>
         <div class="flex flex-col border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-800 flex-shrink-0">
@@ -90,14 +90,6 @@ new class extends Component {
             </div>
         </div>
     </x-slot:profile>
-    <x-slot:action>
-        <flux:modal.trigger name="modal-upload-image" variant="primary" size="sm" icon="hard-drive-upload"
-                           icon:variant="micro" class="cursor-pointer">
-            <flux:button variant="primary" size="sm" icon="image-plus" icon:variant="micro" class="cursor-pointer" :disabled="$this->meeting->status == 'cancelled'">
-                Unggah Dokumentasi
-            </flux:button>
-        </flux:modal.trigger>
-    </x-slot:action>
     @if($this->meeting->status == 'cancelled')
         <flux:callout icon="no-symbol" variant="danger" inline class="mt-2 mb-1">
             <flux:callout.heading>Pertemuan dibatalkan

@@ -98,7 +98,7 @@ new class extends Component {
 
 }; ?>
 
-<x-partials.sidebar :id-detail="$this->case?->id" menu="staff-active-case"
+<x-partials.sidebar :back="route('client.case')" position="right" :id-detail="$this->case?->id" menu="client-active-case"
                     active="Penanganan Kasus / Jadwal Sidang / {{ $this->case?->title }}">
     <x-slot:profile>
         <div class="flex flex-col border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-800 flex-shrink-0">
@@ -114,14 +114,7 @@ new class extends Component {
             </div>
         </div>
     </x-slot:profile>
-    <x-slot:action>
-        <flux:modal.trigger name="modal-shcedule">
-            <flux:button variant="primary" size="sm" icon="plus" icon:variant="micro" class="cursor-pointer">
-                Jadwalkan
-            </flux:button>
-        </flux:modal.trigger>
-    </x-slot:action>
-    <x-table thead="#, Agenda, Tanggal Sidang, Jam, Tempat, Ditunda?," :action="false" label="Jadwal Sidang"
+    <x-table thead="#, Agenda, Tanggal Sidang, Jam, Tempat, Ditunda?"  label="Jadwal Sidang"
              sub-label="Jadwal sidang pengadilan">
         <x-slot name="filter">
             <x-filter wire:model.live="show"/>
@@ -149,29 +142,11 @@ new class extends Component {
                         {{ $schedule->reason_for_postponement ?? '-' }}
                     </td>
                     <td class="px-6 py-4">
-                        <flux:dropdown>
-                            <flux:button size="sm" icon:trailing="chevron-down" variant="filled">Aksi</flux:button>
-                            <flux:menu>
-                                <flux:menu.item icon:variant="micro" icon:trailing="arrow-up-right" icon="file-plus-2"
-                                                href="{{ route('staff.active.page', ['id' => $schedule->id, 'status' => 'court-result']) }}"
-                                                wire:navigate>
-                                    Hasil Sidang
-                                </flux:menu.item>
-                                <flux:menu.separator/>
-                                <flux:menu.item icon:variant="micro" icon="pencil" variant="warning"
-                                                wire:click="edit({{ $schedule->id }})"
-                                                :disabled="$schedule->status != 'pending'">
-                                    Ubah Jadwal
-                                </flux:menu.item>
-                                <flux:menu.separator/>
-                                <flux:menu.item icon:variant="micro" variant="danger" icon="trash"
-                                                wire:click="delete({{ $schedule->id }})"
-                                                wire:confirm="Anda yakin ingin menghapus jadwal ini?"
-                                                :disabled="$schedule->status != 'pending'">
-                                    Hapus Jadwal
-                                </flux:menu.item>
-                            </flux:menu>
-                        </flux:dropdown>
+                        <flux:button icon:variant="micro" size="sm" icon:trailing="arrow-up-right"
+                                     href="{{ route('client.case.handling', ['case' => $schedule->id, 'status' => 'court-result']) }}"
+                                     wire:navigate>
+                            Hasil Sidang
+                        </flux:button>
                     </td>
                 </tr>
             @endforeach

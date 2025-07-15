@@ -297,12 +297,12 @@ class extends Component {
                                     </flux:menu.item>
                                     <flux:menu.item icon:variant="micro" variant="info" icon="network"
                                                     icon:trailing="arrow-right" href="{{ route('client.case.handling', ['case' => $case->id, 'status' => 'schedule']) }}"
-                                                    :disabled="$case->status != 'accepted'">Penanganan Kasus
+                                                    :disabled="$case->status != 'accepted'" wire:navigate>Penanganan Kasus
                                     </flux:menu.item>
                                 </flux:menu.group>
                                 <flux:menu.group heading="Komunikasi">
                                     <flux:menu.item icon:variant="micro" icon="chat-bubble-left-right"
-                                                    icon:trailing="arrow-up-right" href="{{ route('chat') }}" wire:navigate>
+                                                    icon:trailing="arrow-up-right" href="{{ route('client.chat') }}" wire:navigate>
                                         Hubungi Petugas
                                     </flux:menu.item>
                                 </flux:menu.group>

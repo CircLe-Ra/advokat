@@ -92,7 +92,7 @@ new class extends Component {
 
 }; ?>
 
-<x-partials.sidebar :id-detail="$this->court->legalCase?->id" menu="staff-active-case"
+<x-partials.sidebar :back="route('staff.active.page', ['id' => $this->court->legal_case_id, 'status' => 'court-schedule'], absolute: false)" :id-detail="$this->court->legalCase?->id" menu="staff-active-case"
                     active="Penanganan Kasus / Jadwal Sidang / {{ $this->court->legalCase?->title }} / Hasil Sidang">
     <x-slot:profile>
         <div class="flex flex-col border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-800 flex-shrink-0">
