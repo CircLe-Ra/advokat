@@ -50,6 +50,10 @@ Route::middleware(['auth'])->group(callback: function () {
         Volt::route('leader/dashboard', 'leader.dashboard')->name('leader.dashboard');
         Volt::route('leader/case/validation/{status}', 'leader.case.validation')->name('leader.case.validation');
         Volt::route('leader/case/{id}/{status}', 'leader.case.detail-case')->name('leader.case.detail-case');
+        Volt::route('leader/active/case', 'leader.active.case')->name('leader.active.case');
+        Volt::route('leader/active/case/{case}/{status}', 'leader.active.pages')->name('leader.active.case.page');
+        Volt::route('leader/active/case-detail/{id}/{status}', 'leader.active.detail-pages')->name('leader.active.case-detail.page');
+        Volt::route('leader/active/schedule', 'leader.active.work-schedule')->name('leader.active.schedule');
     });
 
     Route::middleware(['role:pengacara'])->group(function () {

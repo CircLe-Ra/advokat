@@ -206,7 +206,7 @@ class extends Component {
     }
 }; ?>
 
-<x-partials.sidebar position="right" menu="case" active="Kasus / Pengajuan Kasus">
+<x-partials.sidebar menu="case" active="Kasus / Pengajuan Kasus">
     @if($this->client)
         <x-slot name="menuInfo">
             <flux:callout icon="information-circle" color="red" class="mt-2">
@@ -226,7 +226,7 @@ class extends Component {
                      :disabled="$this->client">Buat Kasus
         </flux:button>
     </x-slot>
-    <x-table thead="#, Nomor, Kasus, Jenis, Tanggal Pengajuan, Status," :action="false"
+    <x-table thead="#, No. Kasus, No. Perkara, Jenis, Tanggal Pengajuan, Status," :action="false"
              label="Pengajuan Kasus" sub-label="Informasi tentang kasus yang anda ajukan.">
         @if($this->cases->count())
             @foreach($this->cases as $case)
@@ -237,12 +237,15 @@ class extends Component {
                     <th scope="row" class="px-6 py-4 font-medium text-zinc-900 whitespace-nowrap dark:text-white">
                         <flux:tooltip content="{{$case->number}}">
                             <flux:button variant="subtle"
-                                         class="dark:bg-zinc-800 dark:hover:bg-zinc-800"> {{ Str::limit($case->number, 10, '...') }}</flux:button>
+                                         class="dark:bg-zinc-800 dark:hover:bg-zinc-800"> {{ Str::limit($case->number, 5, '...') }}</flux:button>
                         </flux:tooltip>
                     </th>
-                    <td class="px-6 py-4">
-                        {{ $case->title }}
-                    </td>
+                    <th scope="row" class="px-6 py-4 font-medium text-zinc-900 whitespace-nowrap dark:text-white">
+                        <flux:tooltip content="{{$case->number_case}}">
+                            <flux:button variant="subtle"
+                                         class="dark:bg-zinc-800 dark:hover:bg-zinc-800"> {{ $case->number_case ? Str::limit($case->number_case, 5, '...') : '-' }}</flux:button>
+                        </flux:tooltip>
+                    </th>
                     <td class="px-6 py-4">
                         {{ $case->type == 'civil' ? 'Perdata' : 'Pidana' }}
                     </td>

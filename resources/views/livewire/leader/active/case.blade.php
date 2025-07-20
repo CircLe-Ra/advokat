@@ -18,12 +18,11 @@ class extends Component {
     #[Computed]
     public function cases()
     {
-        return LegalCase::where('lawyer_id', auth()->user()->lawyer->id)
-            ->where(function ($query) {
+        return LegalCase::where(function ($query) {
                 $query->where('number', 'like', '%' . $this->search . '%')
                     ->orWhere('title', 'like', '%' . $this->search . '%')
                     ->orWhere('summary', 'like', '%' . $this->search . '%');
-            })->latest()->paginate($this->show, pageName: 'lawyer-case-page');
+            })->latest()->paginate($this->show, pageName: 'leader-case-page');
     }
 
 
@@ -52,7 +51,7 @@ class extends Component {
                     <th scope="row" class="px-6 py-4 font-medium text-zinc-900 whitespace-nowrap dark:text-white">
                         <flux:tooltip content="{{$case->number_case}}">
                             <flux:button variant="subtle"
-                                         class="dark:bg-zinc-800 dark:hover:bg-zinc-800"> {{ $case->number_case ? Str::limit($case->number_case, 12, '...') : '-' }}</flux:button>
+                                         class="dark:bg-zinc-800 dark:hover:bg-zinc-800">{{ $case->number_case ? Str::limit($case->number_case, 12, '...') : '-' }}</flux:button>
                         </flux:tooltip>
                     </th>
                     <td class="px-6 py-4">
@@ -68,7 +67,7 @@ class extends Component {
                         <x-badge :status="$case->status"/>
                     </td>
                     <td>
-                        <flux:button variant="outline" icon:trailing="arrow-right" size="sm" class="cursor-pointer dark:bg-zinc-800 dark:hover:bg-zinc-800" href="{{ route('lawyer.case.page', ['case' => $case->id, 'status' => 'schedule']) }}">
+                        <flux:button variant="outline" icon:trailing="arrow-right" size="sm" class="cursor-pointer dark:bg-zinc-800 dark:hover:bg-zinc-800" href="{{ route('leader.active.case.page', ['case' => $case->id, 'status' => 'schedule']) }}">
                             Detail
                         </flux:button>
                     </td>

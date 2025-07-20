@@ -117,7 +117,7 @@ class extends Component {
 }
 ?>
 
-<x-partials.sidebar position="right" menu="case" active="Data Pribadi">
+<x-partials.sidebar menu="case" active="Data Pribadi">
     <x-card :label="__('Data Pribadi')" sub-label="Perbaharui data pribadi anda untuk kelengkapan penagajuan kasus">
         <form class="mt-6 space-y-6" wire:submit="updatePersonalData">
             <div class="flex flex-col xl:flex-row xl:justify-items-stretch ">

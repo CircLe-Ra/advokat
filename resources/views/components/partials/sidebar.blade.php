@@ -26,6 +26,9 @@
             @case('lawyer-active-case')
                 <x-partials.menu-sidebar.lawyer-active-case :id-detail="$idDetail" :menu-info="$menuInfo" />
                 @break
+            @case('leader-active-case')
+                <x-partials.menu-sidebar.leader-active-case :id-detail="$idDetail" :menu-info="$menuInfo" />
+                @break
             @case('setting')
                 <x-partials.menu-sidebar.setting />
                 @break
@@ -33,6 +36,9 @@
         @endswitch
         @isset($tabUrl)
             <x-tab-url :data-url="$tabUrl"  />
+        @endisset
+        @isset($information)
+            {{ $information }}
         @endisset
     </div>
     <flux:separator class="md:hidden" />

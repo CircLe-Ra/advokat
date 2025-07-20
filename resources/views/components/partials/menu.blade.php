@@ -13,6 +13,7 @@
         @role('pimpinan')
             <flux:navbar.item icon="gauge" :href="route('leader.dashboard')" :current="request()->routeIs('leader.dashboard')" wire:navigate>Dashboard</flux:navbar.item>
             <flux:navbar.item icon="briefcase" :href="route('leader.case.validation', ['status' => 'verified'])" :current="request()->routeIs('leader.case*')" wire:navigate>Pengajuan Kasus</flux:navbar.item>
+            <flux:navbar.item icon="briefcase" :href="route('leader.active.case')" :current="request()->routeIs('leader.active.case*')" wire:navigate>Kasus</flux:navbar.item>
         @endrole
         @role('pengacara')
             <flux:navbar.item icon="gauge" :href="route('lawyer.dashboard')" :current="request()->routeIs('lawyer.dashboard')" wire:navigate>Dashboard</flux:navbar.item>
