@@ -105,7 +105,7 @@ class extends Component {
             <div class="flex flex-col h-full ">
                 <flux:heading size="xl" class="bg-white border p-4 rounded-t-lg border-b-0 border-zinc-300 dark:bg-zinc-700 dark:border-zinc-600 dark:text-white text-center text-xl">Ringkasan Kasus</flux:heading>
                 <div class="bg-white text-justify indent-8 items-center p-6 justify-between rounded-b-lg border border-zinc-300 dark:bg-zinc-700 dark:border-zinc-600 dark:text-white">
-                {!! $this->case->summary !!}
+                    {!! $this->case->summary !!}
                 </div>
                 <flux:heading size="xl" class="bg-white mt-2 border p-4 rounded-t-lg border-b-0 border-zinc-300 dark:bg-zinc-700 dark:border-zinc-600 dark:text-white text-center text-xl">Kronologi Kasus</flux:heading>
                 <div class="bg-zinc-50 text-justify indent-8 items-center p-6 justify-between rounded-b-lg border border-zinc-300 dark:bg-zinc-700 dark:border-zinc-600 dark:text-white">

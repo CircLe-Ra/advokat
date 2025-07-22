@@ -2,7 +2,9 @@
 
 use App\Models\Chat;
 use App\Models\User;
+use App\Notifications\ChatNotification;
 use Livewire\Attributes\Computed;
+use Livewire\Attributes\On;
 use Livewire\Volt\Component;
 
 new class extends Component {
@@ -30,15 +32,18 @@ new class extends Component {
         })->orderBy('created_at', 'asc')->get();
     }
 
+    #[On('update-message-admin')]
+    public function updateMessageList()
+    {
+        $this->messages = $this->loadMessages($this->client);
+    }
+
     #[Computed]
     public function clients()
     {
-        return User::whereHas('roles', fn($query) =>
-        $query->where('name', 'klien'))
-            ->whereHas('sentMessages', fn($query) =>
-                $query->where('user_id2', auth()->id()))
-            ->with(['sentMessages' => fn($q) =>
-                $q->where('user_id2', auth()->id())->latest()
+        return User::whereHas('roles', fn($query) => $query->where('name', 'klien'))
+            ->whereHas('sentMessages', fn($query) => $query->where('user_id2', auth()->id()))
+            ->with(['sentMessages' => fn($q) => $q->where('user_id2', auth()->id())->latest()
             ])->get()
             ->sortByDesc(fn($user) => optional($user->sentMessages->first())->created_at)
             ->values();
@@ -52,7 +57,13 @@ new class extends Component {
                 'user_id2' => $this->client,
                 'message' => $this->messageToSend,
             ]);
-
+            $user = User::find($this->client);
+            $user->notify(new ChatNotification(
+                role: 'client',
+                from: Auth::id(),
+                message: $this->messageToSend,
+                to: $this->client
+            ));
             $this->messages = $this->loadMessages($this->client);
             $this->reset(['messageToSend']);
 
@@ -110,7 +121,8 @@ new class extends Component {
                                         @if($message->user_id !== auth()->id())
                                             <div class="col-start-1 col-end-8 p-3 rounded-lg">
                                                 <div class="flex flex-row items-center">
-                                                    <div class="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl">
+                                                    <div
+                                                        class="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl">
                                                         <div>{{$message->message}}</div>
                                                     </div>
                                                 </div>
@@ -118,11 +130,13 @@ new class extends Component {
                                         @else
                                             <div class="col-start-6 col-end-13 p-3 rounded-lg">
                                                 <div class="flex items-center justify-start flex-row-reverse">
-                                                    <div class="relative mr-3 text-sm bg-indigo-100 py-2 px-4 shadow rounded-xl">
+                                                    <div
+                                                        class="relative mr-3 text-sm bg-indigo-100 py-2 px-4 shadow rounded-xl">
                                                         <div>
                                                             {{ $message->message }}
                                                         </div>
-                                                        <div class="absolute text-xs bottom-0 right-0 -mb-5 mr-2 text-zinc-500">
+                                                        <div
+                                                            class="absolute text-xs bottom-0 right-0 -mb-5 mr-2 text-zinc-500">
                                                             {{ $message->is_read ? 'Dibaca' : 'Terkirim' }}
                                                         </div>
                                                     </div>
@@ -167,7 +181,8 @@ new class extends Component {
                                 </div>
                             </div>
                             <div class="ml-4">
-                                <flux:button variant="primary" class="ml-4" icon:trailing="paper-airplane" wire:click="send">Kirim
+                                <flux:button variant="primary" class="ml-4" icon:trailing="paper-airplane"
+                                             wire:click="$js.sendMessage">Kirim
                                 </flux:button>
                             </div>
                         </div>
@@ -179,3 +194,25 @@ new class extends Component {
     </div>
 </div>
 
+
+@pushonce('scripts')
+    @script
+    <script>
+        document.addEventListener('livewire:navigated', () => {
+            const messagesContainer = document.querySelector('.flex.flex-col.h-full.overflow-x-auto');
+            if (messagesContainer) {
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            }
+
+            $js('sendMessage', async () => {
+                await $wire.send();
+                const messagesContainer = document.querySelector('.flex.flex-col.h-full.overflow-x-auto');
+                if (messagesContainer) {
+                    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                }
+            });
+            
+        }, {once: true});
+    </script>
+    @endscript
+@endpushonce

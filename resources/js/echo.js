@@ -13,3 +13,15 @@ window.Echo = new Echo({
     wssPort: import.meta.env.VITE_PUSHER_PORT,
     enabledTransports: ["ws", "wss"],
 });
+
+if(document.querySelector('meta[name="user-id"]')){
+    window.Echo.private(`App.Models.User.${document.querySelector('meta[name="user-id"]').content}`)
+        .notification((notification) => {
+            if(notification.role === 'admin'){
+                Livewire.dispatch('update-message-admin');
+            }else if(notification.role === 'client'){
+                console.log(notification);
+                Livewire.dispatch('update-message-client');
+            }
+        });
+}
