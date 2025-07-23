@@ -64,6 +64,9 @@ new class extends Component {
                 message: $this->messageToSend,
                 to: $this->client
             ));
+
+
+
             $this->messages = $this->loadMessages($this->client);
             $this->reset(['messageToSend']);
 
@@ -211,7 +214,7 @@ new class extends Component {
                     messagesContainer.scrollTop = messagesContainer.scrollHeight;
                 }
             });
-            
+
         }, {once: true});
     </script>
     @endscript

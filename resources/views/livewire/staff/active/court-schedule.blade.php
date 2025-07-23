@@ -24,6 +24,7 @@ new class extends Component {
     public $time;
     public string $place = '';
     public string $reason_for_postponement = '';
+    public string $case_number = '';
 
     public $case;
 
@@ -96,6 +97,22 @@ new class extends Component {
         }
     }
 
+    public function save()
+    {
+        $this->validate([
+            'case_number' => ['required'],
+        ]);
+        try {
+            $this->case->update([
+                'case_number' => $this->case_number,
+            ]);
+            Flux::modal('modal-case-number')->close();
+            $this->dispatch('toast', message: 'Nomor Kasus berhasil disimpan');
+        } catch (\Exception $e) {
+            $this->dispatch('toast', message: $e->getMessage(), type: 'error');
+        }
+    }
+
 }; ?>
 
 <x-partials.sidebar :back="route('staff.active.case')" :id-detail="$this->case?->id" menu="staff-active-case"
@@ -114,13 +131,28 @@ new class extends Component {
             </div>
         </div>
     </x-slot:profile>
+
     <x-slot:action>
         <flux:modal.trigger name="modal-shcedule">
-            <flux:button variant="primary" size="sm" icon="plus" icon:variant="micro" class="cursor-pointer">
+            <flux:button :disabled="!$this->case->case_number" variant="primary" size="sm" icon="plus" icon:variant="micro" class="cursor-pointer disabled:cursor-not-allowed">
                 Jadwalkan
             </flux:button>
         </flux:modal.trigger>
     </x-slot:action>
+    <div class="w-full mt-2">
+        <flux:callout icon="information-circle" variant="secondary" class="bg-zinc-50 border dark:border-zinc-700 dark:bg-zinc-900" inline>
+            @if($this->case->case_number)
+                <flux:callout.heading>Anda dapat mengubah No. Perkara</flux:callout.heading>
+            @else
+                <flux:callout.heading>No. Perkara belum ditetapkan, Mohon agar ditetapkan terlebih dahulu agar dapat menjadwalkan sidang.</flux:callout.heading>
+            @endif
+                <x-slot name="actions">
+                <flux:modal.trigger name="modal-case-number">
+                    <flux:button icon:trailing="arrow-up-right" class="cursor-pointer">No. Perkara</flux:button>
+                </flux:modal.trigger>
+            </x-slot>
+        </flux:callout>
+    </div>
     <x-table thead="#, Agenda, Tanggal Sidang, Jam, Tempat, Ditunda?," :action="false" label="Jadwal Sidang"
              sub-label="Jadwal sidang pengadilan">
         <x-slot name="filter">
@@ -160,14 +192,15 @@ new class extends Component {
                 <tr class="bg-white border-b dark:bg-zinc-800 dark:border-zinc-700 border-zinc-200 ">
                     <th scope="row" class="px-6 py-4 font-medium text-zinc-900 whitespace-nowrap dark:text-white">
                         <flux:tooltip content="{{$this->case->number}}">
-                            <flux:button variant="subtle"
-                                         class="dark:bg-zinc-800 dark:hover:bg-zinc-800"> {{ Str::limit($this->case->number, 12, '...') }}</flux:button>
+                            <flux:button variant="subtle" class="dark:bg-zinc-800 dark:hover:bg-zinc-800 !px-0">
+                                {{ Str::limit($this->case->number, 12, '...') }}
+                            </flux:button>
                         </flux:tooltip>
                     </th>
                     <th scope="row" class="px-6 py-4 font-medium text-zinc-900 whitespace-nowrap dark:text-white">
-                        <flux:tooltip content="{{$this->case->number_case}}">
+                        <flux:tooltip content="{{$this->case->case_number}}">
                             <flux:button variant="subtle"
-                                         class="dark:bg-zinc-800 dark:hover:bg-zinc-800">{{ $this->case->number_case ? Str::limit($this->case->number_case, 12, '...') : '-' }}</flux:button>
+                                         class="dark:bg-zinc-800 dark:hover:bg-zinc-800 !px-0">{{ $this->case->case_number ? Str::limit($this->case->case_number, 20, '...') : '-' }}</flux:button>
                         </flux:tooltip>
                     </th>
                     <td class="px-6 py-4">
@@ -255,6 +288,25 @@ new class extends Component {
                 <flux:input label="Tanggal Sidang" wire:model="date" type="date"/>
                 <flux:input label="Jam" wire:model="time" type="time"/>
                 <flux:input label="Tempat" wire:model="place"/>
+                <div class="flex gap-2 justify-end">
+                    <flux:modal.close>
+                        <flux:button variant="filled">Batal</flux:button>
+                    </flux:modal.close>
+                    <flux:button type="submit" variant="primary">Simpan</flux:button>
+                </div>
+            </form>
+        </div>
+    </flux:modal>
+    <flux:modal name="modal-case-number" class="md:w-96">
+        <div class="space-y-6 mb-6">
+            <div>
+                <flux:heading size="lg" level="1">No. Perkara</flux:heading>
+                <flux:text class="text-zinc-600 dark:text-zinc-400 mt-2">
+                    Masukan Nomor Perkara yang dikeluarkan oleh pengadilan.
+                </flux:text>
+            </div>
+            <form wire:submit="save" class="space-y-6">
+                <flux:input label="Nomor Perkara" wire:model="case_number"/>
                 <div class="flex gap-2 justify-end">
                     <flux:modal.close>
                         <flux:button variant="filled">Batal</flux:button>
