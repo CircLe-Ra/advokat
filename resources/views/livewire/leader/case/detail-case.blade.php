@@ -1,8 +1,10 @@
 <?php
 
+use App\Facades\PusherBeams;
 use App\Models\Lawyer;
 use App\Models\LegalCase;
 use App\Models\LegalCaseValidation;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
 use Livewire\Attributes\Computed;
 use Livewire\Volt\Component;
@@ -30,7 +32,7 @@ class extends Component {
 
     public function __reset(): void
     {
-        $this->reset(['id', 'statusCase','reason', 'lawyer']);
+        $this->reset(['id', 'statusCase', 'reason', 'lawyer']);
         $this->resetValidation(['id', 'statusCase', 'reason', 'lawyer']);
     }
 
@@ -42,11 +44,20 @@ class extends Component {
             'reason' => ['nullable', 'required_if:statusCase,rejected'],
         ]);
         try {
+            $data = [];
+            if ($this->statusCase == 'accepted') {
+                $data = [
+                    'lawyer_id' => $this->lawyer,
+                    'status' => $this->statusCase,
+                ];
+            }else{
+                $data = [
+                    'status' => $this->statusCase,
+                ];
+            }
+
             $case = LegalCase::find($this->id);
-            $case->update([
-                'lawyer_id' => $this->lawyer,
-                'status' => $this->statusCase,
-            ]);
+            $case->update($data);
             LegalCaseValidation::create([
                 'legal_case_id' => $this->id,
                 'user_id' => auth()->user()->id,
@@ -55,11 +66,34 @@ class extends Component {
                 'validation' => $this->statusCase,
             ]);
             $statusRedirect = $this->statusCase;
+
+            if ($this->statusCase == 'rejected') {
+                $body = 'Kasus tidak dapat diverifikasi. Alasan penolakan: ' . $this->reason;
+            } else {
+                $body = 'Kasus diterima.';
+            }
+
+            PusherBeams::send(
+                user_id: $case->client->user_id,
+                title: 'Konformasi Kasus',
+                body: $body,
+                deep_link: route('client.case'),
+                is_user: true
+            );
+
+            $allStaff = User::whereHas('roles', function ($query) {
+                $query->where('name', 'staf');
+            })->get();
+            foreach ($allStaff as $staff) {
+                PusherBeams::send($staff->id, 'Konfirmasi Kasus', $body, route('staff.case.validation', $statusRedirect), true);
+            }
+
             $this->__reset();
             Flux::modal('modal-verify')->close();
             $this->dispatch('toast', message: 'Berhasil diverifikasi');
             $this->redirectIntended(route('leader.case.validation', $statusRedirect), navigate: true);
         } catch (\Exception $e) {
+            dd($e->getMessage());
             $this->dispatch('toast', message: $e->getMessage(), type: 'error', duration: 5000);
         }
     }
@@ -103,7 +137,8 @@ class extends Component {
                         <flux:select.option value="">Pilih?</flux:select.option>
                         @if($this->lawyers?->count())
                             @foreach($this->lawyers as $lawyer)
-                                <flux:select.option value="{{ $lawyer->id }}">{{ $lawyer->user->name }}</flux:select.option>
+                                <flux:select.option
+                                    value="{{ $lawyer->id }}">{{ $lawyer->user->name }}</flux:select.option>
                             @endforeach
                         @endif
                     </flux:select>
@@ -111,7 +146,7 @@ class extends Component {
                 </div>
                 <div class="flex gap-2 justify-end">
                     <flux:modal.close>
-                    <flux:button variant="filled">Batal</flux:button>
+                        <flux:button variant="filled">Batal</flux:button>
                     </flux:modal.close>
                     <flux:button type="submit" variant="primary">Verifikasi</flux:button>
                 </div>

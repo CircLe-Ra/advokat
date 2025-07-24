@@ -1,8 +1,10 @@
- <?php
+<?php
 
+use App\Facades\PusherBeams;
 use App\Models\LegalCase;
 use App\Models\LegalCaseDocument;
 use App\Models\LegalCaseValidation;
+use App\Models\User;
 use Livewire\Volt\Component;
 use Livewire\WithFileUploads;
 
@@ -79,6 +81,13 @@ class extends Component {
                 'validation' => 'revised',
             ]);
 
+            $allStaff = User::whereHas('roles', function ($query) {
+                $query->where('name', 'staf');
+            })->get();
+            foreach ($allStaff as $staff) {
+                PusherBeams::send($staff->id, 'Kasus direvisi', $case->title, route('staff.case.validation', ['status' => 'revision']), true);
+            }
+
             $this->__reset();
             $this->dispatch('toast', message: 'Kasus berhasil di perbarui');
             Flux::modal('modal-revision')->close();
@@ -111,7 +120,8 @@ class extends Component {
 
 }; ?>
 
-<x-partials.sidebar :back="route('client.case')" position="right" menu="case" active="Kasus / Pengajuan Kasus / Detail Kasus">
+<x-partials.sidebar :back="route('client.case')" position="right" menu="case"
+                    active="Kasus / Pengajuan Kasus / Detail Kasus">
     @if($this->case->status == 'revision')
         <x-slot:menu-info>
             <flux:callout icon="information-circle" color="orange" class="mt-2">
@@ -123,7 +133,8 @@ class extends Component {
         </x-slot:menu-info>
         <x-slot:action>
             <flux:modal.trigger name="modal-revision">
-                <flux:button variant="primary" size="sm" icon="arrow-up-on-square-stack" icon:variant="micro" class="cursor-pointer">
+                <flux:button variant="primary" size="sm" icon="arrow-up-on-square-stack" icon:variant="micro"
+                             class="cursor-pointer">
                     Merevisi
                 </flux:button>
             </flux:modal.trigger>

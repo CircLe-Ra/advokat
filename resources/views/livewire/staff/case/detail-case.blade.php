@@ -1,7 +1,9 @@
 <?php
 
+use App\Facades\PusherBeams;
 use App\Models\LegalCase;
 use App\Models\LegalCaseValidation;
+use App\Models\User;
 use Livewire\Volt\Component;
 
 new
@@ -15,7 +17,7 @@ class extends Component {
     public function mount($id, $status)
     {
         $case = LegalCase::find($id);
-        if(!$case->status == 'revised') {
+        if (!$case->status == 'revised') {
             if ($case->status != $status) {
                 return abort(404);
             }
@@ -49,6 +51,28 @@ class extends Component {
                 'comment' => $this->reason,
                 'validation' => $this->statusCase,
             ]);
+
+            if ($this->statusCase == 'revision') {
+                $body = 'Anda harus melakukan revisi terhadap kasus ini.';
+            } else {
+                $body = 'Kasus berhasil diverifikasi.';
+            }
+
+            PusherBeams::send(
+                user_id: $case->client->user_id,
+                title: 'Konformasi Kasus',
+                body: $body,
+                deep_link: route('client.case'),
+                is_user: true
+            );
+
+            $allLeader = User::whereHas('roles', function ($query) {
+                $query->where('name', 'pimpinan');
+            })->get();
+            foreach ($allLeader as $leader) {
+                PusherBeams::send($leader->id, 'Pengajuan Kasus Baru', $case->title, route('leader.case.validation', ['status' => 'verified']), true);
+            }
+
             $statusRedirect = $this->statusCase;
             $this->__reset();
             $this->dispatch('toast', message: 'Berhasil diverifikasi');

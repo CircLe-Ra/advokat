@@ -1,5 +1,6 @@
 <?php
 
+use App\Facades\PusherBeams;
 use App\Models\LegalCase;
 use App\Models\LegalCaseDocument;
 use App\Models\LegalCaseValidation;
@@ -64,6 +65,7 @@ new class extends Component {
             $case->update([
                 'status' => $this->status,
             ]);
+
             unset($this->cases);
             $this->__reset();
             $this->dispatch('toast', message: 'Pengajuan kasus berhasil diajukan');
@@ -114,7 +116,8 @@ new class extends Component {
                         <x-badge :status="$case->status"/>
                     </td>
                     <td class="px-6 py-4">
-                        <flux:button wire:navigate size="sm" variant="primary" icon:trailing="arrow-up-right" href="{{ route('staff.case.detail-case', ['id' => $case->id, 'status' => 'pending']) }}">
+                        <flux:button wire:navigate size="sm" variant="primary" icon:trailing="arrow-up-right"
+                                     href="{{ route('staff.case.detail-case', ['id' => $case->id, 'status' => 'pending']) }}">
                             Lihat Detail
                         </flux:button>
                     </td>

@@ -165,7 +165,7 @@ class extends Component {
                 $query->where('name', 'staf');
             })->get();
             foreach ($allStaff as $staff) {
-                PusherBeams::send($staff->id, 'Pengajuan Kasus Baru', $case->title, route('goto'), true);
+                PusherBeams::send($staff->id, 'Pengajuan Kasus Baru', $case->title, route('staff.case.validation', ['status' => 'pending']), true);
             }
             $this->dispatch('toast', message: 'Pengajuan kasus berhasil dikirim');
         } catch (\Exception $e) {

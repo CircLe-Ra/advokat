@@ -49,7 +49,7 @@
                 <div class="grid grid-cols-12">
                     <div class="col-span-10 md:col-span-12">
                         <ul class="text-left md:text-center">
-                            <li class=" text-white inline-block p-[15px]  col:pr-0 pl-0 col:pb-[0]"><i class="fa fa-map-marker pr-[10px] col:pt-[0] text-[#cbbc99] text-[20px]" aria-hidden="true"></i>121 King Street, Melbourne , Australia</li>
+                            <li class=" text-white inline-block p-[15px]  col:pr-0 pl-0 col:pb-[0]"><i class="fa fa-map-marker pr-[10px] col:pt-[0] text-[#cbbc99] text-[20px]" aria-hidden="true"></i>121 King Street, Merauke , Indonesia </li>
                             <li class="relative text-white inline-block p-[15px]  col:pr-0
                                 before:absolute before:content-[''] before:left-0 before:top-[15px] before:w-[1px] before:h-[25px] before:bg-[rgba(255,255,255,.07)]  before:z-10 before:transform before:-translate-x-1/2 md:before:hidden">
                                 <i class="fa fa-mobile pr-[10px] text-[#cbbc99] text-[20px]" aria-hidden="true"></i>3164-5456854</li>
@@ -691,8 +691,7 @@
     <!-- end barristar-testimonial-section -->
 
     <!-- start barristar-contact-section -->
-    <section class="relative bg-[url(../images/contact/1.jpg)] bg-center bg-cover bg-no-repeat bg-fixed py-[100px] md:pt-[90px] md:pb-[80px] z-10
-         before:content-[''] before:bg-[rgba(21,26,48,0.9)] before:w-full before:h-full before:absolute before:left-0 before:-z-10 before:top-0">
+    <section class="relative bg-[url(../images/contact/1.jpg)] bg-center bg-cover bg-no-repeat bg-fixed py-[100px] md:pt-[90px] md:pb-[80px] z-10 before:content-[''] before:bg-[rgba(21,26,48,0.9)] before:w-full before:h-full before:absolute before:left-0 before:-z-10 before:top-0">
         <div class="wraper">
             <div class="grid grid-cols-12 gap-3">
                 <div class="col-span-5 md:col-span-12 ">
@@ -755,7 +754,7 @@
         <div class="wraper">
             <div class="col-span-12 text-center">
                 <div class="mb-[60px]">
-                    <span class="text-[16px] text-[#ada282]">Bertemu Ahli Kami</span>
+                    <span class="text-[16px] text-[#ada282]">BERTEMU AHLI KAMI</span>
                     <h2 class=" text-[36px] md:text-[26px] font-medium text-[#333] pb-[20px] relative before:absolute before:content-[''] before:left-[50%] before:bottom-0 before:transform before:-translate-x-1/2 before:w-[60px] before:h-[3px] before:bg-[#c0b596]">Pengacara Terbaik</h2>
                 </div>
             </div>
@@ -763,10 +762,10 @@
                 <div class="col-span-4 md:col-span-6 ">
                     <div class="overflow-hidden relative shadow-[1px_1px_5px_rgba(0,0,5,8%)] group">
                         <div class="expert-img">
-                            <img class="w-full" src="assets/images/expert/1.jpg" alt="">
+                            <img class="w-full" src="assets/images/lawyer/gabriel.png" alt="">
                         </div>
                         <div class="relative text-center mt-[-40px] bg-[#f5f5f5] transform translate-y-[40px] transition ease-in-out duration-300 group-hover:translate-y-0 group-hover:bg-[#fff]">
-                            <h3 class="text-[24px] col:text-[20px] font-medium pt-[30px] pb-[8px]  font-heading-font"><a href="Attorneys-single.html" class="text-[#282e3f] hover:text-[#ada282] transition-all">Alecgander Harry </a></h3>
+                            <h3 class="text-[24px] col:text-[20px] font-medium pt-[30px] pb-[8px]  font-heading-font"><a href="#" class="text-[#282e3f] hover:text-[#ada282] transition-all">Gabriel Naftali Jawok Epin, S.H <br />(Wakil) </a></h3>
                             <span class="text-[#ada282] text-[16px] font-normal">Business Lawyer</span>
                             <ul class="flex justify-center my-[20px] transition ease-in-out">
                                 <li class="px-[10px] "><a href="#" class="text-[#c0b596] transition-all hover:text-[#999]"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
@@ -779,10 +778,10 @@
                 <div class="col-span-4 md:col-span-6 ">
                     <div class="overflow-hidden relative shadow-[1px_1px_5px_rgba(0,0,5,8%)] group">
                         <div class="expert-img">
-                            <img class="w-full" src="assets/images/expert/2.jpg" alt="">
+                            <img class="w-full" src="assets/images/lawyer/kaitanus.png" alt="">
                         </div>
                         <div class="relative text-center mt-[-40px] bg-[#f5f5f5]  translate-y-[40px] transition ease-in-out duration-300 group-hover:translate-y-0 group-hover:bg-[#fff]">
-                            <h3 class="text-[24px] col:text-[20px] font-medium pt-[30px] pb-[8px]  font-heading-font"><a href="Attorneys-single.html" class="text-[#282e3f] hover:text-[#ada282] transition-all">Lily Watson</a></h3>
+                            <h3 class="text-[24px] col:text-[20px] font-medium pt-[30px] pb-[8px]  font-heading-font"><a href="#" class="text-[#282e3f] hover:text-[#ada282] transition-all">Kaitanus F.X Mogahai, S.H <br />(Ketua)</a></h3>
                             <span class="text-[#ada282] text-[16px] font-normal">Family Lawyer</span>
                             <ul class="flex justify-center my-[20px] transition ease-in-out">
                                 <li class="px-[10px] "><a href="#" class="text-[#c0b596] transition-all hover:text-[#999]"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
@@ -795,10 +794,10 @@
                 <div class="col-span-4 md:col-span-6">
                     <div class="overflow-hidden relative shadow-[1px_1px_5px_rgba(0,0,5,8%)] group">
                         <div class="expert-img">
-                            <img class="w-full" src="assets/images/expert/3.jpg" alt="">
+                            <img class="w-full" src="assets/images/lawyer/rivard.png" alt="">
                         </div>
                         <div class="relative text-center mt-[-40px] bg-[#f5f5f5] transform translate-y-[40px] transition ease-in-out duration-300  group-hover:translate-y-0 group-hover:bg-[#fff]">
-                            <h3 class="text-[24px] col:text-[20px] font-medium pt-[30px] pb-[8px]  font-heading-font"><a href="Attorneys-single.html" class="text-[#282e3f] hover:text-[#ada282] transition-all">Willam Stephen</a></h3>
+                            <h3 class="text-[24px] col:text-[20px] font-medium pt-[30px] pb-[8px]  font-heading-font"><a href="#" class="text-[#282e3f] hover:text-[#ada282] transition-all">Rivard Mahue, S.H <br />&nbsp;</a></h3>
                             <span class="text-[#ada282] text-[16px] font-normal">Criminal Lawyer</span>
                             <ul class="flex justify-center my-[20px] transition ease-in-out">
                                 <li class="px-[10px] "><a href="#" class="text-[#c0b596] transition-all hover:text-[#999]"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
