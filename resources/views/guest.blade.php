@@ -755,8 +755,8 @@
         <div class="wraper">
             <div class="col-span-12 text-center">
                 <div class="mb-[60px]">
-                    <span class="text-[16px] text-[#ada282]">Meet Our Experts</span>
-                    <h2 class=" text-[36px] md:text-[26px] font-medium text-[#333] pb-[20px] relative before:absolute before:content-[''] before:left-[50%] before:bottom-0 before:transform before:-translate-x-1/2 before:w-[60px] before:h-[3px] before:bg-[#c0b596]">Qualified Attorneys</h2>
+                    <span class="text-[16px] text-[#ada282]">Bertemu Ahli Kami</span>
+                    <h2 class=" text-[36px] md:text-[26px] font-medium text-[#333] pb-[20px] relative before:absolute before:content-[''] before:left-[50%] before:bottom-0 before:transform before:-translate-x-1/2 before:w-[60px] before:h-[3px] before:bg-[#c0b596]">Pengacara Terbaik</h2>
                 </div>
             </div>
             <div class="grid grid-cols-12 team-slider relative owl-carousel">
@@ -808,188 +808,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-span-4 md:col-span-6">
-                    <div class="overflow-hidden relative shadow-[1px_1px_5px_rgba(0,0,5,8%)] group">
-                        <div class="expert-img">
-                            <img class="w-full" src="assets/images/expert/4.jpg" alt="">
-                        </div>
-                        <div class="relative text-center mt-[-40px] bg-[#f5f5f5] transform translate-y-[40px] transition ease-in-out duration-300  group-hover:translate-y-0 group-hover:bg-[#fff]">
-                            <h3 class="text-[24px] col:text-[20px] font-medium pt-[30px] pb-[8px]  font-heading-font"><a href="Attorneys-single.html" class="text-[#282e3f] hover:text-[#ada282] transition-all">Eshan Golly</a></h3>
-                            <span class="text-[#ada282] text-[16px] font-normal">Business Lawyer</span>
-                            <ul class="flex justify-center my-[20px] transition ease-in-out">
-                                <li class="px-[10px] "><a href="#" class="text-[#c0b596] transition-all hover:text-[#999]"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                                <li class="px-[10px] "><a href="#" class="text-[#c0b596] transition-all hover:text-[#999]"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                                <li class="px-[10px] "><a href="#" class="text-[#c0b596] transition-all hover:text-[#999]"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-span-4 md:col-span-6">
-                    <div class="overflow-hidden relative shadow-[1px_1px_5px_rgba(0,0,5,8%)] group">
-                        <div class="expert-img">
-                            <img class="w-full" src="assets/images/expert/5.jpg" alt="">
-                        </div>
-                        <div class="relative text-center mt-[-40px] bg-[#f5f5f5] transform translate-y-[40px] transition ease-in-out duration-300  group-hover:translate-y-0 group-hover:bg-[#fff]">
-                            <h3 class="text-[24px] col:text-[20px] font-medium pt-[30px] pb-[8px]  font-heading-font"><a href="Attorneys-single.html" class="text-[#282e3f] hover:text-[#ada282] transition-all">Daniel Dambeldor</a></h3>
-                            <span class="text-[#ada282] text-[16px] font-normal">Family Lawyer</span>
-                            <ul class="flex justify-center my-[20px] transition ease-in-out">
-                                <li class="px-[10px] "><a href="#" class="text-[#c0b596] transition-all hover:text-[#999]"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                                <li class="px-[10px] "><a href="#" class="text-[#c0b596] transition-all hover:text-[#999]"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                                <li class="px-[10px] "><a href="#" class="text-[#c0b596] transition-all hover:text-[#999]"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-span-4 md:col-span-6">
-                    <div class="overflow-hidden relative shadow-[1px_1px_5px_rgba(0,0,5,8%)] group">
-                        <div class="expert-img">
-                            <img class="w-full" src="assets/images/expert/6.jpg" alt="">
-                        </div>
-                        <div class="relative text-center mt-[-40px] bg-[#f5f5f5] transform translate-y-[40px] transition ease-in-out duration-300  group-hover:translate-y-0 group-hover:bg-[#fff]">
-                            <h3 class="text-[24px] col:text-[20px] font-medium pt-[30px] pb-[8px]  font-heading-font"><a href="Attorneys-single.html" class="text-[#282e3f] hover:text-[#ada282] transition-all">Darcy Alec</a></h3>
-                            <span class="text-[#ada282] text-[16px] font-normal">Criminal Lawyer</span>
-                            <ul class="flex justify-center my-[20px] transition ease-in-out">
-                                <li class="px-[10px] "><a href="#" class="text-[#c0b596] transition-all hover:text-[#999]"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                                <li class="px-[10px] "><a href="#" class="text-[#c0b596] transition-all hover:text-[#999]"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                                <li class="px-[10px] "><a href="#" class="text-[#c0b596] transition-all hover:text-[#999]"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
     <!--end barristar-team-area  -->
-
-    <!-- start barristar-counter-section -->
-    <section class="relative -z-10 bg-[url('../images/counter/1.html')] bg-no-repeat bg-center bg-cover overflow-hidden pt-[100px] pb-[95px] ">
-        <div class="wraper">
-            <div class="grid grid-cols-12 gap-3">
-                <div class="col-span-6 md:col-span-6 sm:col-span-12">
-                    <div class="counter-grids relative overflow-hidden">
-                        <div class="w-[48%] float-left pt-[50px] pb-[12px] mr-[5px] bg-[#c0b59633] mb-[5px] text-center sm:flex-none col:w-full">
-                            <div>
-                                <h2 class=" text-[50px] sm:text-[30px] font-bold text-white "><span class="odometer" data-count="95">00</span>%</h2>
-                            </div>
-                            <p class=" text-[18px] fonts-normal pt-[10px] text-[#c0b596]">Cases Won</p>
-                        </div>
-                        <div class="w-[48%] float-left pt-[50px] pb-[12px] mr-[5px] bg-[#c0b59633] mb-[5px] text-center sm:flex-none col:w-full">
-                            <div>
-                                <h2 class=" text-[50px] sm:text-[30px] font-bold text-white "><span class="odometer" data-count="863">00</span></h2>
-                            </div>
-                            <p class=" text-[18px] fonts-normal pt-[10px] text-[#c0b596]">Trusted Client</p>
-                        </div>
-                        <div class="w-[48%] float-left pt-[50px] pb-[12px] mr-[5px] bg-[#c0b59633] mb-[5px] text-center sm:flex-none col:w-full">
-                            <div>
-                                <h2 class=" text-[50px] sm:text-[30px] font-bold text-white "><span class="odometer" data-count="126">00</span>+</h2>
-                            </div>
-                            <p class=" text-[18px] fonts-normal pt-[10px] text-[#c0b596]">Dedicated Lawyer</p>
-                        </div>
-                        <div class="w-[48%] float-left pt-[50px] pb-[12px] mr-[5px] bg-[#c0b59633] mb-[5px] text-center sm:flex-none col:w-full">
-                            <div>
-                                <h2 class=" text-[50px] sm:text-[30px] font-bold text-white "><span class="odometer" data-count="25">00</span>%</h2>
-                            </div>
-                            <p class=" text-[18px] fonts-normal pt-[10px] text-[#c0b596]">Case Dismissed</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- end barristar-counter-section -->
-
-    <!-- start barristar-blog-section -->
-    <section class="bg-[#f5f5f5] pt-[94px] pb-[70px]">
-        <div class="wraper">
-            <div class="col-span-12 text-center">
-                <div class="mb-[60px]">
-                    <span class="text-[16px] text-[#ada282]">From Our Blog</span>
-                    <h2 class=" text-[36px] md:text-[26px] font-medium text-[#333] pb-[20px]
-                       relative before:absolute before:content-[''] before:left-[50%] before:bottom-0
-                       before:transform before:-translate-x-1/2 before:w-[60px] before:h-[3px] before:bg-[#c0b596]">Latest News</h2>
-                </div>
-            </div>
-            <div class="grid grid-cols-12 gap-4">
-                <div class="col-span-4 md:col-span-6 col:col-span-12">
-                    <div class="mb-[30px] group">
-                        <div class="transition ease-in-out duration-300">
-                            <img class="w-full transition ease-in-out duration-300 group-hover:grayscale" src="assets/images/blog/1.jpg" alt="">
-                        </div>
-                        <div class="bg-white pt-[20px] px-[20px] pb-[30px]">
-                            <h3 class="text-[24px] leading-[36px] font-heading-font font-medium mb-[20px]">
-                                <a href="blog-single.html" class="text-[#000] transition ease-in-out duration-300 hover:text-[#c0b596]">Justice May For You If  You Are Innocent</a>
-                            </h3>
-                            <ul class="flex items-center">
-                                <li class="text-[#c0b596]"><img class="w-[40px] h-[40px] rounded-[50%]" src="assets/images/blog-page/6.jpg" alt=""></li>
-                                <li class="text-[#c0b596] px-[10px]"><a href="#" class="text-[#666]">By Aliza</a></li>
-                                <li class="text-[#c0b596] relative px-[10px] before:absolute before:content-[''] before:left-0 before:top-1/2
-                                    before:w-[2px] before:h-[15px] before:bg-[#ccc] before:transform before:-translate-y-1/2"> Oct 12,2018</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-span-4 md:col-span-6 col:col-span-12">
-                    <div class="mb-[30px] group">
-                        <div class="transition ease-in-out duration-300">
-                            <img class="w-full transition ease-in-out duration-300 group-hover:grayscale" src="assets/images/blog/2.jpg" alt="">
-                        </div>
-                        <div class="bg-white pt-[20px] px-[20px] pb-[30px]">
-                            <h3 class="text-[24px] leading-[36px] font-heading-font font-medium mb-[20px]">
-                                <a href="blog-single.html" class="text-[#000] transition ease-in-out duration-300 hover:text-[#c0b596]">Justice May For You If  You Are Innocent</a>
-                            </h3>
-                            <ul class="flex items-center">
-                                <li class="text-[#c0b596]"><img class="w-[40px] h-[40px] rounded-[50%]" src="assets/images/blog-page/6.jpg" alt=""></li>
-                                <li class="text-[#c0b596] px-[10px]"><a href="#" class="text-[#666]">By Aliza</a></li>
-                                <li class="text-[#c0b596] relative px-[10px] before:absolute before:content-[''] before:left-0 before:top-1/2
-                                    before:w-[2px] before:h-[15px] before:bg-[#ccc] before:transform before:-translate-y-1/2"> Oct 12,2018</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-span-4 md:col-span-6 col:col-span-12">
-                    <div class="mb-[30px] group">
-                        <div class="transition ease-in-out duration-300">
-                            <img class="w-full transition ease-in-out duration-300 group-hover:grayscale" src="assets/images/blog/3.jpg" alt="">
-                        </div>
-                        <div class="bg-white pt-[20px] px-[20px] pb-[30px]">
-                            <h3 class="text-[24px] leading-[36px] font-heading-font font-medium mb-[20px]">
-                                <a href="blog-single.html" class="text-[#000] transition ease-in-out duration-300 hover:text-[#c0b596]">Justice May For You If  You Are Innocent</a>
-                            </h3>
-                            <ul class="flex items-center">
-                                <li class="text-[#c0b596]"><img class="w-[40px] h-[40px] rounded-[50%]" src="assets/images/blog-page/6.jpg" alt=""></li>
-                                <li class="text-[#c0b596] px-[10px]"><a href="#" class="text-[#666]">By Aliza</a></li>
-                                <li class="text-[#c0b596] relative px-[10px] before:absolute before:content-[''] before:left-0 before:top-1/2
-                                    before:w-[2px] before:h-[15px] before:bg-[#ccc] before:transform before:-translate-y-1/2"> Oct 12,2018</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- end barristar-blog-section -->
-
-    <!-- start social-newsletter-section -->
-    <section class="bg-[#272c3f] pt-[70px] pb-[80px]">
-        <div class="wraper">
-            <div class="grid grid-cols-12 gap-3">
-                <div class="col-span-3 md:col-span-2 "></div>
-                <div class="col-span-6 md:col-span-8 col:col-span-12">
-                    <div class="text-center max-w-[443px] col:w-full mx-auto">
-                        <h3 class="text-[30px] sm:text-[22px] font-medium mb-[40px] sm:mb-[30px] text-[#c0b596]">Subscribe  Newsletter</h3>
-                        <form class="relative">
-                            <input type="text" class="w-full bg-transparent h-[50px] text-white py-[6px]
-                                pr-[80px] pl-[30px] col:pl-[10px] border border-[#c0b596] focus:outline-0  rounded-[5px]" placeholder="Enter Your Email Address...">
-                            <button type="submit" class="bg-[#c0b596] text-white border-0 outline-0 absolute right-0 top-0 w-[125px] col:w-[90px] h-[50px]">subscribe</button>
-                        </form>
-                    </div>
-                </div>
-                <div class="col-span-3 md:col-span-2"></div>
-            </div>
-        </div>
-        <!-- end container -->
-    </section>
-    <!-- end social-newsletter-section -->
 
     <!-- start wpo-site-footer -->
     <footer class="relative bg-[#151a30] z-10">

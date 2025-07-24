@@ -4,9 +4,12 @@ use App\Models\Client;
 use App\Models\Lawyer;
 use App\Models\LegalCase;
 use Carbon\Carbon;
+use Livewire\Attributes\Title;
 use Livewire\Volt\Component;
 
-new class extends Component {
+new
+#[Title('Dashboard')]
+class extends Component {
 
     public int $totalCases = 0;
     public int $totalLawyers = 0;
@@ -40,7 +43,6 @@ new class extends Component {
         });
 
 
-
     }
 }; ?>
 
@@ -53,7 +55,8 @@ new class extends Component {
                     <div class="space-y-1">
                         <flux:heading size="xl" level="1">Total Kasus</flux:heading>
                         <flux:text>Total keseluruhan kasus</flux:text>
-                        <flux:text size="xl" variant="strong">{{ $this->lawyerHandlingCases[0]['cases'] }} Kasus</flux:text>
+                        <flux:text size="xl" variant="strong">{{ $this->lawyerHandlingCases[0]['cases'] }}Kasus
+                        </flux:text>
                     </div>
                 </div>
             </div>
@@ -63,7 +66,8 @@ new class extends Component {
                     <div class="space-y-1">
                         <flux:heading size="xl" level="1">Kasus Berjalan</flux:heading>
                         <flux:text>Total keseluruhan kasus ditangani</flux:text>
-                        <flux:text size="xl" variant="strong">{{ $this->lawyerHandlingCases[0]['activeCases'] }} Kasus</flux:text>
+                        <flux:text size="xl" variant="strong">{{ $this->lawyerHandlingCases[0]['activeCases'] }}Kasus
+                        </flux:text>
                     </div>
                 </div>
             </div>
@@ -73,7 +77,8 @@ new class extends Component {
                     <div class="space-y-1">
                         <flux:heading size="xl" level="1">Kasus Selesai</flux:heading>
                         <flux:text>Total keseluruhan kasus selesai ditangani</flux:text>
-                        <flux:text size="xl" variant="strong">{{ $this->lawyerHandlingCases[0]['closedCases'] }} Klien</flux:text>
+                        <flux:text size="xl" variant="strong">{{ $this->lawyerHandlingCases[0]['closedCases'] }}Klien
+                        </flux:text>
                     </div>
                 </div>
             </div>
@@ -83,12 +88,15 @@ new class extends Component {
                     <div class="space-y-1">
                         <flux:heading size="xl" level="1">Menunggu Persetujuan</flux:heading>
                         <flux:text>Total kasus yang menunggu persetujuan pimpinan</flux:text>
-                        <flux:text size="xl" variant="strong">{{ $this->lawyerHandlingCases[0]['verifiedCases'] }} Kasus</flux:text>
+                        <flux:text size="xl" variant="strong">{{ $this->lawyerHandlingCases[0]['verifiedCases'] }}
+                            Kasus
+                        </flux:text>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="flex justify-center items-center p-6 border border-zinc-200 dark:border-zinc-700 rounded-lg bg-zinc-50 dark:bg-zinc-900">
+        <div
+            class="flex justify-center items-center p-6 border border-zinc-200 dark:border-zinc-700 rounded-lg bg-zinc-50 dark:bg-zinc-900">
             <div id="chart_case_by_type"></div>
         </div>
     </div>
@@ -147,6 +155,7 @@ new class extends Component {
             }
 
             let caseChart, typeChart;
+
             function renderCharts() {
                 if (typeChart) typeChart.destroy();
 
@@ -164,7 +173,7 @@ new class extends Component {
                 }
                 renderCharts();
             });
-        }, { once: true });
+        }, {once: true});
     </script>
     @endscript
 @endpushonce
