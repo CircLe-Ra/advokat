@@ -32,13 +32,13 @@
                             <div class="flex items-center gap-2 px-1 py-1.5 text-start text-sm">
                                 <span class="relative flex h-8 w-8 shrink-0 overflow-hidden rounded-lg">
                                     @if(auth()->user()->roles()->first()->name === 'klien')
-                                        @if (auth()->user()->client->client_image)
+                                        @if (auth()->user()->client->client_image ?? false)
                                             <flux:avatar size="xl" class="size-full" :src="asset('storage/' . auth()->user()->client->client_image)" :name="auth()->user()->name" :initials="auth()->user()->initials()" />
                                         @else
                                             {{ auth()->user()->initials() }}
                                         @endif
                                     @elseif(auth()->user()->roles()->first()->name === 'pengacara')
-                                        @if(auth()->user()->lawyer->photo)
+                                        @if(auth()->user()->lawyer->photo ?? false)
                                             <flux:avatar size="xl" class="size-full" :name="auth()->user()->name" :src="asset('storage/' . auth()->user()->lawyer->photo)" :initials="auth()->user()->initials()" />
                                         @else
                                             {{ auth()->user()->initials() }}   
