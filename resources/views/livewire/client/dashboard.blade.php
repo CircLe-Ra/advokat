@@ -65,7 +65,7 @@ class extends Component {
                     <div class="space-y-1">
                         <flux:heading size="xl" level="1">Total Kasus</flux:heading>
                         <flux:text>Total keseluruhan kasus yang anda ajukan</flux:text>
-                        <flux:text size="xl" variant="strong">{{ $this->clientHandlingCases[0]['cases'] ?? 0 }} Kasus
+                        <flux:text size="xl" variant="strong">{{ isset($this->clientHandlingCases[0]['cases']) ? $this->clientHandlingCases[0]['cases'] : 0 }} Kasus
                         </flux:text>
                     </div>
                 </div>
@@ -76,7 +76,7 @@ class extends Component {
                     <div class="space-y-1">
                         <flux:heading size="xl" level="1">Kasus Berjalan</flux:heading>
                         <flux:text>Total keseluruhan kasus anda yang ditangani</flux:text>
-                        <flux:text size="xl" variant="strong">{{ $this->clientHandlingCases[0]['activeCases'] ?? 0 }} Kasus
+                        <flux:text size="xl" variant="strong">{{ isset($this->clientHandlingCases[0]['activeCases']) ? $this->clientHandlingCases[0]['activeCases'] : 0 }} Kasus
                         </flux:text>
                     </div>
                 </div>
@@ -87,7 +87,7 @@ class extends Component {
                     <div class="space-y-1">
                         <flux:heading size="xl" level="1">Kasus Selesai</flux:heading>
                         <flux:text>Total keseluruhan kasus selesai ditangani</flux:text>
-                        <flux:text size="xl" variant="strong">{{ $this->clientHandlingCases[0]['closedCases'] ?? 0 }} Klien
+                        <flux:text size="xl" variant="strong">{{ isset($this->clientHandlingCases[0]['closedCases']) ?  $this->clientHandlingCases[0]['closedCases'] : 0 }} Klien
                         </flux:text>
                     </div>
                 </div>
@@ -99,7 +99,7 @@ class extends Component {
                         <flux:heading size="xl" level="1">Menunggu Persetujuan</flux:heading>
                         <flux:text>Total kasus yang menunggu persetujuan pimpinan</flux:text>
                         <flux:text size="xl" variant="strong">
-                            {{ $this->clientHandlingCases[0]['verifiedCases'] ?? 0 }} Kasus
+                            {{ isset($this->clientHandlingCases[0]['verifiedCases']) ?  $this->clientHandlingCases[0]['verifiedCases'] : 0 }} Kasus
                         </flux:text>
                     </div>
                 </div>
