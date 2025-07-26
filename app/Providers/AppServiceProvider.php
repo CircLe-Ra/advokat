@@ -6,6 +6,7 @@ use App\Facades\PusherBeams;
 use App\Service\PusherBeamService;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\URL;
 
 class AppServiceProvider extends ServiceProvider
 {
