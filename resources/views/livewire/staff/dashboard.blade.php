@@ -80,7 +80,7 @@ new class extends Component {
                     <div class="space-y-1">
                         <flux:heading size="xl" level="1">Total Kasus</flux:heading>
                         <flux:text>Total keseluruhan kasus</flux:text>
-                        <flux:text size="xl" variant="strong">{{ $this->totalCases }} Kasus</flux:text>
+                        <flux:text size="xl" variant="strong">{{ $this->totalCases ?? 0 }} Kasus</flux:text>
                     </div>
                 </div>
             </div>
@@ -90,7 +90,7 @@ new class extends Component {
                     <div class="space-y-1">
                         <flux:heading size="xl" level="1">Total Pengacara</flux:heading>
                         <flux:text>Total keseluruhan pengacara</flux:text>
-                        <flux:text size="xl" variant="strong">{{ $this->totalLawyers }} Pengacara</flux:text>
+                        <flux:text size="xl" variant="strong">{{ $this->totalLawyers ?? 0 }} Pengacara</flux:text>
                     </div>
                 </div>
             </div>
@@ -100,7 +100,7 @@ new class extends Component {
                     <div class="space-y-1">
                         <flux:heading size="xl" level="1">Total Klien</flux:heading>
                         <flux:text>Total keseluruhan klien terdaftar</flux:text>
-                        <flux:text size="xl" variant="strong">{{ $this->totalClients }} Klien</flux:text>
+                        <flux:text size="xl" variant="strong">{{ $this->totalClients ?? 0 }} Klien</flux:text>
                     </div>
                 </div>
             </div>
@@ -110,7 +110,7 @@ new class extends Component {
                     <div class="space-y-1">
                         <flux:heading size="xl" level="1">Total Kasus Berjalan</flux:heading>
                         <flux:text>Total kasus ditangani saat ini</flux:text>
-                        <flux:text size="xl" variant="strong">{{ $this->totalActiveCases }} Kasus</flux:text>
+                        <flux:text size="xl" variant="strong">{{ $this->totalActiveCases ?? 0 }} Kasus</flux:text>
                     </div>
                 </div>
             </div>

@@ -55,7 +55,7 @@ class extends Component {
                     <div class="space-y-1">
                         <flux:heading size="xl" level="1">Total Kasus</flux:heading>
                         <flux:text>Total keseluruhan kasus</flux:text>
-                        <flux:text size="xl" variant="strong">{{ $this->lawyerHandlingCases[0]['cases'] }}Kasus
+                        <flux:text size="xl" variant="strong">{{ $this->lawyerHandlingCases[0]['cases'] ?? 0 }}Kasus
                         </flux:text>
                     </div>
                 </div>
@@ -66,7 +66,7 @@ class extends Component {
                     <div class="space-y-1">
                         <flux:heading size="xl" level="1">Kasus Berjalan</flux:heading>
                         <flux:text>Total keseluruhan kasus ditangani</flux:text>
-                        <flux:text size="xl" variant="strong">{{ $this->lawyerHandlingCases[0]['activeCases'] }}Kasus
+                        <flux:text size="xl" variant="strong">{{ $this->lawyerHandlingCases[0]['activeCases'] ?? 0 }}Kasus
                         </flux:text>
                     </div>
                 </div>
@@ -77,7 +77,7 @@ class extends Component {
                     <div class="space-y-1">
                         <flux:heading size="xl" level="1">Kasus Selesai</flux:heading>
                         <flux:text>Total keseluruhan kasus selesai ditangani</flux:text>
-                        <flux:text size="xl" variant="strong">{{ $this->lawyerHandlingCases[0]['closedCases'] }}Klien
+                        <flux:text size="xl" variant="strong">{{ $this->lawyerHandlingCases[0]['closedCases'] ?? 0 }}Klien
                         </flux:text>
                     </div>
                 </div>
@@ -88,7 +88,7 @@ class extends Component {
                     <div class="space-y-1">
                         <flux:heading size="xl" level="1">Menunggu Persetujuan</flux:heading>
                         <flux:text>Total kasus yang menunggu persetujuan pimpinan</flux:text>
-                        <flux:text size="xl" variant="strong">{{ $this->lawyerHandlingCases[0]['verifiedCases'] }}
+                        <flux:text size="xl" variant="strong">{{ $this->lawyerHandlingCases[0]['verifiedCases'] ?? 0 }}
                             Kasus
                         </flux:text>
                     </div>
@@ -111,7 +111,7 @@ class extends Component {
         document.addEventListener('livewire:navigated', () => {
             function getCaseTypeChart(isDark) {
                 return {
-                    series: @json($this->lawyerHandlingCases[0]['categoryCases']),
+                    series: @json($this->lawyerHandlingCases[0]['categoryCases'] ?? []),
                     chart: {
                         width: 380,
                         type: 'pie',
