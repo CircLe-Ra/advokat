@@ -158,7 +158,7 @@ new class extends Component {
             <div class="p-6 border border-zinc-200 dark:border-zinc-700 mt-1 rounded-lg bg-zinc-50 dark:bg-zinc-900">
                 <flux:heading size="xl" level="1">Hasil Pertemuan</flux:heading>
                 <flux:subheading class="mb-4">Hasil pertemuan klien dengan pengacara.</flux:subheading>
-                <livewire:trix-editor :value="$this->notes" :disabled="true" />
+                <livewire:trix-editor :value="$this->notes" :disabled="$this->meeting->status == 'cancelled' || $this->meeting->meetingFileAdditions->count() > 0" />
             </div>
         </div>
     </div>
