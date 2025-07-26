@@ -75,9 +75,17 @@ class extends Component {
 
             PusherBeams::send(
                 user_id: $case->client->user_id,
-                title: 'Konformasi Kasus',
+                title: 'Konfirmasi Kasus',
                 body: $body,
                 deep_link: route('client.case'),
+                is_user: true
+            );
+
+            PusherBeams::send(
+                user_id: $this->lawyer,
+                title: 'Konfirmasi Kasus',
+                body: $body,
+                deep_link: route('lawyer.case'),
                 is_user: true
             );
 

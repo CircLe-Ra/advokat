@@ -1,5 +1,6 @@
 <?php
 
+use App\Facades\PusherBeams;
 use App\Models\Chat;
 use App\Models\User;
 use App\Notifications\ChatNotification;
@@ -35,7 +36,7 @@ new class extends Component {
     #[On('update-message-client')]
     public function updateMessageList()
     {
-        $this->messages = $this->loadMessages($this->staff);
+        $this->redirect(route('client.chat', $this->staff), navigate: true);
     }
 
     #[Computed]
@@ -59,6 +60,15 @@ new class extends Component {
                 message: $this->messageToSend,
                 to: $this->staff
             ));
+
+            PusherBeams::send(
+                user_id: $this->staff,
+                title: 'Pesan Baru',
+                body: $this->messageToSend,
+                deep_link: route('staff.chat', Auth::id()),
+                is_user: true
+            );
+
             $this->messages = $this->loadMessages($this->staff);
             $this->reset(['messageToSend']);
 //            $this->dispatch('toast', message: 'Pesan berhasil dikirim');
@@ -152,35 +162,36 @@ new class extends Component {
                     @if($this->staff)
                         <div
                             class="flex flex-row items-center h-16 rounded-xl dark:bg-zinc-600 bg-zinc-100 w-full px-2">
-                            <div class="flex-grow">
-                                <div class="relative w-full">
-                                    <input type="text" wire:model="messageToSend"
-                                           class="flex w-full dark:text-zinc-100 border border-zinc-200 bg-white dark:border-zinc-700 dark:bg-zinc-800 rounded-lg focus:outline-none focus:border-indigo-300 pl-4 h-10"/>
-                                    <button
-                                        class="absolute flex items-center justify-center h-full w-12 right-0 top-0 text-zinc-400 hover:text-zinc-600">
-                                        <svg
-                                            class="w-6 h-6"
-                                            fill="none"
-                                            stroke="currentColor"
-                                            viewBox="0 0 24 24"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                        >
-                                            <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                stroke-width="2"
-                                                d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                                            ></path>
-                                        </svg>
-                                    </button>
+                                <div class="flex-grow">
+                                    <div class="relative w-full">
+                                        <input type="text" wire:model="messageToSend"
+                                               class="flex w-full dark:text-zinc-100 border border-zinc-200 bg-white dark:border-zinc-700 dark:bg-zinc-800 rounded-lg focus:outline-none focus:border-indigo-300 pl-4 h-10"/>
+                                        <button class="absolute flex items-center justify-center h-full w-12 right-0 top-0 text-zinc-400 hover:text-zinc-600">
+                                            <svg
+                                                class="w-6 h-6"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                viewBox="0 0 24 24"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                            >
+                                                <path
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    stroke-width="2"
+                                                    d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                                ></path>
+                                            </svg>
+                                        </button>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="ml-4">
-                                <flux:button variant="primary" class="ml-4 cursor-pointer"
-                                             icon:trailing="paper-airplane" wire:click="$js.sendMessage">
-                                    Kirim
-                                </flux:button>
-                            </div>
+                                <div class="ml-4">
+                                    <flux:button variant="primary" class="ml-4 cursor-pointer" icon:trailing="paper-airplane" wire:click="$js.sendMessage">
+                                        <div id="loader" class="hidden">
+                                            <flux:icon.loader-circle class="animate-spin  mr-3 h-5 w-5 text-white" />
+                                        </div>
+                                        <div id="text_loader" class="block">Kirim</div>
+                                    </flux:button>
+                                </div>
                         </div>
                     @endif
                 </div>
@@ -200,8 +211,14 @@ new class extends Component {
             }
 
             $js('sendMessage', async () => {
+                let loader = document.querySelector('#loader');
+                loader.style.display = 'block';
+                let text_loader = document.querySelector('#text_loader');
+                text_loader.style.display = 'none';
                 await $wire.send();
                 if (messagesContainer) {
+                    loader.style.display = 'none';
+                    text_loader.style.display = 'block';
                     messagesContainer.scrollTop = messagesContainer.scrollHeight;
                 }
             });

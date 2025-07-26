@@ -1,5 +1,6 @@
 <?php
 
+use App\Facades\PusherBeams;
 use App\Models\Chat;
 use App\Models\User;
 use App\Notifications\ChatNotification;
@@ -35,7 +36,7 @@ new class extends Component {
     #[On('update-message-admin')]
     public function updateMessageList()
     {
-        $this->messages = $this->loadMessages($this->client);
+        $this->redirect(route('staff.chat', $this->client), navigate: true);
     }
 
     #[Computed]
@@ -65,7 +66,13 @@ new class extends Component {
                 to: $this->client
             ));
 
-
+            PusherBeams::send(
+                user_id: $this->client,
+                title: 'Pesan Baru',
+                body: $this->messageToSend,
+                deep_link: route('client.chat', Auth::id()),
+                is_user: true
+            );
 
             $this->messages = $this->loadMessages($this->client);
             $this->reset(['messageToSend']);
@@ -184,8 +191,11 @@ new class extends Component {
                                 </div>
                             </div>
                             <div class="ml-4">
-                                <flux:button variant="primary" class="ml-4" icon:trailing="paper-airplane"
-                                             wire:click="$js.sendMessage">Kirim
+                                <flux:button variant="primary" class="ml-4" icon:trailing="paper-airplane" wire:click="$js.sendMessage">
+                                    <div id="loader" class="hidden">
+                                        <flux:icon.loader-circle class="animate-spin  mr-3 h-5 w-5 text-white" />
+                                    </div>
+                                    <div id="text_loader" class="block">Kirim</div>
                                 </flux:button>
                             </div>
                         </div>
@@ -208,9 +218,14 @@ new class extends Component {
             }
 
             $js('sendMessage', async () => {
+                let loader = document.querySelector('#loader');
+                loader.style.display = 'block';
+                let text_loader = document.querySelector('#text_loader');
+                text_loader.style.display = 'none';
                 await $wire.send();
-                const messagesContainer = document.querySelector('.flex.flex-col.h-full.overflow-x-auto');
                 if (messagesContainer) {
+                    loader.style.display = 'none';
+                    text_loader.style.display = 'block';
                     messagesContainer.scrollTop = messagesContainer.scrollHeight;
                 }
             });
