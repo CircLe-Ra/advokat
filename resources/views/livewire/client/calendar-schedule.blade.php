@@ -18,5 +18,5 @@ new class extends Component {
 
 <div class="space-y-2">
     <x-partials.breadcrumbs active="Jadwal Konsultasi & Sidang Pengadilan"/>
-    <livewire:calendar url="/api/client-schedule/{{ auth()->user()->client->id }}" />
+    <livewire:calendar url="/api/client-schedule/{{ auth()->user()->client->id ?? 0 }}" />
 </div>
