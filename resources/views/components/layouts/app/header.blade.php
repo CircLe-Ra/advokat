@@ -32,9 +32,17 @@
                             <div class="flex items-center gap-2 px-1 py-1.5 text-start text-sm">
                                 <span class="relative flex h-8 w-8 shrink-0 overflow-hidden rounded-lg">
                                     @if(auth()->user()->roles()->first()->name === 'klien')
-                                    <flux:avatar size="xl" class="size-full" :src="asset('storage/' . auth()->user()->client->client_image)" :name="auth()->user()->name" :initials="auth()->user()->initials()" />
+                                        @if (auth()->user()->client->client_image)
+                                            <flux:avatar size="xl" class="size-full" :src="asset('storage/' . auth()->user()->client->client_image)" :name="auth()->user()->name" :initials="auth()->user()->initials()" />
+                                        @else
+                                            {{ auth()->user()->initials() }}
+                                        @endif
                                     @elseif(auth()->user()->roles()->first()->name === 'pengacara')
-                                    <flux:avatar size="xl" class="size-full" :name="auth()->user()->name" :src="asset('storage/' . auth()->user()->lawyer->photo)" :initials="auth()->user()->initials()" />
+                                        @if(auth()->user()->lawyer->photo)
+                                            <flux:avatar size="xl" class="size-full" :name="auth()->user()->name" :src="asset('storage/' . auth()->user()->lawyer->photo)" :initials="auth()->user()->initials()" />
+                                        @else
+                                            {{ auth()->user()->initials() }}   
+                                        @endif
                                     @else
                                         <span
                                             class="flex h-full w-full items-center justify-center rounded-lg bg-neutral-200 text-black dark:bg-neutral-700 dark:text-white"
