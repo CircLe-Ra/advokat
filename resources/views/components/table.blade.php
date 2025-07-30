@@ -2,7 +2,7 @@
 @php
     $thead = \Str::of($thead)->explode(',');
 @endphp
-<div class=" p-6 print:p-0 print:mt-5 border border-zinc-200 dark:border-zinc-700 mt-2 rounded-lg bg-zinc-50 print:bg-white print:border-0 dark:bg-zinc-900 {{ $mainClass }}">
+<div class=" p-6 print:p-0 print:mt-5 border border-zinc-100 shadow-md dark:border-zinc-700 mt-2 rounded-lg bg-zinc-100 print:bg-white print:border-0 dark:bg-zinc-900 {{ $mainClass }}">
     @isset($label)
         <flux:heading size="xl" level="1" class="print:hidden">{{ $label }}</flux:heading>
     @endisset
@@ -17,7 +17,7 @@
     @isset($actionHead)
         {{ $actionHead }}
     @endisset
-    <div class="relative overflow-x-auto shadow-md sm:rounded-lg border border-zinc-200 dark:border-zinc-700 print:mt-5">
+    <div class="relative overflow-x-auto sm:rounded-lg border border-zinc-200 dark:border-zinc-700 print:mt-5">
         <table class="w-full text-sm text-left rtl:text-right text-zinc-500 dark:text-zinc-400 ">
             <thead class="text-xs text-zinc-700 uppercase bg-zinc-200 dark:bg-zinc-700 dark:text-zinc-100 ">
             <tr>
@@ -35,7 +35,7 @@
                 @endif
             </tr>
             </thead>
-            <tbody>
+            <tbody class="text-zinc-900 dark:text-zinc-100 bg-white dark:bg-zinc-800">
             {{ $slot }}
             </tbody>
         </table>

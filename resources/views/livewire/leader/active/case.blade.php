@@ -18,11 +18,9 @@ class extends Component {
     #[Computed]
     public function cases()
     {
-        return LegalCase::where(function ($query) {
-                $query->where('number', 'like', '%' . $this->search . '%')
-                    ->orWhere('title', 'like', '%' . $this->search . '%')
-                    ->orWhere('summary', 'like', '%' . $this->search . '%');
-            })->latest()->paginate($this->show, pageName: 'leader-case-page');
+        return LegalCase::whereIn('status', ['accepted','rejected','closed'])->where(function ($query) {
+            $query->whereAny(['number', 'title', 'summary'], 'like', '%' . $this->search . '%');
+        })->latest()->paginate($this->show, pageName: 'leader-case-page');
     }
 
 
@@ -67,7 +65,7 @@ class extends Component {
                         <x-badge :status="$case->status"/>
                     </td>
                     <td>
-                        <flux:button variant="outline" icon:trailing="arrow-right" size="sm" class="cursor-pointer dark:bg-zinc-800 dark:hover:bg-zinc-800" href="{{ route('leader.active.case.page', ['case' => $case->id, 'status' => 'schedule']) }}">
+                        <flux:button wire:navigate variant="outline" icon:trailing="arrow-right" size="sm" class="cursor-pointer dark:bg-zinc-800 dark:hover:bg-zinc-800" href="{{ route('leader.active.case.page', ['case' => $case->id, 'status' => 'schedule']) }}">
                             Detail
                         </flux:button>
                     </td>

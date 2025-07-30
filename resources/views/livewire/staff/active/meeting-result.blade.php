@@ -64,9 +64,9 @@ new class extends Component {
 <x-partials.sidebar :back="route('staff.active.page', ['id' => $this->meeting->legal_case_id, 'status' => 'schedule'], absolute: false)" :id-detail="$this->meeting->legalCase?->id" menu="staff-active-case"
                     active="Penanganan Kasus / Jadwal Pertemuan / {{ $this->meeting->legalCase?->title }} / Hasil Pertemuan">
     <x-slot:profile>
-        <div class="flex flex-col border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-800 flex-shrink-0">
+        <div class="flex flex-col  dark:border-zinc-700 dark:bg-zinc-800 flex-shrink-0">
             <div
-                class="flex flex-col items-center border border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900 w-full py-6 px-4 rounded-lg">
+                class="flex flex-col items-center border border-zinc-100 bg-zinc-100 shadow-md dark:border-zinc-700 dark:bg-zinc-900 w-full py-6 px-4 rounded-lg">
                 <flux:heading size="xl" class="text-center text-xl mb-2">PENGACARA</flux:heading>
                 <div class="h-20 w-20 rounded-full border border-zinc-200 dark:border-zinc-700 overflow-hidden">
                     <flux:avatar size="xl" class="size-full " :name="$this->meeting->legalCase?->lawyer->user->name"
@@ -104,7 +104,7 @@ new class extends Component {
     <div class="flex gap-2 justify-between">
         <div>
             <div class="w-full max-w-sm">
-                <div class="p-6 border border-zinc-200 dark:border-zinc-700 mt-1 rounded-lg bg-zinc-50 dark:bg-zinc-900">
+                <div class="p-6 border border-zinc-100 dark:border-zinc-700 rounded-lg bg-zinc-100 shadow-md dark:bg-zinc-900">
                     <flux:heading size="xl" level="1">Hasil Pertemuan</flux:heading>
                     <flux:text class="text-zinc-600 dark:text-zinc-400 mt-2 mb-6">
                         Hasil pertemuan klien dengan pengacara.
@@ -155,10 +155,10 @@ new class extends Component {
             </div>
         </div>
         <div>
-            <div class="p-6 border border-zinc-200 dark:border-zinc-700 mt-1 rounded-lg bg-zinc-50 dark:bg-zinc-900">
+            <div class="p-6 border border-zinc-100 dark:border-zinc-700 rounded-lg bg-zinc-100 shadow-md dark:bg-zinc-900">
                 <flux:heading size="xl" level="1">Hasil Pertemuan</flux:heading>
                 <flux:subheading class="mb-4">Hasil pertemuan klien dengan pengacara.</flux:subheading>
-                <livewire:trix-editor :value="$this->notes" :disabled="true" />
+                <livewire:trix-editor :value="$this->notes" />
             </div>
         </div>
     </div>

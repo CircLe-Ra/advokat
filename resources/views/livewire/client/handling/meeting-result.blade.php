@@ -69,9 +69,9 @@ new class extends Component {
                     :id-detail="$this->meeting->legalCase?->id" menu="client-active-case"
                     active="Penanganan Kasus / Jadwal Pertemuan / {{ $this->meeting->legalCase?->title }} / Hasil Pertemuan">
     <x-slot:profile>
-        <div class="flex flex-col border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-800 flex-shrink-0">
+        <div class="flex flex-col  dark:border-zinc-700 dark:bg-zinc-800 flex-shrink-0">
             <div
-                class="flex flex-col items-center border border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900 w-full py-6 px-4 rounded-lg">
+                class="flex flex-col items-center border border-zinc-100 bg-zinc-100 shadow-md dark:border-zinc-700 dark:bg-zinc-900 w-full py-6 px-4 rounded-lg">
                 <flux:heading size="xl" class="text-center text-xl mb-2">PENGACARA</flux:heading>
                 <div class="h-20 w-20 rounded-full border border-zinc-200 dark:border-zinc-700 overflow-hidden">
                     <flux:avatar size="xl" class="size-full " :name="$this->meeting->legalCase?->lawyer->user->name"
@@ -95,10 +95,10 @@ new class extends Component {
             </x-slot>
         </flux:callout>
     @endif
-    <div class="flex gap-2 justify-between">
+    <div class="flex gap-3 justify-between">
         <div>
             <div class="w-full min-w-xs">
-                <div class="p-6 border border-zinc-200 dark:border-zinc-700 mt-1 rounded-lg bg-white dark:bg-zinc-900">
+                <div class="p-6 border border-zinc-100 dark:border-zinc-700 rounded-lg bg-zinc-100 shadow-md dark:bg-zinc-900">
                     <flux:heading size="xl" level="1">Pemberkasan</flux:heading>
                     <flux:text class="text-zinc-600 dark:text-zinc-400 mt-2 mb-6">
                         Opsi penambahan berkas yang dibutuhkan.
@@ -122,7 +122,7 @@ new class extends Component {
                     </flux:fieldset>
                 </div>
                 @if($this->meeting->meetingFileAdditions->count())
-                    <div class="p-6 border border-zinc-200 dark:border-zinc-700 mt-2 rounded-lg bg-white dark:bg-zinc-900">
+                    <div class="p-6 border border-zinc-100 dark:border-zinc-700 rounded-lg bg-zinc-100 shadow-md mt-3 dark:bg-zinc-900">
                         <flux:heading size="xl" level="1">Penambahan Berkas</flux:heading>
                         <flux:text class="text-zinc-600 dark:text-zinc-400 mt-2 mb-4">
                             Berkas yang telah anda ditambahkan.
@@ -157,7 +157,7 @@ new class extends Component {
             </div>
         </div>
         <div class="w-full">
-            <div class="p-6 border border-zinc-200 dark:border-zinc-700 mt-1 rounded-lg bg-white dark:bg-zinc-900">
+            <div class="p-6 border border-zinc-100 dark:border-zinc-700 rounded-lg bg-zinc-100 shadow-md dark:bg-zinc-900">
                 <flux:heading size="xl" level="1">Catatan</flux:heading>
                 <flux:subheading class="mb-4">Ringkasan/Rangkuman pertemuan klien dengan pengacara.</flux:subheading>
                 @if($this->notes)

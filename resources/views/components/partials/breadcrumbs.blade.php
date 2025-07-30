@@ -5,7 +5,7 @@
         $moreThanOne = count($checkActive) > 1;
     }
 @endphp
-<div class="flex items-center px-6 {{ $action ? 'py-3' : ($back ? 'py-3' : 'py-[18px]') }} rounded-lg border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900">
+<div class="flex mb-3 items-center px-6 {{ $action ? 'py-3' : ($back ? 'py-3' : 'py-[18px]') }} rounded-lg border border-zinc-100 dark:border-zinc-700 bg-zinc-100 shadow-md dark:bg-zinc-900">
     @isset($back)
         <flux:button icon="arrow-left" size="sm" variant="ghost" class="cursor-pointer mr-1" wire:navigate href="{{ $back ? $back : '#' }}" />
     @endisset

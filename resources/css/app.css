@@ -30,6 +30,10 @@
     --color-accent-content: var(--color-blue-600);
     --color-accent-foreground: var(--color-white);
 
+    --color-danger: var(--color-red-500);
+    --color-danger-content: var(--color-red-600);
+    --color-danger-foreground: var(--color-white);
+
 }
 
 @layer theme {
@@ -41,7 +45,6 @@
 }
 
 @layer base {
-
     *,
     ::after,
     ::before,

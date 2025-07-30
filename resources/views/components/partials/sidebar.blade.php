@@ -1,6 +1,6 @@
 @props(['active', 'profile' => null,'action' => null, 'tabUrl' => null, 'menu' => null, 'back' => null, 'position' => 'left', 'menuInfo' => null, 'idDetail' => null])
 <div class="flex max-md:flex-col items-start {{ $position == 'right' ? 'flex-row-reverse' : '' }}">
-    <div class="w-full md:w-[250px] mx-2 space-y-2">
+    <div class="w-full md:w-[250px] {{ $position == 'right' ? 'ml-3' : 'mr-3' }} space-y-3">
         @isset($profile)
             {{ $profile }}
         @endisset
@@ -44,7 +44,7 @@
     <flux:separator class="md:hidden" />
     <div class="flex-1 max-md:pt-6 self-stretch">
         <x-partials.breadcrumbs :active="$active" :action="$action" :back="$back"/>
-        <div class="mt-1">
+        <div class="mt-3">
             {{ $slot }}
         </div>
     </div>

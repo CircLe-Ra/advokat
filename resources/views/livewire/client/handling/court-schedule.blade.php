@@ -101,9 +101,9 @@ new class extends Component {
 <x-partials.sidebar :back="route('client.case')" position="right" :id-detail="$this->case?->id" menu="client-active-case"
                     active="Penanganan Kasus / Jadwal Sidang / {{ $this->case?->title }}">
     <x-slot:profile>
-        <div class="flex flex-col border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-800 flex-shrink-0">
+        <div class="flex flex-col  dark:border-zinc-700 dark:bg-zinc-800 flex-shrink-0">
             <div
-                class="flex flex-col items-center border border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900 w-full py-6 px-4 rounded-lg">
+                class="flex flex-col items-center border border-zinc-100 bg-zinc-100 shadow-md dark:border-zinc-700 dark:bg-zinc-900 w-full py-6 px-4 rounded-lg">
                 <flux:heading size="xl" class="text-center text-xl mb-2">PENGACARA</flux:heading>
                 <div class="h-20 w-20 rounded-full border border-zinc-200 dark:border-zinc-700 overflow-hidden">
                     <flux:avatar size="xl" class="size-full " :name="$this->case->lawyer->user->name"

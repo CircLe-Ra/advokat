@@ -1,9 +1,24 @@
 @props(['menuInfo' => null])
-<flux:navlist wire:ignore class=" border border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900 p-4 rounded-lg">
+@php
+    $cases = App\Models\LegalCase::all()->map(function ($case) {
+        return [
+            'verified' => $case->where('status', 'verified')->count(),
+        ];
+    });
+@endphp
+<flux:navlist wire:ignore class=" border border-zinc-100 bg-zinc-100 shadow-md dark:border-zinc-700 dark:bg-zinc-900 p-4 rounded-lg">
     <flux:navlist.group expandable heading="Status Kasus">
         <flux:navlist.item class="py-5 text-base" :href="route('leader.case.validation', ['status' => 'verified'])" :current="isset(request()->uri()->pathSegments()[3]) && request()->uri()->pathSegments()[3] === 'verified'" wire:navigate>
             <div class="absolute -inset-y-[1px] w-[2px] -start-7 ms-4 {{ isset(request()->uri()->pathSegments()[3]) && request()->uri()->pathSegments()[3] === 'verified' ? 'bg-zinc-800 dark:bg-white' : 'bg-zinc-200 dark:bg-zinc-700' }}" ></div>
-            Diverifikasi Staf
+            <div class="flex items-center">
+                Diverifikasi Staf
+                @if ($cases[0]['verified'] > 0)
+                    <span class="absolute flex size-3 right-2">
+                          <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-danger opacity-75"></span>
+                          <span class="relative inline-flex size-3 rounded-full bg-danger-content"></span>
+                        </span>
+                @endif
+            </div>
         </flux:navlist.item>
         <flux:navlist.item class="py-5 text-base" :href="route('leader.case.validation', ['status' => 'rejected'])" :current="isset(request()->uri()->pathSegments()[3]) && request()->uri()->pathSegments()[3] === 'rejected'" wire:navigate>
             <div class="absolute -inset-y-[1px] w-[2px] -start-7 ms-4 {{ isset(request()->uri()->pathSegments()[3]) && request()->uri()->pathSegments()[3] === 'rejected' ? 'bg-zinc-800 dark:bg-white' : 'bg-zinc-200 dark:bg-zinc-700' }}" ></div>

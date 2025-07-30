@@ -206,7 +206,7 @@ class extends Component {
     }
 }; ?>
 
-<x-partials.sidebar menu="case" active="Kasus / Pengajuan Kasus">
+<x-partials.sidebar position="right" menu="case" active="Kasus / Pengajuan Kasus">
     @if($this->client)
         <x-slot name="menuInfo">
             <flux:callout icon="information-circle" color="red" class="mt-2">

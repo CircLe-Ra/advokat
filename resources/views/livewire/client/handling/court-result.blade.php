@@ -84,9 +84,9 @@ new class extends Component {
 <x-partials.sidebar position="right" :back="route('client.case.handling', ['case' => $this->court->legalCase?->id, 'status' => 'court-schedule'])" :id-detail="$this->court->legalCase?->id" menu="client-active-case"
                     active="Penanganan Kasus / Jadwal Sidang / {{ $this->court->legalCase?->title }} / Hasil Sidang">
     <x-slot:profile>
-        <div class="flex flex-col border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-800 flex-shrink-0">
+        <div class="flex flex-col  dark:border-zinc-700 dark:bg-zinc-800 flex-shrink-0">
             <div
-                class="flex flex-col items-center border border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900 w-full py-6 px-4 rounded-lg">
+                class="flex flex-col items-center border border-zinc-100 bg-zinc-100 shadow-md dark:border-zinc-700 dark:bg-zinc-900 w-full py-6 px-4 rounded-lg">
                 <flux:heading size="xl" class="text-center text-xl mb-2">PENGACARA</flux:heading>
                 <div class="h-20 w-20 rounded-full border border-zinc-200 dark:border-zinc-700 overflow-hidden">
                     <flux:avatar size="xl" class="size-full " :name="$this->court->legalCase?->lawyer->user->name"
@@ -113,7 +113,7 @@ new class extends Component {
 
     <x-card :label="__('Hasil Sidang')"
             :sub-label=" __('Hasil Persidangan, Pada :date', ['date' => Carbon::parse($this->court->date)->isoFormat('dddd, D MMMM Y')])"
-            main-class="flex-1">
+            main-class="flex-1" bg="zinc-100">
         @if($this->courtResults->count() > 0)
             <div
                 class="p-6 border border-zinc-200 dark:border-zinc-700 mt-1 rounded-lg bg-zinc-50 dark:bg-zinc-900 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">

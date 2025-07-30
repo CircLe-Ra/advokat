@@ -26,18 +26,17 @@ $classes = Flux::classes()
     ->add('px-3 h-8 flex items-center rounded-lg')
     ->add('relative') // This is here for the "active" bar at the bottom to be positioned correctly...
     ->add($square ? '' : 'px-2.5!')
-    ->add('text-zinc-500 dark:text-white/80 ')
+    ->add('text-white bg-zinc-800/10 dark:text-white/80 ')
     // Styles for when this link is the "current" one...
     ->add('data-current:after:absolute data-current:after:-bottom-3 data-current:after:inset-x-0 data-current:after:h-[2px]')
     ->add([
         '[--hover-fill:color-mix(in_oklab,_var(--color-accent-content),_transparent_90%)]',
-
     ])
     ->add(match ($accent) {
         true => [
-            'hover:text-zinc-800 dark:hover:text-white',
-            'data-current:text-(--color-accent-content) hover:data-current:text-(--color-accent-content) hover:bg-zinc-800/5 dark:hover:bg-white/10 hover:data-current:bg-(--hover-fill)',
-            'data-current:after:bg-(--color-accent-content)',
+            'hover:text-zinc-900 dark:hover:text-white',
+            'data-current:text-zinc-900 hover:data-current:text-zinc-900 hover:bg-zinc-50/[90%] dark:hover:bg-white/10 data-current:bg-zinc-50/[90%] hover:data-current:bg-zinc-50/[90%]',
+            'data-current:after:bg-zinc-800/90 dark:data-current:after:bg-white/[90%]',
         ],
         false => [
             'hover:text-zinc-800 dark:hover:text-white',

@@ -72,9 +72,15 @@ new class extends Component {
 }; ?>
 
 <div>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
-            <div class="p-6 border border-zinc-200 dark:border-zinc-700 rounded-lg bg-zinc-50 dark:bg-zinc-900">
+    <flux:callout wire:poll.visible class="mb-3 py-2.5 border border-zinc-100 bg-zinc-100 shadow-md dark:border-zinc-700 !rounded-lg dark:bg-zinc-900" icon="clock" variant="secondary" inline>
+        <div class="flex justify-between items-center">
+            <flux:callout.heading>{{ Carbon::now()->locale('id')->isoFormat('dddd, D MMMM Y - HH:mm:ss') }} WIT</flux:callout.heading>
+            <flux:callout.heading>Selamat Datang, {{ auth()->user()->name }}</flux:callout.heading>
+        </div>
+    </flux:callout>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-1">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <div class="p-6 border border-zinc-100 dark:border-zinc-700 rounded-lg bg-zinc-100 shadow-md dark:bg-zinc-900">
                 <flux:icon.square-activity class="h-10 w-10 text-zinc-900 dark:text-white"/>
                 <div class="flex justify-between items-center">
                     <div class="space-y-1">
@@ -84,7 +90,7 @@ new class extends Component {
                     </div>
                 </div>
             </div>
-            <div class="p-6 border border-zinc-200 dark:border-zinc-700 rounded-lg bg-zinc-50 dark:bg-zinc-900">
+            <div class="p-6 border border-zinc-100 dark:border-zinc-700 rounded-lg bg-zinc-100 shadow-md dark:bg-zinc-900">
                 <flux:icon.users class="h-10 w-10 text-zinc-900 dark:text-white"/>
                 <div class="flex justify-between items-center">
                     <div class="space-y-1">
@@ -94,7 +100,7 @@ new class extends Component {
                     </div>
                 </div>
             </div>
-            <div class="p-6 border border-zinc-200 dark:border-zinc-700 rounded-lg bg-zinc-50 dark:bg-zinc-900">
+            <div class="p-6 border border-zinc-100 dark:border-zinc-700 rounded-lg bg-zinc-100 shadow-md dark:bg-zinc-900">
                 <flux:icon.user-group class="h-10 w-10 text-zinc-900 dark:text-white"/>
                 <div class="flex justify-between items-center">
                     <div class="space-y-1">
@@ -104,7 +110,7 @@ new class extends Component {
                     </div>
                 </div>
             </div>
-            <div class="p-6 border border-zinc-200 dark:border-zinc-700 rounded-lg bg-zinc-50 dark:bg-zinc-900">
+            <div class="p-6 border border-zinc-100 dark:border-zinc-700 rounded-lg bg-zinc-100 shadow-md dark:bg-zinc-900">
                 <flux:icon.briefcase class="h-10 w-10 text-zinc-900 dark:text-white"/>
                 <div class="flex justify-between items-center">
                     <div class="space-y-1">
@@ -115,13 +121,13 @@ new class extends Component {
                 </div>
             </div>
         </div>
-        <div class="p-6 border border-zinc-200 dark:border-zinc-700 rounded-lg bg-zinc-50 dark:bg-zinc-900">
+        <div wire:ignore class="p-6 border border-zinc-100 dark:border-zinc-700 rounded-lg bg-zinc-100 shadow-md dark:bg-zinc-900">
             <div id="chart_case"></div>
         </div>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-2">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-3">
         @foreach($this->lawyerHandlingCases as $lawyer)
-            <div class="mt-2 p-6 border border-zinc-200 dark:border-zinc-700 rounded-lg bg-zinc-50 dark:bg-zinc-900">
+            <div class="mt-2 p-6 border border-zinc-100 dark:border-zinc-700 rounded-lg bg-zinc-100 shadow-md dark:bg-zinc-900">
                 <div class="flex justify-between items-center">
                     <div class="space-y-1">
                         <flux:heading size="xl" level="1">{{ $lawyer['name'] }}</flux:heading>
@@ -132,7 +138,7 @@ new class extends Component {
             </div>
         @endforeach
     </div>
-    <div class="mt-2 mb-6 p-6 border border-zinc-200 dark:border-zinc-700 rounded-lg bg-zinc-50 dark:bg-zinc-900">
+    <div wire:ignore class="mt-2 mb-6 p-6 border border-zinc-100 dark:border-zinc-700 rounded-lg bg-zinc-100 shadow-md dark:bg-zinc-900">
         <div id="chart_case_status"></div>
     </div>
 </div>

@@ -1,6 +1,6 @@
 <flux:navbar class="-mb-px max-lg:hidden ">
         @role('klien')
-            <flux:navbar.item icon="gauge" :href="route('client.dashboard')" :current="request()->routeIs('client.dashboard')" wire:navigate>Dashboard</flux:navbar.item>
+            <flux:navbar.item class="" icon="gauge" :href="route('client.dashboard')" :current="request()->routeIs('client.dashboard')" wire:navigate>Dashboard</flux:navbar.item>
             <flux:navbar.item icon="scale" :href="route('client.case')" :current="request()->routeIs('client.case*')" wire:navigate>Kasus</flux:navbar.item>
             <flux:navbar.item icon="calendar-days" :href="route('client.schedule')" :current="request()->routeIs('client.schedule*')" wire:navigate>Jadwal</flux:navbar.item>
         @endrole

@@ -23,7 +23,7 @@ $staticTextClasses = Flux::classes()
     ;
 
 $separatorClasses = Flux::classes()
-    ->add('mx-1 text-zinc-300 dark:text-white/80')
+    ->add('mx-1 text-zinc-400 dark:text-white/80')
     ->add('group-last/breadcrumb:hidden')
     ;
 
