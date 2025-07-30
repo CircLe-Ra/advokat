@@ -116,7 +116,7 @@ new class extends Component {
                     <flux:heading size="xl" level="1">Catatan</flux:heading>
                     <flux:subheading class="mb-4">Ringkasan/Rangkuman pertemuan klien dengan pengacara.</flux:subheading>
                     @if($this->notes)
-                        <div class="border rounded-lg border-zinc-300 dark:border-zinc-600 p-2">
+                        <div class="border rounded-lg border-zinc-300 dark:border-zinc-600 p-2 prose">
                             {!! $this->notes !!}
                         </div>
                     @else

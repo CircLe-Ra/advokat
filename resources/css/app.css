@@ -4,6 +4,7 @@
 @import  '../../node_modules/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css';
 @import '../../public/font/GTWalsheimPro/GTWalsheimPro.css';
 
+@plugin "@tailwindcss/typography";
 @source '../views';
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../vendor/livewire/flux-pro/stubs/**/*.blade.php';

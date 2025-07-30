@@ -34,7 +34,7 @@ new class extends Component {
 
 }; ?>
 
-<x-partials.sidebar :id-detail="$this->meeting->legalCase?->id" menu="lawyer-active-case"
+<x-partials.sidebar :back="route('lawyer.case.page', ['case' => $this->meeting->legal_case_id, 'status' => 'schedule'], absolute: false)" :id-detail="$this->meeting->legalCase?->id" menu="lawyer-active-case"
                     active="Penanganan Kasus / Jadwal Pertemuan / {{ $this->meeting->legalCase?->title }} / Hasil Pertemuan">
     <x-slot:profile>
         <div class="flex flex-col  dark:border-zinc-700 dark:bg-zinc-800 flex-shrink-0">

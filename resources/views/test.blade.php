@@ -360,8 +360,8 @@
                             <i class="fi flaticon-lawyer text-[60px] col:text-[50px] col:leading-[55px] text-white"></i>
                         </div>
                         <div class="pl-[24px]">
-                            <span class="text-[#ada282] text-[16px] font-normal">Book Your</span>
-                            <h3 class="text-[#333] text-[27px] col:text-[22px] font-medium">Appointment</h3>
+                            <span class="text-[#ada282] text-[16px] font-normal">Buat Janji</span>
+                            <h3 class="text-[#333] text-[27px] col:text-[22px] font-medium">Pertemuan</h3>
                         </div>
                     </div>
                 </div>

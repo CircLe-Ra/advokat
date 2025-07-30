@@ -41,7 +41,7 @@
                                         @if(auth()->user()->lawyer->photo ?? false)
                                             <flux:avatar size="xl" class="size-full" :name="auth()->user()->name" :src="asset('storage/' . auth()->user()->lawyer->photo)" :initials="auth()->user()->initials()" />
                                         @else
-                                            {{ auth()->user()->initials() }}   
+                                            {{ auth()->user()->initials() }}
                                         @endif
                                     @else
                                         <span
@@ -63,7 +63,7 @@
                     <flux:menu.separator />
 
                     <flux:menu.radio.group>
-                        <flux:menu.item :href="route('home')" icon="home" wire:navigate>Halaman Utama</flux:menu.item>
+                        <flux:menu.item :href="route('home')" icon="home">Halaman Utama</flux:menu.item>
                     </flux:menu.radio.group>
 
                     <flux:menu.separator />

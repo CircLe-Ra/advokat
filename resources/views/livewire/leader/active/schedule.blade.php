@@ -103,9 +103,9 @@ new class extends Component {
                         </flux:tooltip>
                     </th>
                     <th scope="row" class="px-6 py-4 font-medium text-zinc-900 whitespace-nowrap dark:text-white">
-                        <flux:tooltip content="{{$this->case->number_case}}">
+                        <flux:tooltip content="{{$this->case->case_number }}">
                             <flux:button variant="subtle"
-                                         class="dark:bg-zinc-800 dark:hover:bg-zinc-800">{{ $this->case->number_case ? Str::limit($this->case->number_case, 12, '...') : '-' }}</flux:button>
+                                         class="dark:bg-zinc-800 dark:hover:bg-zinc-800">{{ $this->case->case_number ? Str::limit($this->case->case_number, 12, '...') : '-' }}</flux:button>
                         </flux:tooltip>
                     </th>
                     <td class="px-6 py-4">

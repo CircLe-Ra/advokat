@@ -5,9 +5,7 @@ use Livewire\Volt\Volt;
 use Pusher\PushNotifications\PushNotifications;
 use Illuminate\Http\Request;
 
-Route::get('/', function () {
-    return view('guest');
-})->name('home');
+Volt::route('/', 'guest')->name('home');
 
 Route::middleware(['auth'])->group(callback: function () {
     Route::get('/goto', function () {

@@ -109,7 +109,7 @@ new class extends Component {
                     <flux:text class="text-zinc-600 dark:text-zinc-400 mt-2 mb-6">
                         Hasil pertemuan klien dengan pengacara.
                     </flux:text>
-                    <flux:fieldset>
+                    <flux:fieldset wire:cloak>
                         <div class="space-y-4">
                             <flux:switch :disabled="$this->meeting->meetingFileAdditions->count() > 0" wire:model="file_collection" label="Penambahan Berkas?"
                                          description="Nyalakan jika ada penamahan berkas untuk klien."/>
@@ -158,7 +158,7 @@ new class extends Component {
             <div class="p-6 border border-zinc-200 dark:border-zinc-700 mt-1 rounded-lg bg-zinc-50 dark:bg-zinc-900">
                 <flux:heading size="xl" level="1">Hasil Pertemuan</flux:heading>
                 <flux:subheading class="mb-4">Hasil pertemuan klien dengan pengacara.</flux:subheading>
-                <livewire:trix-editor :value="$this->notes" :disabled="true" />
+                <livewire:trix-editor :value="$this->notes"  />
             </div>
         </div>
     </div>

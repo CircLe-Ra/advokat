@@ -1,10 +1,11 @@
 <?php
 
 use App\Models\LegalCase;
+use App\Models\LegalCaseValidation;
 use Livewire\Volt\Component;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
-use Livewire\Attributes\{ Computed, Url, Title };
+use Livewire\Attributes\{Computed, Url, Title};
 
 new
 #[Title('Kasus Aktif')]
@@ -23,15 +24,40 @@ class extends Component {
         return LegalCase::where('status', 'accepted')
             ->where(function ($query) {
                 $query->where('number', 'like', '%' . $this->search . '%')
-                        ->orWhere('title', 'like', '%' . $this->search . '%')
-                        ->orWhere('summary', 'like', '%' . $this->search . '%');
+                    ->orWhere('title', 'like', '%' . $this->search . '%')
+                    ->orWhere('summary', 'like', '%' . $this->search . '%');
             })->latest()->paginate($this->show, pageName: 'active-case-page');
+    }
+
+    public function closeCase(LegalCase $case): void
+    {
+        try {
+            $case->status = 'closed';
+            $case->save();
+            LegalCaseValidation::create([
+                'legal_case_id' => $case->id,
+                'user_id' => auth()->user()->id,
+                'date_time' => now(),
+                'comment' => "Kasus telah selesai",
+                'validation' => $case->status,
+            ]);
+            $this->dispatch('toast', message: 'Kasus berhasil ditutup');
+        } catch (\Exception $e) {
+            $this->dispatch('toast', message: $e->getMessage(), type: 'error');
+        }
     }
 
 }; ?>
 
 <div>
-    <x-partials.breadcrumbs active="Penanganan Kasus"/>
+    <x-partials.breadcrumbs active="Penanganan Kasus">
+        <x-slot:action>
+            <flux:button :href="route('staff.case.validation', ['status' => 'closed'])" variant="outline" size="sm"
+                         icon:trailing="arrow-up-right" icon:variant="micro" class="cursor-pointer">
+                Lihat Kasus Selesai
+            </flux:button>
+        </x-slot:action>
+    </x-partials.breadcrumbs>
     <x-table thead="#, Nomor, Kasus, Jenis, Pengacara, Status," :action="false"
              label="Penanganan Kasus" sub-label="Daftar kasus yang diterima dan sedang dalam penanganan.">
         <x-slot name="filter">
@@ -63,7 +89,15 @@ class extends Component {
                         <x-badge :status="$case->status"/>
                     </td>
                     <td>
-                        <flux:button variant="outline" icon:trailing="arrow-right" size="sm" class="cursor-pointer dark:bg-zinc-800 dark:hover:bg-zinc-800" href="{{ route('staff.active.page', ['id' => $case->id, 'status' => 'schedule']) }}">
+                        <flux:button variant="danger" icon:trailing="book-open-check" size="sm"
+                                     class="cursor-pointer dark:bg-zinc-800 dark:hover:bg-zinc-800"
+                                     wire:click="closeCase({{ $case->id }})"
+                                     wire:confirm="Apakah anda yakin ingin menutup kasus ini?">
+                            Tutup Kasus
+                        </flux:button>
+                        <flux:button variant="outline" icon:trailing="arrow-right" size="sm"
+                                     class="cursor-pointer dark:bg-zinc-800 dark:hover:bg-zinc-800" wire:navigate
+                                     href="{{ route('staff.active.page', ['id' => $case->id, 'status' => 'schedule']) }}">
                             Detail
                         </flux:button>
                     </td>
