@@ -47,62 +47,56 @@ class extends Component {
 }; ?>
 
 <div>
-    <flux:callout wire:poll.visible class="mb-3 py-2.5 border border-zinc-100 bg-zinc-100 shadow-md dark:border-zinc-700 !rounded-lg dark:bg-zinc-900" icon="clock" variant="secondary" inline>
-        <div class="flex justify-between items-center">
-            <flux:callout.heading>{{ Carbon::now()->locale('id')->isoFormat('dddd, D MMMM Y - HH:mm:ss') }} WIT</flux:callout.heading>
-            <flux:callout.heading>Selamat Datang, {{ auth()->user()->name }}</flux:callout.heading>
-        </div>
-    </flux:callout>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 ">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-            <div class="p-6 border dark:border-zinc-700 rounded-lg border-zinc-100 bg-zinc-100 shadow-md dark:bg-zinc-900">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+            <div class="p-6 border border-zinc-200 dark:border-zinc-700 rounded-lg bg-zinc-50 dark:bg-zinc-900">
                 <flux:icon.square-activity class="h-10 w-10 text-zinc-900 dark:text-white mb-3"/>
                 <div class="flex justify-between items-center">
                     <div class="space-y-1">
                         <flux:heading size="xl" level="1">Total Kasus</flux:heading>
                         <flux:text>Total keseluruhan kasus</flux:text>
-                        <flux:text size="xl" variant="strong">{{ $this->lawyerHandlingCases[0]['cases'] }} Kasus
+                        <flux:text size="xl" variant="strong">{{ $this->lawyerHandlingCases[0]['cases'] ?? 0 }} Kasus
                         </flux:text>
                     </div>
                 </div>
             </div>
-            <div class="p-6 border dark:border-zinc-700 rounded-lg border-zinc-100 bg-zinc-100 shadow-md dark:bg-zinc-900">
+            <div class="p-6 border border-zinc-200 dark:border-zinc-700 rounded-lg bg-zinc-50 dark:bg-zinc-900">
                 <flux:icon.square-play class="h-10 w-10 text-zinc-900 dark:text-white mb-3"/>
                 <div class="flex justify-between items-center">
                     <div class="space-y-1">
                         <flux:heading size="xl" level="1">Kasus Berjalan</flux:heading>
                         <flux:text>Total keseluruhan kasus ditangani</flux:text>
-                        <flux:text size="xl" variant="strong">{{ $this->lawyerHandlingCases[0]['activeCases'] }} Kasus
+                        <flux:text size="xl" variant="strong">{{ $this->lawyerHandlingCases[0]['activeCases'] ?? 0 }} Kasus
                         </flux:text>
                     </div>
                 </div>
             </div>
-            <div class="p-6 border dark:border-zinc-700 rounded-lg border-zinc-100 bg-zinc-100 shadow-md dark:bg-zinc-900">
+            <div class="p-6 border border-zinc-200 dark:border-zinc-700 rounded-lg bg-zinc-50 dark:bg-zinc-900">
                 <flux:icon.shield-check class="h-10 w-10 text-zinc-900 dark:text-white mb-3"/>
                 <div class="flex justify-between items-center">
                     <div class="space-y-1">
                         <flux:heading size="xl" level="1">Kasus Selesai</flux:heading>
                         <flux:text>Total keseluruhan kasus selesai ditangani</flux:text>
-                        <flux:text size="xl" variant="strong">{{ $this->lawyerHandlingCases[0]['closedCases'] }}Klien
+                        <flux:text size="xl" variant="strong">{{ $this->lawyerHandlingCases[0]['closedCases'] ?? 0 }}Klien
                         </flux:text>
                     </div>
                 </div>
             </div>
-            <div class="p-6 border dark:border-zinc-700 rounded-lg border-zinc-100 bg-zinc-100 shadow-md dark:bg-zinc-900">
+            <div class="p-6 border border-zinc-200 dark:border-zinc-700 rounded-lg bg-zinc-50 dark:bg-zinc-900">
                 <flux:icon.files class="h-10 w-10 text-zinc-900 dark:text-white mb-3"/>
                 <div class="flex justify-between items-center">
                     <div class="space-y-1">
                         <flux:heading size="xl" level="1">Menunggu Persetujuan</flux:heading>
                         <flux:text>Total kasus yang menunggu persetujuan pimpinan</flux:text>
-                        <flux:text size="xl" variant="strong">{{ $this->lawyerHandlingCases[0]['verifiedCases'] }}
+                        <flux:text size="xl" variant="strong">{{ $this->lawyerHandlingCases[0]['verifiedCases'] ?? 0 }}
                             Kasus
                         </flux:text>
                     </div>
                 </div>
             </div>
         </div>
-        <div wire:ignore
-            class="flex justify-center items-center p-6 border dark:border-zinc-700 rounded-lg border-zinc-100 bg-zinc-100 shadow-md dark:bg-zinc-900">
+        <div
+            class="flex justify-center items-center p-6 border border-zinc-200 dark:border-zinc-700 rounded-lg bg-zinc-50 dark:bg-zinc-900">
             <div id="chart_case_by_type"></div>
         </div>
     </div>
@@ -117,7 +111,7 @@ class extends Component {
         document.addEventListener('livewire:navigated', () => {
             function getCaseTypeChart(isDark) {
                 return {
-                    series: @json($this->lawyerHandlingCases[0]['categoryCases']),
+                    series: @json($this->lawyerHandlingCases[0]['categoryCases'] ?? []),
                     chart: {
                         width: 380,
                         type: 'pie',
