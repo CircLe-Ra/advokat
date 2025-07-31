@@ -51,11 +51,12 @@
                 <div class="grid grid-cols-12">
                     <div class="col-span-10 md:col-span-12">
                         <ul class="text-left md:text-center">
-                            <li class=" text-white inline-block p-[15px]  col:pr-0 pl-0 col:pb-[0]"><i class="fa fa-map-marker pr-[10px] col:pt-[0] text-[#cbbc99] text-[20px]" aria-hidden="true"></i>121 King Street, Merauke , Indonesia </li>
+                            <li class=" text-white inline-block p-[15px]  col:pr-0 pl-0 col:pb-[0]"><i class="fa fa-map-marker pr-[10px] col:pt-[0] text-[#cbbc99] text-[20px]" aria-hidden="true"></i>Jl. Irian Seringgu Merauke  Papua Selatan - INDONESIA</li>
                             <li class="relative text-white inline-block p-[15px]  col:pr-0
                                 before:absolute before:content-[''] before:left-0 before:top-[15px] before:w-[1px] before:h-[25px] before:bg-[rgba(255,255,255,.07)]  before:z-10 before:transform before:-translate-x-1/2 md:before:hidden">
-                                <i class="fa fa-mobile pr-[10px] text-[#cbbc99] text-[20px]" aria-hidden="true"></i>3164-5456854</li>
-                            <li class="relative text-white inline-block p-[15px] col:pr-0  before:absolute before:content-[''] before:left-0 before:top-[15px] before:w-[1px] before:h-[25px] before:bg-[rgba(255,255,255,.07)] md:before:hidden  before:z-10 before:transform before:-translate-x-1/2 "><i class="fa fa-clock-o pr-[10px] text-[#cbbc99] text-[20px]" aria-hidden="true"></i>9AM - PM</li>
+                                <i class="fa fa-mobile pr-[10px] text-[#cbbc99] text-[20px]" aria-hidden="true"></i>+62 82398943737</li>
+                            <li class="relative text-white inline-block p-[15px] col:pr-0  before:absolute before:content-[''] before:left-0 before:top-[15px] before:w-[1px] before:h-[25px] before:bg-[rgba(255,255,255,.07)] md:before:hidden  before:z-10 before:transform before:-translate-x-1/2 ">
+                                <i class="fa fa-envelope pr-[10px] text-[#cbbc99] text-[15px]" aria-hidden="true"></i>kaitlynmogahai@gmail.com</li>
                         </ul>
                     </div>
                     <div class="col-span-2 md:col-span-12 mt-[5px]">
@@ -156,9 +157,9 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="logo w-[255px] md:w-[200px] md:mx-auto sm:w-[180px] col:w-[160px]">
+                    <div class="logo w-[255px] md:w-[200px]  sm:w-[180px] col:w-[160px]">
                         <a class="text-[45px] col:text-[25px] font-bold flex items-center text-white" href="/">
-                            <img class="w-20" src="img/logo.png" alt="">
+                            <img class="" src="img/logo-text.png" alt="">
                         </a>
                     </div>
 
@@ -190,6 +191,68 @@
     </header>
 
     {{ $slot }}
+
+    <footer class="relative bg-[#151a30] z-10">
+        <div class="pt-[100px] pb-[90px] md:py-[90px] md:pb-[20px] overflow-hidden relative -z-10">
+            <div class="wraper">
+                <div class="grid grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-3">
+                    <div class="w-[420px] xl:w-[355px] lg:w-[297px] pr-[125px] md:mb-[40px] lg:pr-0 relative text-left">
+                        <div class="mb-7">
+                            <a class="text-[45px] font-bold flex items-center text-white" href="index.html">
+                                <img class="" src="img/logo-text.png" alt="">
+                        </div>
+                        <p class="text-white text-[16px] mb-[10px]">
+                            Contrary to popular belief, Lorem Ipsum is not simply random text.
+                            It has roots in a piece of classical Latin literature
+                        </p>
+                        <ul class="overflow-hidden pt-[15px]">
+                            <li class="text-white float-left group "><a class="text-white transition-all group-hover:text-[#FFE600]" href="#"><i class="ti-facebook"></i></a></li>
+                            <li class="text-white float-left group ml-[15px]"><a class="text-white transition-all group-hover:text-[#c0b596]" href="#"><i class="ti-twitter-alt"></i></a></li>
+                            <li class="text-white float-left group ml-[15px]"><a class="text-white transition-all group-hover:text-[#c0b596]" href="#"><i class="ti-linkedin"></i></a></li>
+                            <li class="text-white float-left group ml-[15px]"><a class="text-white transition-all group-hover:text-[#c0b596]" href="#"><i class="ti-pinterest"></i></a></li>
+                            <li class="text-white float-left group ml-[15px]"><a class="text-white transition-all group-hover:text-[#c0b596]" href="#"><i class="ti-vimeo-alt"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="w-[200px] md:w-full ml-auto md:mb-[40px] lg:pr-0 relative text-left ">
+                        <div class="mb-7">
+                            <h3 class="text-[28px] font-medium  font-heading-font text-white capitalize">Quick Link</h3>
+                        </div>
+                        <ul>
+                            <li class="relative mb-[8px] block"><a class=" text-white hover:text-[#c0b596] transition-all" href="index.html">Home</a></li>
+                            <li class="relative mb-[8px] block"><a class=" text-white hover:text-[#c0b596] transition-all" href="practice-details.html">Practice Area</a></li>
+                            <li class="relative mb-[8px] block"><a class=" text-white hover:text-[#c0b596] transition-all" href="practice-details.html">Recent Case</a></li>
+                            <li class="relative mb-[8px] block"><a class=" text-white hover:text-[#c0b596] transition-all" href="Attorneys-single.html">Our Team</a></li>
+                            <li class="relative mb-[8px] block"><a class=" text-white hover:text-[#c0b596] transition-all" href="blog.html">Our Blog</a></li>
+                        </ul>
+                    </div>
+                    <div class="pl-[15px] md:pl-[0px] md:mb-[40px] lg:pr-0 relative text-left ">
+                        <div class="mb-7">
+                            <h3 class="text-[28px] font-medium  font-heading-font text-white capitalize"></h3>
+                        </div>
+
+                    </div>
+                    <div class=" md:mb-[40px] lg:pr-0 relative text-left ">
+                        <div class="mb-7">
+                            <h3 class="text-[28px] font-medium  font-heading-font text-white capitalize">Kontak Kami</h3>
+                        </div>
+                        <ul>
+                            <li class="relative mb-[8px] block text-white">Head Office Address</li>
+                            <li class="relative mb-[8px] block text-white">Jl. Irian Seringgu - Merauke</li>
+                            <li class="relative mb-[8px] block text-white">Papua Selatan - INDONESIA</li>
+                            <li class="relative mb-[8px] block text-white">Phone: +62 82248220406</li>
+                            <li class="relative mb-[8px] block text-white">Email: kaitlynmogahai@gmail.com</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="wraper">
+            <div class=" border-t-1 border-[rgba(192,181,150,.3)] relative">
+                <div class="h-[1px] absolute left-[15px] top-0 bg-[#ffffff0d] w-[calc(100%+30px)]"></div>
+                <p class="text-center text-white text-[14px] py-[20px]">Privacy Policy | &copy; 2025 KAI AND RIEL. All rights reserved</p>
+            </div>
+        </div>
+    </footer>
 
 </div>
 <script src="assets/js/jquery.min.js"></script>
