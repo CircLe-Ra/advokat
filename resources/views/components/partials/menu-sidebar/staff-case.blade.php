@@ -13,10 +13,10 @@
             <div class="absolute -inset-y-[1px] w-[2px] -start-7 ms-4 {{ isset(request()->uri()->pathSegments()[3]) && request()->uri()->pathSegments()[3] === 'pending' ? 'bg-zinc-800 dark:bg-white' : 'bg-zinc-200 dark:bg-zinc-700' }}" ></div>
             <div class="flex items-center">
                 Menunggu
-                @if ($cases[0]['pending'] > 0)
+                @if (isset($cases[0]) && isset($cases[0]['pending']) && $cases[0]['pending'] > 0)
                     <span class="absolute flex size-3 right-2">
-                      <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-danger opacity-75"></span>
-                      <span class="relative inline-flex size-3 rounded-full bg-danger-content"></span>
+                        <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-danger opacity-75"></span>
+                        <span class="relative inline-flex size-3 rounded-full bg-danger-content"></span>
                     </span>
                 @endif
             </div>
@@ -25,10 +25,10 @@
             <div class="absolute -inset-y-[1px] w-[2px] -start-7 ms-4 {{ isset(request()->uri()->pathSegments()[3]) && request()->uri()->pathSegments()[3] === 'revision' ? 'bg-zinc-800 dark:bg-white' : 'bg-zinc-200 dark:bg-zinc-700' }}" ></div>
             <div class="flex items-center">
                 Revisi
-                @if ($cases[0]['revised'] > 0)
+                @if (isset($cases[0]) && isset($cases[0]['revised']) && $cases[0]['revised'] > 0)
                     <span class="absolute flex size-3 right-2">
-                      <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-danger opacity-75"></span>
-                      <span class="relative inline-flex size-3 rounded-full bg-danger-content"></span>
+                        <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-danger opacity-75"></span>
+                        <span class="relative inline-flex size-3 rounded-full bg-danger-content"></span>
                     </span>
                 @endif
             </div>
