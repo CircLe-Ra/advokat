@@ -2,8 +2,8 @@
 @php
     $cases = App\Models\LegalCase::all()->map(function ($case) {
         return [
-            'pending' => $case->where('status', 'pending')->count(),
-            'revised' => $case->where('status', 'revised')->count(),
+            'pending' => $case->where('status', 'pending')->count() ?? 0,
+            'revised' => $case->where('status', 'revised')->count() ?? 0,
         ];
     });
 @endphp
