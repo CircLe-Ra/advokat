@@ -12,7 +12,6 @@ new class extends Component {
 
     public function mount(): void
     {
-
     }
 }; ?>
 

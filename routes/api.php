@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Resources\LawyerResource;
+use App\Models\Client;
 use App\Models\Lawyer;
 use Illuminate\Support\Facades\Route;
 
@@ -10,5 +11,5 @@ Route::get('/lawyer-schedule/{id}', function ($id) {
 });
 
 Route::get('/client-schedule/{id}', function ($id) {
-    return new LawyerResource(Lawyer::find($id));
+    return new LawyerResource(Client::find($id));
 });
