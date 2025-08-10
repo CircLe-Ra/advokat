@@ -300,7 +300,7 @@ class extends Component {
                                     </flux:menu.item>
                                     <flux:menu.item icon:variant="micro" variant="info" icon="network"
                                                     icon:trailing="arrow-right" href="{{ route('client.case.handling', ['case' => $case->id, 'status' => 'schedule']) }}"
-                                                    :disabled="$case->status != 'accepted' || $case->status != 'closed'" wire:navigate>Penanganan Kasus
+                                                    :disabled="$case->status == 'draft' || $case->status == 'rejected' || $case->status == 'verified' || $case->status == 'revised' || $case->status == 'revision' || $case->status == 'pending'" wire:navigate>Penanganan Kasus
                                     </flux:menu.item>
                                 </flux:menu.group>
                                 <flux:menu.group heading="Komunikasi">
