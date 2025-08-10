@@ -68,9 +68,14 @@ new class extends Component {
                         <x-badge :status="$case->status"/>
                     </td>
                     <td class="px-6 py-4">
-                        <flux:button wire:navigate size="sm" variant="primary" icon:trailing="arrow-up-right"
-                                     href="{{ route('staff.case.detail-case', ['id' => $case->id, 'status' => 'closed']) }}">
-                            Lihat Detail
+{{--                        <flux:button wire:navigate size="sm" variant="primary" icon:trailing="arrow-up-right"--}}
+{{--                                     href="{{ route('staff.case.detail-case', ['id' => $case->id, 'status' => 'closed']) }}">--}}
+{{--                            Lihat Detail--}}
+{{--                        </flux:button>--}}
+                        <flux:button variant="outline" icon:trailing="arrow-right" size="sm"
+                                     class="cursor-pointer dark:bg-zinc-800 dark:hover:bg-zinc-800" wire:navigate
+                                     href="{{ route('staff.active.page', ['id' => $case->id, 'status' => 'schedule']) }}">
+                            Detail
                         </flux:button>
                     </td>
                 </tr>
