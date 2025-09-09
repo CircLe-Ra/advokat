@@ -178,9 +178,9 @@ class extends Component {
                             </div>
                         </div>
                         <div class="pl-[40px]">
-                            <h3 class="text-[#373737] text-[24px] col:text-[20px] font-medium pb-[10px] relative mb-[10px]
+                            <h3 class="text-[#373737] text-[28px] col:text-[20px] font-medium pb-[10px] relative mb-[10px]
                             before:absolute before:content-[''] before:left-0 before:bottom-0 before:w-[30px] before:h-[2px] before:bg-[#c0b596]">Visi</h3>
-                            <p class="text-[#777] text-[16px] font-normal">Menjadi kantor pengacara yang terkemuka dalam memberikan layanan hukum yang profesional, berintegritas, dan berorientasi pada keadilan serta kepentingan terbaik klien.
+                            <p class="text-[#777] text-[20px] font-normal">Menjadi kantor pengacara yang terkemuka dalam memberikan layanan hukum yang profesional, berintegritas, dan berorientasi pada keadilan serta kepentingan terbaik klien.
                             </p>
                         </div>
                     </div>
@@ -193,36 +193,36 @@ class extends Component {
                             </div>
                         </div>
                         <div class="pl-[40px]">
-                            <h3 class="text-[#373737] text-[24px] col:text-[20px] font-medium pb-[10px] relative mb-[10px]
+                            <h3 class="text-[#373737] text-[28px] col:text-[20px] font-medium pb-[10px] relative mb-[10px]
                             before:absolute before:content-[''] before:left-0 before:bottom-0 before:w-[30px] before:h-[2px] before:bg-[#c0b596]">Misi</h3>
                             <ul class="space-y-2 list-none">
                                 <li class="flex items-start">
-                                    <span class="font-semibold mr-2">1.</span>
-                                    <span class="text-gray-700">
+                                    <span class="font-semibold mr-2 text-[#777] text-[20px]">1. </span>
+                                    <span class="text-[#777] text-[20px]">
                                       Menyediakan layanan hukum yang tepat, berlandaskan prinsip‑prinsip keadilan, dan sesuai dengan standar etika profesi.
                                     </span>
                                 </li>
                                 <li class="flex items-start">
-                                    <span class="font-semibold mr-2">2.</span>
-                                    <span class="text-gray-700">
+                                    <span class="font-semibold mr-2 text-[#777] text-[20px]">2. </span>
+                                    <span class="text-[#777] text-[20px]">
                                       Memastikan setiap klien mendapatkan perlindungan hukum yang maksimal melalui representasi yang berkompeten dan bertanggung jawab.
                                     </span>
                                 </li>
                                 <li class="flex items-start">
-                                    <span class="font-semibold mr-2">3.</span>
-                                    <span class="text-gray-700">
+                                    <span class="font-semibold mr-2 text-[#777] text-[20px]">3. </span>
+                                    <span class="text-[#777] text-[20px]">
                                       Membangun hubungan jangka panjang dengan klien berdasarkan kepercayaan, kerahasiaan, dan komunikasi yang terbuka.
                                     </span>
                                 </li>
                                 <li class="flex items-start">
-                                    <span class="font-semibold mr-2">4.</span>
-                                    <span class="text-gray-700">
+                                    <span class="font-semibold mr-2 text-[#777] text-[20px]">4. </span>
+                                    <span class="text-[#777] text-[20px]">
                                       Menjunjung tinggi integritas dan transparansi dalam setiap langkah dan keputusan hukum.
                                     </span>
                                 </li>
                                 <li class="flex items-start">
-                                    <span class="font-semibold mr-2">5.</span>
-                                    <span class="text-gray-700">
+                                    <span class="font-semibold mr-2 text-[#777] text-[20px]">5. </span>
+                                    <span class="text-[#777] text-[20px]">
                                       Melaksanakan tugas advokasi dengan dedikasi penuh untuk mencapai hasil terbaik bagi klien, baik melalui proses litigasi maupun non‑litigasi.
                                     </span>
                                 </li>
