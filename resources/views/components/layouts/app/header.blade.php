@@ -21,10 +21,41 @@
 
             <!-- Desktop User Menu -->
             <flux:dropdown position="top" align="end">
-                <flux:profile
-                    class="cursor-pointer"
-                    :initials="auth()->user()->initials()"
-                />
+                @if(auth()->user()->roles()->first()->name === 'klien')
+                    @if (auth()->user()->client->client_image ?? false)
+                        <flux:profile
+                            class="cursor-pointer"
+                            :avatar="asset('storage/' . auth()->user()->client->client_image)"
+                            :circle="true"
+                        />
+                    @else
+                        <flux:profile
+                            class="cursor-pointer"
+                            :initials="auth()->user()->initials()"
+                            :circle="true"
+                        />
+                    @endif
+                @elseif(auth()->user()->roles()->first()->name === 'pengacara')
+                    @if(auth()->user()->lawyer->photo ?? false)
+                       <flux:profile
+                            class="cursor-pointer"
+                            :avatar="asset('storage/' . auth()->user()->lawyer->photo)"
+                            :circle="true"
+                        />
+                    @else
+                        <flux:profile
+                            class="cursor-pointer"
+                            :initials="auth()->user()->initials()"
+                            :circle="true"
+                        />
+                    @endif
+                @else
+                    <flux:profile
+                        class="cursor-pointer"
+                        :initials="auth()->user()->initials()"
+                        :circle="true"
+                    />
+                @endif
 
                 <flux:menu>
                     <flux:menu.radio.group>

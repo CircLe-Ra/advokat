@@ -175,7 +175,7 @@ class extends Component {
                         <flux:textarea wire:model="chronology" cols="30" rows="10"/>
                         <flux:error name="chronology"/>
                     </flux:field>
-                    <x-filepond wire:model="file" label="Dokumen Pendukung"
+                    <x-filepond wire:model="file" label="Dokumen Pendukung (Max 2MB)"
                                 sub-label="Anda dapat mengunggah lebih dari satu dokumen" multiple/>
                     @if($this->file_preview?->count() > 0)
                         <flux:label class="text-zinc-400">Dokumen Pendukung</flux:label>

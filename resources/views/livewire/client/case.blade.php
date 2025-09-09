@@ -361,7 +361,7 @@ class extends Component {
                         <flux:textarea wire:model="chronology" cols="30" rows="10"/>
                         <flux:error name="chronology"/>
                     </flux:field>
-                    <x-filepond wire:model="file" label="Dokumen Pendukung"
+                    <x-filepond wire:model="file" label="Dokumen Pendukung (Max 2MB)"
                                 sub-label="Anda dapat mengunggah lebih dari satu dokumen" multiple/>
                 </div>
                 <div class="flex gap-2 mt-4">
@@ -396,17 +396,20 @@ class extends Component {
                         <option value="civil">Perdata</option>
                         <option value="criminal">Pidana</option>
                     </flux:select>
-                    <flux:textarea wire:model="summary" label="Ringkasan Kasus"
-                                   :disabled="$this->condition == 'detail'"/>
                     <flux:field>
                         <flux:label>Kronologi</flux:label>
-                        <flux:description>Ceritakan kronologi kejadian yang terjadi secara detail.</flux:description>
-                        <flux:textarea wire:model="chronology" cols="30" rows="10"
-                                       :disabled="$this->condition == 'detail'"/>
+                        <flux:description>Tuliskan inti permasalahan secara singkat dan jelas, misalnya siapa yang terlibat, apa masalah utamanya, serta kondisi kasus saat ini.</flux:description>
+                        <flux:textarea wire:model="summary" label="Ringkasan Kasus" :disabled="$this->condition == 'detail'" placeholder="Contoh: Kasus pelanggaran kontrak antara A dan B, saat ini diproses di PN Merauke"/>
+                        <flux:error name="summary"/>
+                    </flux:field>
+                    <flux:field>
+                        <flux:label>Kronologi</flux:label>
+                        <flux:description>Jelaskan urutan kejadian secara runtut berdasarkan waktu (tanggal, bulan, tahun). Cantumkan peristiwa penting dari awal hingga kondisi terakhir.</flux:description>
+                        <flux:textarea wire:model="chronology" cols="30" rows="10" placeholder="Contoh: 10 Jan 2024: Perjanjian ditandatangani. 15 Feb 2024: Pembayaran tidak dilakukan. 20 Mar 2024: Somasi dikirim. 5 Apr 2024: Gugatan diajukan." :disabled="$this->condition == 'detail'"/>
                         <flux:error name="chronology"/>
                     </flux:field>
                     @if($this->condition == 'edit')
-                        <x-filepond wire:model="file" label="Dokumen Pendukung"
+                        <x-filepond wire:model="file" label="Dokumen Pendukung (Max 2MB)"
                                     sub-label="Anda dapat mengunggah lebih dari satu dokumen" multiple/>
                     @endif
                     @if($this->file_preview?->count() > 0)
