@@ -197,7 +197,7 @@ class extends Component {
                 </div>
                 <flux:input label="Nama" wire:model="name"/>
                 <flux:input label="Nomor Telepon" wire:model="phone" mask="+62 999-9999-9999" value="+62"/>
-                <x-filepond wire:model="photo" label="Foto Pengacara"/>
+                <x-filepond wire:model="photo" label="Foto Pengacara (Max 2MB)"/>
                 @if($this->photo_preview)
                     <div
                         class="relative overflow-hidden rounded-lg hover:scale-105 transition duration-300 ease-in-out cursor-pointer hover:shadow-lg dark:hover:shadow-none border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900">

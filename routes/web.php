@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 Volt::route('/', 'guest')->name('home');
 
-Route::middleware(['auth'])->group(callback: function () {
+Route::middleware(['auth', 'verified'])->group(callback: function () {
     Route::get('/goto', function () {
         if(auth()->user()->hasRole('staf')){
             return redirect()->route('staff.dashboard');

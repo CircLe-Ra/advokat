@@ -114,7 +114,7 @@ new class extends Component {
                                             label="Tenggat Waktu Pengumpulan Berkas"/>
                             </div>
                             <flux:separator class="my-4"/>
-                            <x-filepond wire:model="files" label="Pengumpulan Berkas" multiple="true"/>
+                            <x-filepond wire:model="files" label="Pengumpulan Berkas (Max 2MB)" multiple="true"/>
                             <flux:button variant="primary" wire:click="save" class="w-full">
                                 Simpan
                             </flux:button>

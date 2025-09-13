@@ -98,7 +98,7 @@ new class extends Component {
                 <flux:text class="mt-2">Tarik dan lepas foto ke dalam kotak atau cari berkas melalui browser</flux:text>
             </div>
             <form wire:submit.prevent="store">
-                <x-filepond label="Hasil Persindangan" wire:model="files" multiple accept="application/pdf, application/doc, application/docx"/>
+                <x-filepond label="Hasil Persindangan (Max 2MB)" wire:model="files" multiple accept="application/pdf, application/doc, application/docx"/>
                 <div class="flex gap-2 mt-4">
                     <flux:spacer/>
                     <flux:modal.close>
