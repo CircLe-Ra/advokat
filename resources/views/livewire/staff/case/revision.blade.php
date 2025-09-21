@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Client;
 use App\Models\LegalCase;
 use App\Models\LegalCaseDocument;
 use App\Models\LegalCaseValidation;
@@ -20,6 +21,9 @@ new class extends Component {
     public string $file_open = '';
     public string $status = '';
     public string $reason = '';
+
+    public $client;
+    public $showProfilModal = false;
 
     #[\Livewire\Attributes\Computed]
     public function cases()
@@ -74,6 +78,13 @@ new class extends Component {
         $this->file_open = LegalCaseDocument::where('id', $id)->first()->file;
         Flux::modal('modal-show-image')->show();
     }
+
+    public function showProfil($id): void
+    {
+        $this->client = Client::find($id);
+        Flux::modal('modal-show-client')->show();
+    }
+
 }; ?>
 
 <x-partials.sidebar position="right" menu="staff-case" active="Pengajuan Kasus / Status Kasus / Menunggu">
@@ -91,7 +102,8 @@ new class extends Component {
                     </th>
                     <th scope="row" class="px-6 py-4 font-medium text-zinc-900 whitespace-nowrap dark:text-white">
                         <flux:tooltip content="{{$case->number}}">
-                            <flux:button variant="subtle" class="dark:bg-zinc-800 dark:hover:bg-zinc-800"> {{ Str::limit($case->number, 12, '...') }}</flux:button>
+                            <flux:button variant="subtle"
+                                         class="dark:bg-zinc-800 dark:hover:bg-zinc-800"> {{ Str::limit($case->number, 12, '...') }}</flux:button>
                         </flux:tooltip>
                     </th>
                     <td class="px-6 py-4">
@@ -107,9 +119,25 @@ new class extends Component {
                         <x-badge :status="$case->status"/>
                     </td>
                     <td class="px-6 py-4">
-                        <flux:button size="sm" variant="primary" icon:trailing="arrow-up-right" href="{{ route('staff.case.detail-case', ['id' => $case->id, 'status' => 'revision']) }}">
-                            Lihat Detail
-                        </flux:button>
+                        <flux:dropdown position="bottom" align="center">
+                            <flux:button icon:trailing="ellipsis-vertical" variant="ghost"></flux:button>
+
+                            <flux:menu>
+                                <flux:menu.group heading="Kasus">
+                                    <flux:menu.item wire:navigate
+                                                    href="{{ route('staff.case.detail-case', ['id' => $case->id, 'status' => 'revision']) }}"
+                                                    icon="document-chart-bar" icon:trailing="arrow-up-right">Lihat
+                                        Detail
+                                    </flux:menu.item>
+                                </flux:menu.group>
+                                <flux:menu.group heading="Klien">
+                                    <flux:menu.item icon="user" icon:trailing="arrow-up-right"
+                                                    wire:click="showProfil({{ $case->client_id }})">Data Klien
+                                    </flux:menu.item>
+                                </flux:menu.group>
+
+                            </flux:menu>
+                        </flux:dropdown>
                     </td>
                 </tr>
             @endforeach
@@ -131,6 +159,54 @@ new class extends Component {
                     <img class="object-cover w-full" src="{{ asset('storage/'.$this->file_open) }}" alt="">
                 </div>
             @endif
+        </div>
+    </flux:modal>
+
+    <flux:modal name="modal-show-client" class="md:w-7xl" @close="$wire.client = null">
+        <div class="space-y-6 mb-6">
+            <div>
+                <flux:heading size="lg" level="1">Informasi Detail Klien</flux:heading>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2">
+                <div class="border border-zinc-200 p-2">
+                    <flux:label>Nama</flux:label>
+                    <p class="text-gray-700">{{ $this->client->user->name ?? '-' }}</p>
+                </div>
+                <div class="border border-zinc-200 p-2">
+                    <flux:label>Email</flux:label>
+                    <p class="text-gray-700">{{ $this->client->user->email ?? '-' }}</p>
+                </div>
+                <div class="border border-zinc-200 p-2">
+                    <flux:label>Nomor Identitas</flux:label>
+                    <p class="text-gray-700">{{ $this->client->identity ?? '' }}</p>
+                </div>
+                <div class="border border-zinc-200 p-2">
+                    <flux:label>Nomor Telepon</flux:label>
+                    <p class="text-gray-700">{{ $this->client->phone ?? '' }}</p>
+                </div>
+                <div class="border border-zinc-200 p-2">
+                    <flux:label>Foto Identitas</flux:label>
+                    <img src="{{ asset('storage/' . $this->client?->identity_image) }}" alt="Foto Identitas"
+                         class="w-40 rounded border">
+                </div>
+                <div class="border border-zinc-200 p-2">
+                    <flux:label>Foto Klien</flux:label>
+                    <img src="{{ asset('storage/' . $this->client?->client_image ?? '') }}" alt="Foto Klien"
+                         class="w-40 rounded border">
+                </div>
+                <div class="border border-zinc-200 p-2">
+                    <flux:label>Tempat Lahir</flux:label>
+                    <p class="text-gray-700">{{ $this->client->place_of_birth ?? '' }}</p>
+                </div>
+                <div class="border border-zinc-200 p-2">
+                    <flux:label>Tanggal Lahir</flux:label>
+                    <p class="text-gray-700">{{ \Carbon\Carbon::parse($this->client->date_of_birth ?? '0000-00-00')->translatedFormat('d F Y') }}</p>
+                </div>
+                <div class="border border-zinc-200 p-2">
+                    <flux:label>Alamat</flux:label>
+                    <p class="text-gray-700">{{ $this->client->address ?? '' }}</p>
+                </div>
+            </div>
         </div>
     </flux:modal>
 

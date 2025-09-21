@@ -250,6 +250,11 @@ new class extends Component {
                                     Hasil Sidang
                                 </flux:menu.item>
                                 <flux:menu.separator/>
+                                <flux:menu.item icon:variant="micro" icon:trailing="arrow-up-right" icon="photo"
+                                                href="{{ route('staff.active.page', ['id' => $schedule->id, 'status' => 'court-documentation']) }}" wire:navigate>
+                                    Dokumentasi
+                                </flux:menu.item>
+                                <flux:menu.separator/>
                                 <flux:menu.item icon:variant="micro" icon="pencil" variant="warning"
                                                 wire:click="edit({{ $schedule->id }})"
                                                 :disabled="$schedule->status != 'pending'">

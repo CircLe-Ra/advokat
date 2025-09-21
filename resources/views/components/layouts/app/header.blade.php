@@ -148,7 +148,6 @@
 
         <x-toaster />
         @fluxScripts
-        {!! ToastMagic::scripts() !!}
         @stack('scripts')
         <script>
             document.addEventListener('livewire:navigated', () => {

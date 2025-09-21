@@ -61,7 +61,7 @@ new class extends Component {
                     <td class="px-6 py-4">
                         {{ $case->type == 'civil' ? 'Perdata' : 'Pidana' }}
                     </td>
-                    <td class="px-6 py-4 text-nowrap">
+                    <td class="px-6 py-4 ">
                         {{ $case->created_at->isoFormat('D MMMM Y HH:mm') }} WIT
                     </td>
                     <td class="px-6 py-4">

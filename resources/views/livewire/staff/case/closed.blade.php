@@ -24,6 +24,7 @@ new class extends Component {
         return LegalCase::where('status', 'closed')
             ->where(function ($query) {
                 $query->where('number', 'like', '%' . $this->search . '%')
+                    ->orWhere('case_number', 'like', '%' . $this->search . '%')
                     ->orWhere('title', 'like', '%' . $this->search . '%')
                     ->orWhere('summary', 'like', '%' . $this->search . '%');
             })->latest()->paginate($this->show, pageName: 'closed-page');
@@ -50,10 +51,18 @@ new class extends Component {
                         {{ $loop->iteration }}
                     </th>
                     <th scope="row" class="px-6 py-4 font-medium text-zinc-900 whitespace-nowrap dark:text-white">
-                        <flux:tooltip content="{{$case->number}}">
-                            <flux:button variant="subtle"
-                                         class="dark:bg-zinc-800 dark:hover:bg-zinc-800"> {{ Str::limit($case->number, 12, '...') }}</flux:button>
-                        </flux:tooltip>
+                        <div class="block">
+                            <flux:tooltip content="Nomor Kasus : {{$case->number}}" >
+                                <flux:button variant="subtle"
+                                             class="dark:bg-zinc-800 dark:hover:bg-zinc-800"> {{ Str::limit($case->number, 12, '...') }}</flux:button>
+                            </flux:tooltip>
+                        </div>
+                        <div class="block">
+                            <flux:tooltip content="No. Perkara : {{$case->case_number}}">
+                                <flux:button variant="subtle"
+                                             class="dark:bg-zinc-800 dark:hover:bg-zinc-800"> {{ Str::limit($case->case_number, 12, '...') }}</flux:button>
+                            </flux:tooltip>
+                        </div>
                     </th>
                     <td class="px-6 py-4">
                         {{ $case->title }}

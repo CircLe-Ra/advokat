@@ -354,13 +354,34 @@ class extends Component {
                         <option value="civil">Perdata</option>
                         <option value="criminal">Pidana</option>
                     </flux:select>
-                    <flux:textarea wire:model="summary" label="Ringkasan Kasus"/>
+
+                    <flux:field>
+                        <flux:label>Ringkasan Kasus</flux:label>
+                        <flux:description>Tuliskan inti permasalahan secara singkat, padat, dan jelas.</flux:description>
+                        <flux:textarea
+                            wire:model="summary"
+                            rows="3"
+                            placeholder="Contoh: Penggugat mengajukan gugatan perdata terkait sengketa utang piutang yang belum dilunasi oleh tergugat sesuai perjanjian tertanggal 12 Juni 2023."
+                        />
+                        <flux:error name="summary"/>
+                    </flux:field>
+
                     <flux:field>
                         <flux:label>Kronologi</flux:label>
-                        <flux:description>Ceritakan kronologi kejadian yang terjadi secara detail.</flux:description>
-                        <flux:textarea wire:model="chronology" cols="30" rows="10"/>
+                        <flux:description>Jelaskan urutan kejadian secara detail dari awal hingga akhir.</flux:description>
+                        <flux:textarea
+                            wire:model="chronology"
+                            rows="12"
+                            placeholder="Contoh:
+1. Pada tanggal 12 Juni 2023, penggugat dan tergugat menandatangani perjanjian pinjaman sebesar Rp50.000.000 dengan jatuh tempo 12 Desember 2023.
+2. Pada tanggal jatuh tempo, tergugat tidak melakukan pembayaran sesuai kesepakatan.
+3. Penggugat telah melakukan beberapa kali penagihan secara langsung maupun melalui surat peringatan, namun tidak mendapatkan tanggapan.
+4. Akibat kelalaian tersebut, penggugat mengalami kerugian finansial dan mengajukan gugatan ke pengadilan."
+                        />
                         <flux:error name="chronology"/>
                     </flux:field>
+
+
                     <x-filepond wire:model="file" label="Dokumen Pendukung (Max 2MB)"
                                 sub-label="Anda dapat mengunggah lebih dari satu dokumen" multiple/>
                 </div>

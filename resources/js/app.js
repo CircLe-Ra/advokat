@@ -15,7 +15,6 @@ const beamsClient = new PusherPushNotifications.Client({
     instanceId: import.meta.env.VITE_PUSHER_BEAMS_INSTANCE_ID,
 });
 
-
 window.PusherPushNotifications = PusherPushNotifications;
 window.beamsClient = beamsClient;
 window.animate = animate;
