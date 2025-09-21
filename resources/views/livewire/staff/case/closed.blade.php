@@ -15,8 +15,15 @@ new class extends Component {
     #[\Livewire\Attributes\Url(history: true, keep: true)]
     public string $search = '';
 
+    #[\Livewire\Attributes\Url(history: true, keep: true)]
+    public string $start_date = '';
+
+    #[\Livewire\Attributes\Url(history: true, keep: true)]
+    public string $end_date = '';
+
     public ?int $id = null;
     public string $file_open = '';
+    public $readyPrint = false;
 
     #[\Livewire\Attributes\Computed]
     public function cases()
@@ -35,11 +42,45 @@ new class extends Component {
         $this->file_open = LegalCaseDocument::where('id', $id)->first()->file;
         Flux::modal('modal-show-image')->show();
     }
+
+    public function find(): void
+    {
+        $this->cases = LegalCase::where('status', 'closed')->whereBetween('created_at', [$this->start_date, $this->end_date])->latest()->paginate($this->show, pageName: 'closed-page');
+        $this->readyPrint = true;
+    }
+
+    public function printed(): void
+    {
+        $this->readyPrint = false;
+        $this->dispatch('print-registration');
+    }
 }; ?>
 
 <x-partials.sidebar position="right" menu="staff-case" active="Pengajuan Kasus / Status Kasus / Ditutup">
-    <x-table thead="#, Nomor, Kasus, Jenis, Tanggal Pengajuan, Status," :action="false"
+    <x-slot:action>
+        <flux:input wire:model="start_date" size="sm" type="date" class="w-full max-w-[150px] mr-2"/>
+        S/D
+        <flux:input wire:model="end_date" size="sm" type="date" class="w-full max-w-[150px] mx-2"/>
+        <flux:button variant="primary" icon:trailing="arrow-up-right" size="sm" wire:click="find">Cari</flux:button>
+    </x-slot:action>
+    <div id="print-area">
+        <div class="hidden print:block">
+            <div class="flex justify-center">
+                <h1 class="text-2xl font-bold mb-0 text-gray-800 dark:text-white print:text-gray-900">LAPORAN KASUS SELESAI</h1>
+            </div>
+            <div class="flex justify-center">
+                <p class="text-sm text-gray-600 mb-6 dark:text-gray-400">Tanggal : {{ $this->start_date }} s/d {{ $this->end_date }}</p>
+            </div>
+        </div>
+        <x-table thead="#, Nomor, Kasus, Jenis, Tanggal Pengajuan, Status," :action="false"
              label="Pengajuan Kasus" sub-label="Informasi tentang kasus yang diajukan.">
+        <x-slot name="actionHead">
+            @if($this->readyPrint)
+                <div class="flex items-center justify-end print:hidden">
+                    <flux:button variant="primary" icon="printer" size="sm" wire:click="printed">Cetak</flux:button>
+                </div>
+            @endif
+        </x-slot>
         <x-slot name="filter">
             <x-filter wire:model.live="show"/>
             <flux:input wire:model.live="search" size="sm" placeholder="Cari" class="w-full max-w-[220px]"/>
@@ -50,7 +91,7 @@ new class extends Component {
                     <th scope="col" class="px-6 py-3">
                         {{ $loop->iteration }}
                     </th>
-                    <th scope="row" class="px-6 py-4 font-medium text-zinc-900 whitespace-nowrap dark:text-white">
+                    <th scope="row" class="px-6 py-4 font-medium text-zinc-900 whitespace-nowrap dark:text-white print:hidden">
                         <div class="block">
                             <flux:tooltip content="Nomor Kasus : {{$case->number}}" >
                                 <flux:button variant="subtle"
@@ -61,6 +102,20 @@ new class extends Component {
                             <flux:tooltip content="No. Perkara : {{$case->case_number}}">
                                 <flux:button variant="subtle"
                                              class="dark:bg-zinc-800 dark:hover:bg-zinc-800"> {{ Str::limit($case->case_number, 12, '...') }}</flux:button>
+                            </flux:tooltip>
+                        </div>
+                    </th>
+                    <th scope="row" class="px-6 py-4 font-medium text-zinc-900 whitespace-nowrap dark:text-white hidden print:block">
+                        <div class="block">
+                            <flux:tooltip content="Nomor Kasus : {{$case->number}}" >
+                                <flux:button variant="subtle"
+                                             class="dark:bg-zinc-800 dark:hover:bg-zinc-800"> {{ $case->number }}</flux:button>
+                            </flux:tooltip>
+                        </div>
+                        <div class="block">
+                            <flux:tooltip content="No. Perkara : {{$case->case_number}}">
+                                <flux:button variant="subtle"
+                                             class="dark:bg-zinc-800 dark:hover:bg-zinc-800"> {{ $case->case_number }}</flux:button>
                             </flux:tooltip>
                         </div>
                     </th>
@@ -76,7 +131,7 @@ new class extends Component {
                     <td class="px-6 py-4">
                         <x-badge :status="$case->status"/>
                     </td>
-                    <td class="px-6 py-4">
+                    <td class="px-6 py-4 print:hidden">
 {{--                        <flux:button wire:navigate size="sm" variant="primary" icon:trailing="arrow-up-right"--}}
 {{--                                     href="{{ route('staff.case.detail-case', ['id' => $case->id, 'status' => 'closed']) }}">--}}
 {{--                            Lihat Detail--}}
@@ -97,6 +152,7 @@ new class extends Component {
             </tr>
         @endif
     </x-table>
+    </div>
     <flux:modal name="modal-show-image" class="md:w-7xl">
         <div class="space-y-6 mb-6">
             <div>
@@ -110,3 +166,16 @@ new class extends Component {
         </div>
     </flux:modal>
 </x-partials.sidebar>
+
+@pushonce('scripts')
+    <script type="text/javascript">
+        document.addEventListener('livewire:navigated', () => {
+            Livewire.on('print-registration', () => {
+                let printContents = document.getElementById('print-area').innerHTML;
+                document.body.innerHTML = printContents;
+                window.print();
+                window.location.reload();
+            });
+        }, { once: true });
+    </script>
+@endpushonce

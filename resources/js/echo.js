@@ -17,6 +17,8 @@ window.Echo = new Echo({
 if(document.querySelector('meta[name="user-id"]')){
     window.Echo.private(`App.Models.User.${document.querySelector('meta[name="user-id"]').content}`)
         .notification((notification) => {
+            console.log(notification);
+            Livewire.dispatch('update-notif');
             if(notification.role === 'admin'){
                 Livewire.dispatch('update-message-admin');
             }else if(notification.role === 'client'){

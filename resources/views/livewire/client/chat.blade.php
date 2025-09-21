@@ -13,6 +13,8 @@ new class extends Component {
     public ?int $staff = 0;
     public $messages;
     public $messageToSend;
+    public $staff_message;
+    public $hasUnread;
 
     public function mount($staff = null): void
     {
@@ -21,6 +23,8 @@ new class extends Component {
             $this->messages = $this->loadMessages($staff);
             Chat::where('user_id', $staff)->where('user_id2', auth()->id())->update(['is_read' => true]);
         }
+
+        $this->staff_message = User::whereHas('roles', fn($query) => $query->where('name', 'staf'))->first();
     }
 
     public function loadMessages($staff)
@@ -78,6 +82,16 @@ new class extends Component {
         }
     }
 
+    #[Computed]
+    public function lastStaffMessage()
+    {
+        return \App\Models\Chat::where('user_id', $this->staff_message->id) // staff yg kirim
+        ->where('user_id2', auth()->id()) // client yg menerima
+        ->latest()
+            ->first();
+    }
+
+
 }; ?>
 
 <div>
@@ -104,13 +118,28 @@ new class extends Component {
                             <span class="font-bold text-zinc-900 dark:text-zinc-50">Kontak Staf</span>
                         </div>
                         <div class="flex flex-col space-y-1 mt-4 -mx-2 overflow-y-auto">
-                            @foreach($this->staffs as $staff)
-                                <a wire:navigate href="{{route('client.chat', ['staff' => $staff->id])}}"
-                                   class="flex flex-row items-center hover:bg-zinc-300 dark:hover:bg-zinc-700 hover:text-accent py-2 px-2 rounded-xl p-2 {{ $staff->id == $this->staff ? 'bg-zinc-300 text-accent dark:bg-zinc-700 dark:text-accent' : 'text-zinc-900 dark:text-zinc-50' }}">
-                                    <flux:avatar class="rounded-full overflow-hidden" :initials="$staff->initials()"/>
-                                    <div class="ml-2 text-sm font-semibold ">{{$staff->name}}</div>
-                                </a>
-                            @endforeach
+{{--                            @foreach($this->staffs as $staff)--}}
+{{--                                <a wire:navigate href="{{route('client.chat', ['staff' => $staff->id])}}"--}}
+{{--                                   class="flex flex-row items-center hover:bg-zinc-300 dark:hover:bg-zinc-700 hover:text-accent py-2 px-2 rounded-xl p-2 {{ $staff->id == $this->staff ? 'bg-zinc-300 text-accent dark:bg-zinc-700 dark:text-accent' : 'text-zinc-900 dark:text-zinc-50' }}">--}}
+{{--                                    <flux:avatar class="rounded-full overflow-hidden" :initials="$staff->initials()"/>--}}
+{{--                                    <div class="ml-2 text-sm font-semibold ">{{$staff->name}}</div>--}}
+{{--                                </a>--}}
+{{--                            @endforeach--}}
+
+                            <a wire:navigate href="{{ route('client.chat', ['staff' => $this->staff_message->id]) }}"
+                               class="relative flex flex-row items-center hover:bg-zinc-300 dark:hover:bg-zinc-700 hover:text-accent py-2 px-2 rounded-xl p-2 {{ $this->staff_message->id == $this->staff ? 'bg-zinc-300 text-accent dark:bg-zinc-700 dark:text-accent' : 'text-zinc-900 dark:text-zinc-50' }}">
+
+                                <flux:avatar class="rounded-full overflow-hidden" :initials="$this->staff_message->initials()" />
+
+                                <div class="ml-2 text-sm font-semibold">
+                                    {{ $this->staff_message->name }}
+                                </div>
+
+                                @if($this->lastStaffMessage && !$this->lastStaffMessage->is_read)
+                                    <span class="absolute right-2 top-2 size-2 bg-red-500 rounded-full"></span>
+                                @endif
+                            </a>
+
                         </div>
                     </div>
                 </div>

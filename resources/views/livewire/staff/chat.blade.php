@@ -110,12 +110,28 @@ new class extends Component {
                         </div>
                         <div class="flex flex-col space-y-1 mt-4 -mx-2 overflow-y-auto">
                             @foreach($this->clients as $client)
-                                <a wire:navigate href="{{route('staff.chat', ['client' => $client->id])}}"
-                                   class="flex flex-row items-center hover:bg-zinc-300 dark:hover:bg-zinc-700 hover:text-accent py-2 px-2 rounded-xl p-2 {{ $client->id == $this->client ? 'bg-zinc-300 text-accent dark:bg-zinc-700 dark:text-accent' : 'text-zinc-900 dark:text-zinc-50' }}">
-                                    <flux:avatar class="rounded-full overflow-hidden" :initials="$client->initials()"/>
-                                    <div class="ml-2 text-sm font-semibold ">{{$client->name}}</div>
+                                @php
+                                    $lastMessage = $client->sentMessages->first();
+                                    $hasUnread = $lastMessage && $lastMessage->user_id === $client->id && !$lastMessage->is_read;
+                                @endphp
+
+                                <a wire:navigate href="{{ route('staff.chat', ['client' => $client->id]) }}"
+                                   class="border border-zinc-200 dark:border-zinc-700 relative flex flex-row items-center hover:bg-zinc-300 dark:hover:bg-zinc-700 hover:text-accent py-2 px-2 rounded-xl p-2
+       {{ $client->id == $this->client ? 'bg-zinc-300 text-accent dark:bg-zinc-700 dark:text-accent' : 'text-zinc-900 dark:text-zinc-50' }}">
+
+                                    <flux:avatar class="rounded-full overflow-hidden" :initials="$client->initials()" />
+
+                                    <div class="ml-2 text-sm font-semibold">
+                                        {{ $client->name }}
+                                    </div>
+
+                                    {{-- Badge pesan baru --}}
+                                    @if($hasUnread)
+                                        <span class="absolute right-2 top-2 size-2 bg-red-500 rounded-full"></span>
+                                    @endif
                                 </a>
                             @endforeach
+
                         </div>
                     </div>
                 </div>
