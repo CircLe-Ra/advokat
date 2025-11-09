@@ -337,7 +337,7 @@ class extends Component {
             </tr>
         @endif
     </x-table>
-    <flux:modal wire:model.self="caseModal" variant="flyout" @close="__reset">
+    <flux:modal :dismissible="false" wire:model.self="caseModal" variant="flyout" @close="__reset">
         <div class="space-y-6">
             <div>
                 <flux:heading size="lg">Ajukan Kasus Anda</flux:heading>
