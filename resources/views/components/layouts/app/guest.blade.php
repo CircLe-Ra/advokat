@@ -100,60 +100,19 @@
                         <button class="dl-trigger">Open Menu</button>
                         <ul class="dl-menu">
                             <li>
-                                <a href="#">Home</a>
-                                <ul class="dl-submenu">
-                                    <li><a href="index.html">Home style one</a></li>
-                                    <li><a href="index-2.html">Home style two</a></li>
-                                    <li><a href="index-3.html">Home style three</a></li>
-                                </ul>
+                                <a href="#home">Beranda</a>
                             </li>
                             <li>
-                                <a href="about.html">About</a>
+                                <a href="#lawyer">Pengacara</a>
                             </li>
                             <li>
-                                <a href="#">Practice Area</a>
-                                <ul class="dl-submenu">
-                                    <li><a href="practice.html">Practice areas</a></li>
-                                    <li><a href="practice-details.html">Practice areas single</a></li>
-                                </ul>
+                                <a href="#vision-mission">Visi & Misi</a>
                             </li>
                             <li>
-                                <a href="#">Cases</a>
-                                <ul class="dl-submenu">
-                                    <li><a href="case-stadies.html">Cases</a></li>
-                                    <li><a href="case-stadies-details.html">Case single</a></li>
-                                </ul>
+                                <a href="#about-us">Tentang Kami</a>
                             </li>
                             <li>
-                                <a href="#">News</a>
-                                <ul class="dl-submenu">
-                                    <li><a href="blog.html">Blog right sidebar</a></li>
-                                    <li><a href="blog-left-sidebar.html">Blog left sidebar</a></li>
-                                    <li><a href="blog-fullwidth.html">Blog fullwidth</a></li>
-                                    <li>
-                                        <a href="#">Blog details</a>
-                                        <ul class="dl-submenu">
-                                            <li>
-                                                <a href="blog-single.html">Blog details right sidebar</a>
-                                            </li>
-                                            <li>
-                                                <a href="blog-single-left-sidebar.html">Blog details left sidebar</a>
-                                            </li>
-                                            <li>
-                                                <a href="blog-single-fullwidth.html">Blog details fullwidth</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li><a href="#">Pages</a>
-                                <ul class="dl-submenu">
-                                    <li><a href="Attorneys.html">Attorneys</a></li>
-                                    <li><a href="Attorneys-single.html">Attorney Single</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="contact.html">Contact</a>
+                                <a href="#contact">Kontak Kami</a>
                             </li>
                         </ul>
                     </div>

@@ -107,7 +107,7 @@ new class extends Component {
             document.addEventListener('livewire:navigated', () => {
                 const calendarElement = document.getElementById('calendar');
 
-                fetch(@js($this->url))
+                    fetch(@js($this->url))
                     .then(response => response.json())
                     .then(({ data }) => {
                         const events = data.legalCases.reduce((accum, legalCase) => {

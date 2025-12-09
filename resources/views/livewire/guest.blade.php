@@ -17,48 +17,27 @@ class extends Component {
         <div class="hero-slider">
             <div class="slide  relative h-full bg-cover bg-no-repeat z-10  after:absolute after:content-['']
                     after:w-full after:h-full after:left-0 after:top-0 after:opacity-70 after:z-10">
-                <img class="w-full object-cover h-[790px] lg:h-[500px]" src="assets/images/slider/slide-4.jpg" alt="" >
+                <img class="w-full object-cover h-[790px] lg:h-[500px]" src="assets/images/home.png" alt="" >
                 <div class="wraper">
-                    <div class="slide-caption w-[700px] mt-[245px] lg:mt-[110px] md:mt-[120px] col:mt-[100px] absolute top-0 z-20">
-                        <p class="text-white text-[20px] font-light col:text-[18px]">The Most Talented Law Frim</p>
-                        <h2 class="text-white text-[60px] leading-[90px] lg:text-[42px] lg:leading-[56px]
-                             col:text-[25px] col:leading-[35px] font-normal my-[33px]"><span>We Fight For Your Justice</span> <br> <span>As Like A Friend.</span></h2>
-                        <div class="btns">
-                            <div class="btn-style">
-                                <a href="contact.html" class="bg-[#c0b596] relative cursor-pointer text-[16px]
-                                     font-semibold text-white px-[38px] py-[12px]  capitalize inline-block mt-[6px]
-                                     transition ease-in-out duration-300 hover:bg-[#d4c291]
-                                    col:mb-[5px] col:mt-[15px] col:text-[15px] col:px-[18px] col:py-[8px]
-                                    before:absolute before:content-[''] before:w-[85px] before:h-[2px] before:left-[-60px]
-                                     before:top-[50%]  before:bg-white before:transform before:translate-y-[-50%]
-                                     before:transition-all hover:before:left-[-95px] md:before:hidden">Contact us now</a>
-                            </div>
-                        </div>
-                    </div>
+{{--                    <div class="slide-caption w-[700px] mt-[245px] lg:mt-[110px] md:mt-[120px] col:mt-[100px] absolute top-0 z-20">--}}
+{{--                        <p class="text-white text-[20px] font-light col:text-[18px]">The Most Talented Law Frim</p>--}}
+{{--                        <h2 class="text-white text-[60px] leading-[90px] lg:text-[42px] lg:leading-[56px]--}}
+{{--                             col:text-[25px] col:leading-[35px] font-normal my-[33px]"><span>We Fight For Your Justice</span> <br> <span>As Like A Friend.</span></h2>--}}
+{{--                        <div class="btns">--}}
+{{--                            <div class="btn-style">--}}
+{{--                                <a href="contact.html" class="bg-[#c0b596] relative cursor-pointer text-[16px]--}}
+{{--                                     font-semibold text-white px-[38px] py-[12px]  capitalize inline-block mt-[6px]--}}
+{{--                                     transition ease-in-out duration-300 hover:bg-[#d4c291]--}}
+{{--                                    col:mb-[5px] col:mt-[15px] col:text-[15px] col:px-[18px] col:py-[8px]--}}
+{{--                                    before:absolute before:content-[''] before:w-[85px] before:h-[2px] before:left-[-60px]--}}
+{{--                                     before:top-[50%]  before:bg-white before:transform before:translate-y-[-50%]--}}
+{{--                                     before:transition-all hover:before:left-[-95px] md:before:hidden">Contact us now</a>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
                 </div>
             </div>
-            <div class="slide  relative h-full bg-cover bg-no-repeat z-10  after:absolute after:content-['']
-                    after:w-full after:h-full after:left-0 after:top-0 after:opacity-70 after:z-10">
-                <img class="w-full object-cover h-[790px] lg:h-[500px]" src="assets/images/slider/slide-5.jpg" alt="">
-                <div class="wraper">
-                    <div class="slide-caption w-[700px] mt-[245px] lg:mt-[110px] md:mt-[120px] col:mt-[100px] absolute top-0 z-20">
-                        <p class="text-white text-[20px] font-light col:text-[18px]">The Most Talented Law Frim</p>
-                        <h2 class="text-white text-[60px] leading-[90px] lg:text-[42px] lg:leading-[56px]
-                             col:text-[25px] col:leading-[35px] font-normal my-[33px]"><span>We Fight For Your Justice</span> <br> <span>As Like A Friend.</span></h2>
-                        <div class="btns">
-                            <div class="btn-style">
-                                <a href="contact.html" class="bg-[#c0b596] relative cursor-pointer text-[16px]
-                                     font-semibold text-white px-[38px] py-[12px]  capitalize inline-block mt-[6px]
-                                     transition ease-in-out duration-300 hover:bg-[#d4c291]
-                                    col:mb-[5px] col:mt-[15px] col:text-[15px] col:px-[18px] col:py-[8px]
-                                    before:absolute before:content-[''] before:w-[85px] before:h-[2px] before:left-[-60px]
-                                     before:top-[50%]  before:bg-white before:transform before:translate-y-[-50%]
-                                     before:transition-all hover:before:left-[-95px] md:before:hidden">Contact us now</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
         </div>
     </section>
     <div class="bg-[#f1f1f1] pt-[50px] pb-[30px]">
